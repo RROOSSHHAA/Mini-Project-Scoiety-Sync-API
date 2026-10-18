@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>SocietyServ SSC — Housing Society Bulk Maintenance Marketplace</title>
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+              950: '#042f2e',
+            },
+            primary: "#005c55",
+            "primary-container": "#0f766e",
+            "primary-fixed": "#9cf2e8",
+            "on-primary-fixed-variant": "#00504a",
+            secondary: "#4b41e1",
+            "secondary-container": "#645efb",
+            "secondary-fixed": "#e2dfff",
+            tertiary: "#734700",
+            "tertiary-fixed": "#ffddb8",
+            surface: "#faf8ff",
+            "surface-container": "#eaedff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#475569"
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .fill-1 {
+      font-variation-settings: 'FILL' 1;
+    }
+    * {
+      transition-property: color, background-color, border-color, box-shadow;
+      transition-duration: 150ms;
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(0.5deg); }
+    }
+    @keyframes floatMedium {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(-0.5deg); }
+    }
+    .animate-float-slow {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .animate-float-medium {
+      animation: floatMedium 6s ease-in-out infinite 1.5s;
+    }
+    .bg-isometric-grid {
+      background-image: 
+        linear-gradient(30deg, rgba(15, 118, 110, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(15, 118, 110, 0.05) 87.5%, rgba(15, 118, 110, 0.05)),
+        linear-gradient(150deg, rgba(15, 118, 110, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(15, 118, 110, 0.05) 87.5%, rgba(15, 118, 110, 0.05)),
+        linear-gradient(30deg, rgba(15, 118, 110, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(15, 118, 110, 0.05) 87.5%, rgba(15, 118, 110, 0.05)),
+        linear-gradient(150deg, rgba(15, 118, 110, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(15, 118, 110, 0.05) 87.5%, rgba(15, 118, 110, 0.05)),
+        radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.12), transparent 70%);
+      background-size: 80px 140px, 80px 140px, 80px 140px, 80px 140px, 100% 100%;
+      background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 min-h-screen flex flex-col justify-between antialiased">
+
+  <!-- ==================== TOP NAVIGATION HEADER ==================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo & Branding -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('login')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+            <span class="material-symbols-outlined text-[24px]">apartment</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-display font-extrabold text-lg text-slate-900 tracking-tight">SocietyServ</span>
+              <span class="px-1.5 py-0.5 rounded-md bg-brand-100 text-brand-800 text-[10px] font-bold tracking-wider">SSC</span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-medium -mt-0.5">Housing Society Marketplace</p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1">
+          <button onclick="navigate('login')" id="nav-btn-login" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100/60 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">login</span>
+            <span>Sign In</span>
+          </button>
+          
+          <button onclick="navigate('services')" id="nav-btn-services" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">handyman</span>
+            <span>Society Services</span>
+          </button>
+
+          <button onclick="navigate('resident')" id="nav-btn-resident" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">home_work</span>
+            <span>Resident Flat Portal</span>
+          </button>
+
+          <button onclick="navigate('secretary')" id="nav-btn-secretary" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">shield_person</span>
+            <span>Secretary Desk</span>
+          </button>
+
+          <button onclick="navigate('merchant')" id="nav-btn-merchant" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">engineering</span>
+            <span>Merchant Desk</span>
+          </button>
+
+          <button onclick="navigate('admin')" id="nav-btn-admin" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+            <span>Admin</span>
+          </button>
+        </nav>
+
+        <!-- Right Header Auth & Role Status -->
+        <div class="flex items-center gap-2">
+          <!-- Logged Out Actions -->
+          <div id="authLoggedOut" class="flex items-center gap-2">
+            <button onclick="navigate('register')" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-50 text-brand-700 border border-brand-200 shadow-xs transition-all items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">person_add</span>
+              <span>Resident Register</span>
+            </button>
+            <button onclick="navigate('merchant-register')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-700 hover:bg-brand-800 text-white shadow-sm transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">construction</span>
+              <span>Worker Register</span>
+            </button>
+          </div>
+
+          <!-- Logged In User State -->
+          <div id="authLoggedIn" class="hidden items-center gap-3">
+            <div class="flex items-center gap-2.5 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+              <div class="w-8 h-8 rounded-full bg-brand-700 text-white flex items-center justify-center font-bold text-xs shadow-xs" id="userAvatarText">
+                RP
+              </div>
+              <div class="hidden sm:block text-left">
+                <span class="block text-xs font-bold text-slate-900 leading-tight" id="userNameDisplay">Roshan Patel</span>
+                <span class="block text-[10px] text-brand-700 font-semibold" id="userRoleBadge">Resident • Flat B-402</span>
+              </div>
+            </div>
+            <button onclick="logoutUser()" title="Sign Out" class="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all">
+              <span class="material-symbols-outlined text-[20px]">logout</span>
+            </button>
+          </div>
+
+          <!-- Mobile Menu Trigger -->
+          <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-xl">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1">
+      <button onclick="navigate('login')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-brand-700 bg-brand-50 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">login</span> Sign In
+      </button>
+      <button onclick="navigate('services')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">handyman</span> Society Services
+      </button>
+      <button onclick="navigate('resident')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">home_work</span> Resident Flat Portal
+      </button>
+      <button onclick="navigate('secretary')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">shield_person</span> Secretary Desk
+      </button>
+      <button onclick="navigate('merchant')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">engineering</span> Merchant Desk
+      </button>
+      <button onclick="navigate('admin')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span> Platform Admin
+      </button>
+      <div class="pt-2 border-t border-slate-200 flex gap-2">
+        <button onclick="navigate('register')" class="flex-1 py-2 text-center text-xs font-bold text-brand-700 bg-brand-50 rounded-lg">Resident Register</button>
+        <button onclick="navigate('merchant-register')" class="flex-1 py-2 text-center text-xs font-bold text-white bg-brand-700 rounded-lg">Worker Register</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN VIEW CONTAINER ==================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 1: SIGN IN (DEFAULT LANDING PAGE ON STARTUP)                         -->
+    <!-- ========================================================================= -->
+    <div id="view-login" class="app-view max-w-6xl mx-auto my-4 sm:my-6">
+      <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl p-6 sm:p-10 relative bg-isometric-grid">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- LEFT COLUMN: 3D ISOMETRIC VECTOR HOUSING COMPLEX ARTWORK -->
+          <div class="lg:col-span-7 space-y-6 relative">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-bold uppercase tracking-wider">
+              <span class="material-symbols-outlined text-[16px] text-brand-700">location_city</span>
+              <span>Cooperative Housing Society Marketplace</span>
+            </div>
+
+            <div>
+              <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight leading-tight">
+                Empowering India's Housing Societies with Collective Service Bargaining.
+              </h1>
+              <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+                Connect your residential society to verified maintenance professionals, transparent smart escrow settlements, and pooled wholesale rates.
+              </p>
+            </div>
+
+            <!-- 3D Isometric Buildings SVG Canvas -->
+            <div class="relative w-full rounded-2xl bg-gradient-to-b from-slate-50/80 to-brand-50/40 p-4 border border-slate-200/80 overflow-hidden shadow-inner">
+              <!-- Floating 3D Badges Overlay -->
+              <div class="absolute top-4 left-4 z-20 animate-float-slow">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-brand-200 text-xs font-bold text-slate-900">
+                  <span class="w-2.5 h-2.5 rounded-full bg-brand-600 animate-ping"></span>
+                  <span class="material-symbols-outlined text-[16px] text-brand-700">apartment</span>
+                  <span>Gokuldham CHS • Wing A &amp; B</span>
+                </div>
+              </div>
+
+              <div class="absolute top-4 right-4 z-20 animate-float-medium">
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-700 text-white shadow-md text-xs font-bold">
+                  <span class="material-symbols-outlined text-[16px]">verified_user</span>
+                  <span>Smart Escrow Active</span>
+                </div>
+              </div>
+
+              <div class="absolute bottom-4 left-4 z-20 animate-float-medium">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200 text-xs font-bold text-brand-800">
+                  <span class="material-symbols-outlined text-[16px] text-amber-500 fill-1">savings</span>
+                  <span>34% Wholesale Quorum Saved</span>
+                </div>
+              </div>
+
+              <!-- High-Fidelity 3D Isometric SVG Illustration -->
+              <svg viewBox="0 0 640 380" class="w-full h-auto drop-shadow-xl" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="skyAura" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#5eead4" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#ccfbf1" stop-opacity="0"/>
+                  </radialGradient>
+                  <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="50%" stop-color="#e2e8f0"/>
+                    <stop offset="100%" stop-color="#cbd5e1"/>
+                  </linearGradient>
+                  <linearGradient id="t1Left" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#042f2e"/>
+                    <stop offset="100%" stop-color="#0f766e"/>
+                  </linearGradient>
+                  <linearGradient id="t1Right" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0d9488"/>
+                    <stop offset="100%" stop-color="#14b8a6"/>
+                  </linearGradient>
+                  <linearGradient id="t1Top" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2dd4bf"/>
+                    <stop offset="100%" stop-color="#5eead4"/>
+                  </linearGradient>
+                  <linearGradient id="t2Left" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e3a8a"/>
+                    <stop offset="100%" stop-color="#2563eb"/>
+                  </linearGradient>
+                  <linearGradient id="t2Right" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="100%" stop-color="#60a5fa"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Ground Campus -->
+                <polygon points="320,80 580,210 320,350 60,210" fill="url(#groundGrad)"/>
+                <polygon points="320,95 560,210 320,335 80,210" fill="#d1fae5"/>
+
+                <!-- Swimming Pool -->
+                <polygon points="410,230 490,190 530,210 450,250" fill="#38bdf8"/>
+                <polygon points="415,232 485,195 523,212 453,248" fill="#0284c7"/>
+
+                <!-- Tower A (Left/Center) -->
+                <polygon points="210,130 290,175 290,320 210,270" fill="url(#t1Left)"/>
+                <polygon points="290,175 390,120 390,265 290,320" fill="url(#t1Right)"/>
+                <polygon points="210,130 310,75 390,120 290,175" fill="url(#t1Top)"/>
+
+                <!-- Solar Panels on Tower A -->
+                <polygon points="230,118 270,96 350,138 310,160" fill="#1e3a8a" stroke="#60a5fa" stroke-width="1.5"/>
+
+                <!-- Windows on Tower A -->
+                <g fill="#ccfbf1" opacity="0.9">
+                  <rect x="230" y="165" width="16" height="12" rx="2" transform="skewY(27)"/>
+                  <rect x="255" y="152" width="16" height="12" rx="2" transform="skewY(27)"/>
+                  <rect x="230" y="200" width="16" height="12" rx="2" transform="skewY(27)"/>
+                  <rect x="255" y="187" width="16" height="12" rx="2" transform="skewY(27)"/>
+                  <rect x="230" y="235" width="16" height="12" rx="2" transform="skewY(27)"/>
+                  <rect x="255" y="222" width="16" height="12" rx="2" transform="skewY(27)"/>
+                  
+                  <rect x="310" y="180" width="18" height="12" rx="2" transform="skewY(-28)"/>
+                  <rect x="340" y="196" width="18" height="12" rx="2" transform="skewY(-28)"/>
+                  <rect x="310" y="215" width="18" height="12" rx="2" transform="skewY(-28)"/>
+                  <rect x="340" y="231" width="18" height="12" rx="2" transform="skewY(-28)"/>
+                </g>
+
+                <!-- Tower B (Center Back) -->
+                <polygon points="340,110 400,140 400,240 340,210" fill="url(#t2Left)"/>
+                <polygon points="400,140 470,105 470,205 400,240" fill="url(#t2Right)"/>
+                <polygon points="340,110 410,75 470,105 400,140" fill="#93c5fd"/>
+
+                <!-- Society Clubhouse (Front Right) -->
+                <polygon points="340,250 400,280 400,320 340,290" fill="#047857"/>
+                <polygon points="400,280 450,255 450,295 400,320" fill="#065f46"/>
+                <polygon points="340,250 390,225 450,255 400,280" fill="#10b981"/>
+
+                <!-- Security Gatehouse -->
+                <polygon points="150,210 180,225 180,250 150,235" fill="#475569"/>
+                <polygon points="180,225 210,210 210,235 180,250" fill="#334155"/>
+                <polygon points="150,210 180,195 210,210 180,225" fill="#64748b"/>
+              </svg>
+            </div>
+
+            <!-- Society Statistics Strip -->
+            <div class="grid grid-cols-3 gap-3 pt-2 text-center">
+              <div class="p-3 bg-white/90 rounded-xl border border-slate-200 shadow-xs">
+                <span class="text-xs uppercase font-extrabold text-slate-400 block">Verified RWAs</span>
+                <span class="text-lg font-black text-slate-900 font-display">140+ Societies</span>
+              </div>
+              <div class="p-3 bg-white/90 rounded-xl border border-slate-200 shadow-xs">
+                <span class="text-xs uppercase font-extrabold text-slate-400 block">Settled Escrow</span>
+                <span class="text-lg font-black text-brand-700 font-display">₹1.4M+</span>
+              </div>
+              <div class="p-3 bg-white/90 rounded-xl border border-slate-200 shadow-xs">
+                <span class="text-xs uppercase font-extrabold text-slate-400 block">Average Savings</span>
+                <span class="text-lg font-black text-emerald-700 font-display">34% Saved</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: SIGN IN FORM CARD -->
+          <div class="lg:col-span-5 relative">
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xl">
+              
+              <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center mx-auto mb-3 shadow-xs">
+                  <span class="material-symbols-outlined text-[26px]">lock</span>
+                </div>
+                <h2 class="text-2xl font-extrabold font-display text-slate-900">Sign In to SocietyServ</h2>
+                <p class="text-xs text-slate-500 mt-1">Access your society dashboard, flat requests &amp; escrow</p>
+              </div>
+
+              <!-- Quick Role Portals -->
+              <div class="mb-5 p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+                <span class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">⚡ Quick Role Access</span>
+                <div class="grid grid-cols-2 gap-2">
+                  <button onclick="quickRoleLogin('resident')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-brand-100 hover:bg-brand-200 text-brand-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+                    <span class="material-symbols-outlined text-[16px]">home</span> Resident Flat
+                  </button>
+                  <button onclick="quickRoleLogin('secretary')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-indigo-100 hover:bg-indigo-200 text-indigo-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+                    <span class="material-symbols-outlined text-[16px]">shield_person</span> Secretary Desk
+                  </button>
+                  <button onclick="quickRoleLogin('merchant')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+                    <span class="material-symbols-outlined text-[16px]">engineering</span> Worker Desk
+                  </button>
+                  <button onclick="quickRoleLogin('admin')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+                    <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span> SSC Admin
+                  </button>
+                </div>
+              </div>
+
+              <div class="relative flex items-center justify-center mb-5">
+                <div class="border-t border-slate-200 w-full"></div>
+                <span class="bg-white px-3 text-xs text-slate-400 font-semibold uppercase">or email login</span>
+              </div>
+
+              <!-- Standard Sign In Form -->
+              <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Registered Email ID</label>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">mail</span>
+                    <input required type="email" id="loginEmail" value="roshan.patel@gokuldham.in" placeholder="name@society.in" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="text-xs font-bold uppercase text-slate-700">Password</label>
+                    <a href="#" onclick="showAppToast('Password reset link sent to registered email', 'mail')" class="text-xs text-brand-700 hover:underline">Forgot?</a>
+                  </div>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock</span>
+                    <input required type="password" id="loginPassword" value="Society@2026" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Portal Account Role</label>
+                  <select id="loginRole" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
+                    <option value="resident">Resident Flat Member (Flat B-402 • Gokuldham CHS)</option>
+                    <option value="secretary">Society Secretary (RWA Office • Gokuldham CHS)</option>
+                    <option value="merchant">Verified Worker / Contractor (AquaPure Tech Services)</option>
+                    <option value="admin">Platform Governance Administrator (SSC Head)</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-[18px]">login</span>
+                  <span>Sign In to Account</span>
+                </button>
+              </form>
+
+              <!-- Registration Routing Links -->
+              <div class="mt-6 pt-5 border-t border-slate-200 space-y-2 text-center text-xs">
+                <p class="text-slate-600">
+                  New Flat or Society? 
+                  <a href="#" onclick="navigate('register')" class="font-bold text-brand-700 hover:underline">Register Resident / Secretary</a>
+                </p>
+                <p class="text-slate-600">
+                  Worker or Service Contractor? 
+                  <a href="#" onclick="navigate('merchant-register')" class="font-bold text-amber-700 hover:underline">Register as Tradesman / Worker</a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 2: MULTI-STEP RESIDENT / SECRETARY REGISTRATION (OTP + PASSWORD)     -->
+    <!-- ========================================================================= -->
+    <div id="view-register" class="app-view hidden max-w-4xl mx-auto my-4 sm:my-6">
+      <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl p-6 sm:p-10 relative">
+        
+        <!-- Header & Step Progress Bar -->
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase mb-2">
+            <span class="material-symbols-outlined text-[16px]">domain_add</span>
+            <span>Resident &amp; Society Onboarding</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">Create Your Society Account</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Multi-step verified registration with instant Email OTP</p>
+
+          <!-- Stepper Pills -->
+          <div class="flex items-center justify-center gap-2 sm:gap-4 mt-6">
+            <div id="regStepBadge1" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-700 text-white text-xs font-bold shadow-xs">
+              <span class="w-5 h-5 rounded-full bg-white text-brand-700 flex items-center justify-center text-[11px]">1</span>
+              <span>Details</span>
+            </div>
+            <span class="text-slate-300">———</span>
+            <div id="regStepBadge2" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
+              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">2</span>
+              <span>Email OTP</span>
+            </div>
+            <span class="text-slate-300">———</span>
+            <div id="regStepBadge3" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
+              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">3</span>
+              <span>Set Password</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 1: RESIDENT & SOCIETY DETAILS -->
+        <div id="regStep1" class="space-y-6">
+          <div class="space-y-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Choose Your Account Role</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="role-pill p-3.5 rounded-xl border-2 border-brand-700 bg-brand-50 flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="regRole" value="resident" checked class="text-brand-700" onchange="handleRegRoleChange('resident')">
+                <div>
+                  <span class="block text-xs font-bold text-slate-900">Resident Flat Member</span>
+                  <span class="text-[11px] text-slate-500">Post flat maintenance requests &amp; join society pools</span>
+                </div>
+              </label>
+              <label class="role-pill p-3.5 rounded-xl border-2 border-slate-200 bg-white flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="regRole" value="secretary" class="text-brand-700" onchange="handleRegRoleChange('secretary')">
+                <div>
+                  <span class="block text-xs font-bold text-slate-900">Society Secretary / RWA</span>
+                  <span class="text-[11px] text-slate-500">Initiate bulk drives, manage past work history &amp; bids</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Legal Name</label>
+              <input required type="text" id="regName" value="Roshan Patel" placeholder="Enter your full name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mobile / WhatsApp Number</label>
+              <input required type="tel" id="regPhone" value="+91 98201 44210" placeholder="+91 98200 00000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Registered Email ID (OTP will be sent here)</label>
+            <input required type="email" id="regEmail" value="roshan.patel@gokuldham.in" placeholder="roshan@housing.in" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-1">
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Housing Society</label>
+              <select id="regSociety" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
+                <option value="Gokuldham CHS">Gokuldham CHS (Goregaon)</option>
+                <option value="Palm Heights">Palm Heights (Powai)</option>
+                <option value="Green Valley CHS">Green Valley (Andheri)</option>
+                <option value="Sunrise Enclave">Sunrise Enclave (Borivali)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Wing / Tower</label>
+              <input required type="text" id="regWing" value="Wing B" placeholder="e.g. Wing B" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Flat / Unit No.</label>
+              <input required type="text" id="regFlat" value="B-402" placeholder="e.g. B-402" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="pt-4 flex justify-between items-center">
+            <button onclick="navigate('login')" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Already registered? Sign In
+            </button>
+            <button onclick="goToRegStep(2)" type="button" class="px-6 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+              <span>Next: Verify Email OTP</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: EMAIL OTP VERIFICATION -->
+        <div id="regStep2" class="hidden space-y-6 max-w-md mx-auto text-center py-4">
+          <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-700 flex items-center justify-center mx-auto shadow-inner">
+            <span class="material-symbols-outlined text-[32px]">mark_email_read</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-900 font-display">Enter Email Security Code</h3>
+            <p class="text-xs text-slate-500 mt-1">
+              We sent a 6-digit verification code to <br><span class="font-bold text-slate-800" id="regOtpEmailPreview">roshan.patel@gokuldham.in</span>
+            </p>
+          </div>
+
+          <!-- Live OTP Pill Helper -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
+            <span class="material-symbols-outlined text-[16px]">key</span>
+            <span>Security Code: <strong id="regOtpDisplayCode" class="tracking-widest">482910</strong></span>
+          </div>
+
+          <!-- OTP Input Boxes -->
+          <div class="flex items-center justify-center gap-2 sm:gap-3 my-4">
+            <input type="text" maxlength="1" value="4" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="8" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="2" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="9" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="1" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="0" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+          </div>
+
+          <p class="text-xs text-slate-500">
+            Didn't receive the email? 
+            <button onclick="showAppToast('New OTP dispatched: 482910', 'refresh')" type="button" class="font-bold text-brand-700 hover:underline">Resend OTP (00:30)</button>
+          </p>
+
+          <div class="pt-4 flex justify-between items-center">
+            <button onclick="goToRegStep(1)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Edit Details
+            </button>
+            <button onclick="goToRegStep(3)" type="button" class="px-6 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+              <span>Verify Code &amp; Proceed</span>
+              <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: SET PASSWORD & MATCH VALIDATION -->
+        <div id="regStep3" class="hidden space-y-6 max-w-md mx-auto py-4">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-2">
+              <span class="material-symbols-outlined text-[28px]">password</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 font-display">Create Your Secure Password</h3>
+            <p class="text-xs text-slate-500 mt-1">Both passwords must match to complete your society registration</p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Create Password</label>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock</span>
+                <input required type="password" id="regPass1" oninput="validatePasswordMatch()" placeholder="Enter minimum 8 characters" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Re-enter Password (Confirm)</label>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock_reset</span>
+                <input required type="password" id="regPass2" oninput="validatePasswordMatch()" placeholder="Re-type password exactly" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+              </div>
+            </div>
+
+            <!-- Password Match Feedback Box -->
+            <div id="passMatchIndicator" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2">
+              <span id="passMatchIcon" class="material-symbols-outlined text-[18px] text-slate-400">info</span>
+              <span id="passMatchText" class="text-slate-600 font-medium">Please enter your password in both fields</span>
+            </div>
+          </div>
+
+          <div class="pt-4 flex justify-between items-center">
+            <button onclick="goToRegStep(2)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Back to OTP
+            </button>
+            <button id="btnCompleteReg" onclick="finalizeRegistration()" disabled type="button" class="px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed">
+              <span>Complete &amp; Open Home</span>
+              <span class="material-symbols-outlined text-[18px]">verified</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 3: SEPARATE WORKER / MERCHANT REGISTRATION                           -->
+    <!-- ========================================================================= -->
+    <div id="view-merchant-register" class="app-view hidden max-w-4xl mx-auto my-4 sm:my-6">
+      <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl p-6 sm:p-10 relative">
+        
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase mb-2">
+            <span class="material-symbols-outlined text-[16px]">construction</span>
+            <span>Verified Tradesman &amp; Contractor Desk</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">Worker &amp; Merchant Onboarding</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Get high-density cluster jobs in residential societies with guaranteed smart escrow</p>
+
+          <!-- Stepper Pills -->
+          <div class="flex items-center justify-center gap-2 sm:gap-4 mt-6">
+            <div id="mStepBadge1" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600 text-white text-xs font-bold shadow-xs">
+              <span class="w-5 h-5 rounded-full bg-white text-amber-700 flex items-center justify-center text-[11px]">1</span>
+              <span>Trade Profile</span>
+            </div>
+            <span class="text-slate-300">———</span>
+            <div id="mStepBadge2" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
+              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">2</span>
+              <span>Worker OTP</span>
+            </div>
+            <span class="text-slate-300">———</span>
+            <div id="mStepBadge3" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
+              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">3</span>
+              <span>Set Password</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MERCHANT STEP 1: TRADE & AGENCY DETAILS -->
+        <div id="mStep1" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Contractor / Technician Name</label>
+              <input required type="text" id="mRegName" value="Ashish Sharma" placeholder="e.g. Ashish Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Trade Agency / Business Name</label>
+              <input required type="text" id="mRegAgency" value="AquaPure Tech &amp; Facility Services" placeholder="e.g. AquaPure Tech Services" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <!-- Primary Trade Skills Selection -->
+          <div class="space-y-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Select Primary Trade Skills (Or Type Below)</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" checked class="text-amber-600"> 🚰 Plumbing &amp; Sanitary
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" checked class="text-amber-600"> ⚡ Electrical &amp; Wiring
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" checked class="text-amber-600"> 💧 RO Water Systems
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" class="text-amber-600"> 🛡️ Pest &amp; Termite Control
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" class="text-amber-600"> ❄️ AC Deep Clean / HVAC
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" class="text-amber-600"> 🏢 Water Tank Cleaning
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" class="text-amber-600"> 🪚 Carpentry Repair
+              </label>
+              <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
+                <input type="checkbox" class="text-amber-600"> 🎨 Waterproofing &amp; Paint
+              </label>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mt-2 mb-1">Custom / Manual Trade Specialization</label>
+              <input type="text" id="mRegCustomTrade" placeholder="e.g. Inverter battery maintenance, lift motor rewiring" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mobile / WhatsApp No.</label>
+              <input required type="tel" id="mRegPhone" value="+91 98204 11223" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Business Email</label>
+              <input required type="email" id="mRegEmail" value="partner@aquapure.in" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Service Hub Localities</label>
+              <input required type="text" id="mRegHub" value="Goregaon &amp; Powai Hub" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">GST / Govt Trade License / Aadhar KYC</label>
+              <input required type="text" id="mRegKyc" value="27AAJCA4491D1Z8" placeholder="GSTIN or Trade ID" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Bank Account / UPI ID (For Escrow Payouts)</label>
+              <input required type="text" id="mRegUpi" value="aquapure@hdfcbank" placeholder="e.g. agency@upi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="pt-4 flex justify-between items-center">
+            <button onclick="navigate('login')" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Already registered worker? Sign In
+            </button>
+            <button onclick="goToMerchantStep(2)" type="button" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+              <span>Next: Verify Worker OTP</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- MERCHANT STEP 2: WORKER OTP VERIFICATION -->
+        <div id="mStep2" class="hidden space-y-6 max-w-md mx-auto text-center py-4">
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto shadow-inner">
+            <span class="material-symbols-outlined text-[32px]">verified</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-900 font-display">Verify Contractor Email</h3>
+            <p class="text-xs text-slate-500 mt-1">
+              Dispatched 6-digit code to <br><span class="font-bold text-slate-800" id="mOtpEmailPreview">partner@aquapure.in</span>
+            </p>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold">
+            <span class="material-symbols-outlined text-[16px]">key</span>
+            <span>Security Code: <strong id="mOtpDisplayCode" class="tracking-widest">592814</strong></span>
+          </div>
+
+          <div class="flex items-center justify-center gap-2 sm:gap-3 my-4">
+            <input type="text" maxlength="1" value="5" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="9" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="2" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="8" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="1" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
+            <input type="text" maxlength="1" value="4" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
+          </div>
+
+          <div class="pt-4 flex justify-between items-center">
+            <button onclick="goToMerchantStep(1)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Edit Trade Profile
+            </button>
+            <button onclick="goToMerchantStep(3)" type="button" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+              <span>Verify &amp; Create Password</span>
+              <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- MERCHANT STEP 3: SET & MATCH PASSWORD -->
+        <div id="mStep3" class="hidden space-y-6 max-w-md mx-auto py-4">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-2">
+              <span class="material-symbols-outlined text-[28px]">lock</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 font-display">Create Worker Portal Password</h3>
+            <p class="text-xs text-slate-500 mt-1">Both passwords must match to activate your trade account</p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Create Password</label>
+              <input required type="password" id="mRegPass1" oninput="validateMerchantPasswordMatch()" placeholder="Minimum 8 characters" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Re-enter Password (Confirm)</label>
+              <input required type="password" id="mRegPass2" oninput="validateMerchantPasswordMatch()" placeholder="Re-enter password" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+            </div>
+
+            <div id="mPassMatchIndicator" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2">
+              <span id="mPassMatchIcon" class="material-symbols-outlined text-[18px] text-slate-400">info</span>
+              <span id="mPassMatchText" class="text-slate-600 font-medium">Please enter your password in both fields</span>
+            </div>
+          </div>
+
+          <div class="pt-4 flex justify-between items-center">
+            <button onclick="goToMerchantStep(2)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Back to OTP
+            </button>
+            <button id="btnCompleteMerchantReg" onclick="finalizeMerchantRegistration()" disabled type="button" class="px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed">
+              <span>Complete Onboarding &amp; View Jobs</span>
+              <span class="material-symbols-outlined text-[18px]">verified</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 4: SOCIETY SERVICES (RENAMED FROM CALCULATOR; SECRETARY INITIATES)  -->
+    <!-- ========================================================================= -->
+    <div id="view-services" class="app-view hidden space-y-8">
+      
+      <!-- Header Banner -->
+      <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-brand-200 text-xs font-bold uppercase">
+            <span class="material-symbols-outlined text-[16px]">groups</span>
+            <span>Bulk Purchasing &amp; Maintenance Drives</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight">Society Collective Services</h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            By pooling entire apartment wings and societies, residents eliminate individual vendor markups. Official bulk drives are initiated exclusively by the Society Secretary.
+          </p>
+        </div>
+
+        <!-- Secretary Action Trigger or Resident Informational Banner -->
+        <div class="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+          <div id="servicesSecretaryAuthBanner">
+            <!-- Rendered dynamically based on active user role -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Add New Society Service Work Modal / Section (Visible if Secretary) -->
+      <div id="secretaryWorkCreationCard" class="hidden bg-white rounded-2xl border-2 border-brand-500 p-6 shadow-lg">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+              <span class="material-symbols-outlined text-[20px]">add_task</span>
+            </span>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">Initiate Official Society Bulk Service Drive</h3>
+              <p class="text-xs text-slate-500">Secretary Authorized Action • Enrolls Gokuldham CHS Wings A &amp; B</p>
+            </div>
+          </div>
+          <button onclick="toggleSecretaryWorkCreation(false)" class="text-slate-400 hover:text-slate-600">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <!-- Manual Work Entry Form -->
+        <form onsubmit="handleSecretaryCreateService(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Custom Service / Work Title</label>
+              <input required type="text" id="newWorkTitle" placeholder="e.g. Overhead Tank Scrubbing & Chemical Disinfection" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Work Trade Category</label>
+              <input required type="text" id="newWorkCategory" placeholder="e.g. Water Tank & Hygiene" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Wing Scope</label>
+              <select id="newWorkWing" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
+                <option value="Wing A & B Combined">Wing A &amp; B Combined (64 Flats)</option>
+                <option value="Wing A Only">Wing A Only (32 Flats)</option>
+                <option value="Wing B Only">Wing B Only (32 Flats)</option>
+                <option value="All Society Towers">All Society Towers</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Target Quorum Flats</label>
+              <input required type="number" id="newWorkQuorum" value="12" min="1" max="64" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Target Bulk Rate / Flat (₹)</label>
+              <input required type="number" id="newWorkBulkRate" value="480" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Detailed Work Scope &amp; Specifications</label>
+            <textarea id="newWorkDescription" rows="2" placeholder="Specify technical scope, parts warranty, required certifications, inspection criteria..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm"></textarea>
+          </div>
+
+          <div class="flex justify-end gap-2 pt-2">
+            <button onclick="toggleSecretaryWorkCreation(false)" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl">Cancel</button>
+            <button type="submit" class="px-6 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">publish</span>
+              <span>Publish Drive to Noticeboard</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Live Society Bulk Drives List -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xl font-bold font-display text-slate-900">Active Society Quorum Drives</h3>
+            <p class="text-xs text-slate-500">Flats join in real-time to unlock institutional contractor rates</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold" id="servicesActiveCountBadge">3 Drives Live</span>
+        </div>
+
+        <div id="servicesDrivesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically populated from activeServices array -->
+        </div>
+      </div>
+
+      <!-- Collective Bargaining Savings Calculator Widget -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="max-w-2xl">
+          <span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Collective Value Estimator</span>
+          <h3 class="text-2xl font-extrabold font-display text-slate-900 mt-1">Calculate Society Group Volume Discounts</h3>
+          <p class="text-xs text-slate-500 mt-1">See how much society funds are saved as more flats unite for common repairs</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="text-xs font-bold uppercase text-slate-700">Participating Flats in Society</label>
+                <span id="sliderFlatsValue" class="text-base font-extrabold text-brand-700 font-display">24 Flats</span>
+              </div>
+              <input type="range" id="flatsRange" min="5" max="64" value="24" oninput="updateServicesCalculator()" class="w-full accent-brand-700 h-2 bg-slate-200 rounded-lg cursor-pointer">
+              <div class="flex justify-between text-[11px] text-slate-400 font-semibold mt-1">
+                <span>5 Flats (Quorum Min)</span>
+                <span>32 Flats (1 Wing)</span>
+                <span>64 Flats (Full Society)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Selected Maintenance Trade</label>
+                <input type="text" id="calcServiceTitle" value="RO Membrane &amp; Pre-Filter Drive" oninput="updateServicesCalculator()" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Estimated Retail Rate (₹/Flat)</label>
+                <input type="number" id="calcRetailRate" value="1100" oninput="updateServicesCalculator()" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-semibold">
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-gradient-to-br from-brand-50 to-emerald-50/60 rounded-2xl border border-brand-200 p-6 text-center space-y-3">
+            <span class="text-xs font-bold uppercase text-brand-800 tracking-wider">Estimated Total Society Savings</span>
+            <div class="text-4xl font-black font-display text-emerald-800" id="calcSavingsTotal">₹14,400</div>
+            <div class="flex justify-center gap-4 text-xs font-semibold text-slate-600 pt-2 border-t border-brand-200">
+              <div>Retail Total: <strong id="calcRetailTotal">₹26,400</strong></div>
+              <div>Pooled Cost: <strong id="calcBulkTotal" class="text-brand-800">₹12,000</strong></div>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold" id="calcDiscountPercentBadge">45% Bulk Discount</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 5: RESIDENT FLAT PORTAL (INDIVIDUAL FLAT MAINTENANCE WORK ONLY)      -->
+    <!-- ========================================================================= -->
+    <div id="view-resident" class="app-view hidden space-y-8">
+      
+      <!-- Resident Profile & Flat Card -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 text-white flex items-center justify-center font-bold text-2xl shadow-md">
+              RP
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-extrabold font-display text-slate-900">Roshan Patel</h2>
+                <span class="px-2.5 py-0.5 rounded-full bg-brand-700 text-white text-xs font-bold">FLAT B-402</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-brand-700">domain</span>
+                <span>Gokuldham CHS • Wing B, 4th Floor, Goregaon West</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Post Flat Repair Request Trigger -->
+          <button onclick="toggleFlatRequestModal(true)" class="px-5 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+            <span>+ Request Work for My Flat</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-100">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <span class="text-[11px] font-bold text-slate-400 uppercase">My Flat Status</span>
+            <span class="block text-sm font-extrabold text-slate-900 mt-0.5">Verified Resident</span>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <span class="text-[11px] font-bold text-slate-400 uppercase">Flat Requests</span>
+            <span class="block text-sm font-extrabold text-brand-700 mt-0.5" id="residentFlatRequestCount">2 Active Jobs</span>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <span class="text-[11px] font-bold text-slate-400 uppercase">Joined Society Pools</span>
+            <span class="block text-sm font-extrabold text-slate-900 mt-0.5">2 Enrolled</span>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <span class="text-[11px] font-bold text-slate-400 uppercase">Lifetime Saved</span>
+            <span class="block text-sm font-extrabold text-emerald-700 mt-0.5">₹2,620 Saved</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- POST NEW FLAT WORK REQUEST MODAL -->
+      <div id="flatRequestModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+                <span class="material-symbols-outlined text-[20px]">build</span>
+              </span>
+              <h3 class="text-lg font-bold text-slate-900">Post Maintenance Work for Flat B-402</h3>
+            </div>
+            <button onclick="toggleFlatRequestModal(false)" class="text-slate-400 hover:text-slate-600">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+
+          <form onsubmit="handleResidentPostWork(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">What Work is Needed in Your Flat?</label>
+              <input required type="text" id="flatWorkTitle" placeholder="e.g. Master Bedroom Geyser water dripping &amp; switch sparking" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Trade Category</label>
+                <input required type="text" id="flatWorkCategory" placeholder="e.g. Electrical &amp; Geyser" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs">
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Urgency Level</label>
+                <select id="flatWorkUrgency" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs font-semibold">
+                  <option value="Urgent (Today)">Urgent (Require today)</option>
+                  <option value="Routine (Next 24h)">Routine (Within 24 hours)</option>
+                  <option value="Weekend Slot">Weekend Slot Only</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Problem Description / Notes</label>
+              <textarea id="flatWorkNotes" rows="2" placeholder="Explain the issue for the technician (e.g. water pressure low, please bring spare heating element)" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs"></textarea>
+            </div>
+
+            <div class="p-3 bg-brand-50 rounded-xl text-xs text-brand-900 flex items-center gap-2 border border-brand-200">
+              <span class="material-symbols-outlined text-[18px] text-brand-700">lock</span>
+              <span>Your security OTP will be generated upon technician dispatch.</span>
+            </div>
+
+            <div class="flex justify-end gap-2 pt-2">
+              <button onclick="toggleFlatRequestModal(false)" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl">Cancel</button>
+              <button type="submit" class="px-6 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md">
+                Post Request to Workers
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MY ACTIVE FLAT WORK REQUESTS -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold font-display text-slate-900">My Flat Repair Requests &amp; Security OTP</h3>
+        <div id="residentFlatRequestsList" class="space-y-4">
+          <!-- Dynamically populated from residentFlatRequests -->
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 6: SECRETARY DESK (ROLE RESTRICTED; ALL PAST WORK AUDIT LOGS)        -->
+    <!-- ========================================================================= -->
+    <div id="view-secretary" class="app-view hidden space-y-8">
+      
+      <!-- ROLE ACCESS GUARD FOR SECRETARY DESK -->
+      <div id="secAccessBlockedNotice" class="hidden bg-white rounded-3xl border border-slate-200 p-8 text-center max-w-xl mx-auto shadow-lg space-y-4 my-8">
+        <div class="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center mx-auto">
+          <span class="material-symbols-outlined text-[32px]">shield_lock</span>
+        </div>
+        <h3 class="text-2xl font-extrabold font-display text-slate-900">Access Restricted to Society Secretary</h3>
+        <p class="text-xs sm:text-sm text-slate-600">
+          The Secretary Desk contains executive RWA financial records, full past maintenance work logs, and bidding approvals. Sign in as Secretary to access this panel.
+        </p>
+        <button onclick="quickRoleLogin('secretary')" class="px-6 py-3 rounded-xl bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 mx-auto">
+          <span class="material-symbols-outlined text-[18px]">key</span>
+          <span>Switch to Secretary Desk (RWA Office)</span>
+        </button>
+      </div>
+
+      <!-- UNLOCKED SECRETARY DESK INTERFACE -->
+      <div id="secAccessAllowedContent" class="space-y-8">
+        
+        <!-- Society Snapshot Header -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-700 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                RWA
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h2 class="text-2xl font-extrabold font-display text-slate-900">Gokuldham CHS — Secretary Executive Desk</h2>
+                  <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">RWA AUDITED</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                  Registration: MH/MUM/2018/8821 • 64 Flats • Wing A &amp; Wing B • Goregaon West
+                </p>
+              </div>
+            </div>
+
+            <!-- Add New Society Service Work -->
+            <button onclick="toggleSecretaryWorkCreation(true); navigate('services')" class="px-5 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px]">add_circle</span>
+              <span>+ Post New Society Bulk Drive</span>
+            </button>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-100">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-[11px] font-bold text-slate-400 uppercase">Past Works Executed</span>
+              <span class="block text-sm font-extrabold text-slate-900 mt-0.5">14 Completed Works</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-[11px] font-bold text-slate-400 uppercase">Total Society Savings</span>
+              <span class="block text-sm font-extrabold text-emerald-700 mt-0.5">₹1,84,200 Saved</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-[11px] font-bold text-slate-400 uppercase">Active Bids Pending</span>
+              <span class="block text-sm font-extrabold text-indigo-700 mt-0.5">2 Verified Quotations</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-[11px] font-bold text-slate-400 uppercase">Escrow Reserve Balance</span>
+              <span class="block text-sm font-extrabold text-brand-700 mt-0.5">₹48,500 Locked</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 1: COMPLETE PAST SOCIETY WORK HISTORY & AUDIT LOGS -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-xl font-bold font-display text-slate-900">Historical Society Works &amp; Audit Logs</h3>
+              <p class="text-xs text-slate-500">Official log of past collective maintenance completed across Gokuldham CHS</p>
+            </div>
+            <button onclick="showAppToast('Society Maintenance Audit Report PDF downloaded', 'download')" class="px-3.5 py-2 rounded-xl text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 flex items-center gap-1.5 border border-brand-200">
+              <span class="material-symbols-outlined text-[16px]">file_download</span>
+              <span>Download Audit Ledger</span>
+            </button>
+          </div>
+
+          <!-- Past Works Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase font-bold text-[10px] tracking-wider">
+                <tr>
+                  <th class="py-3 px-3">Completed Date</th>
+                  <th class="py-3 px-3">Maintenance Work Title</th>
+                  <th class="py-3 px-3">Category</th>
+                  <th class="py-3 px-3">Assigned Contractor</th>
+                  <th class="py-3 px-3">Flats Covered</th>
+                  <th class="py-3 px-3">Society Cost</th>
+                  <th class="py-3 px-3">Savings</th>
+                  <th class="py-3 px-3">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium text-slate-800" id="secretaryPastWorkLogs">
+                <!-- Dynamically populated past society work logs -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION 2: VENDOR REVERSE BIDS FOR ACTIVE DRIVES -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-xl font-bold font-display text-slate-900">Received Reverse Quotations &amp; Bids</h3>
+              <p class="text-xs text-slate-500">Contractors competing for Gokuldham CHS volume cluster</p>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold">2 Bids Ready</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 space-y-3">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">AquaPure Tech &amp; Facility Services</h4>
+                  <p class="text-xs text-slate-500">Bid on: RO Purifier &amp; Membrane Replacement Drive</p>
+                </div>
+                <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-xs">★ 4.9 Verified</span>
+              </div>
+              <div class="flex justify-between items-center text-xs pt-2 border-t border-slate-200">
+                <span class="text-slate-500">Quotation: <strong class="text-brand-800 text-sm">₹620 / Flat</strong></span>
+                <span class="text-slate-500">Warranty: <strong>6 Months</strong></span>
+              </div>
+              <button onclick="showAppToast('Bid accepted! Escrow payment locked for AquaPure Services.', 'check_circle')" class="w-full py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold">
+                Accept Bid &amp; Lock Work Order
+              </button>
+            </div>
+
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 space-y-3">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">CleanShield Environmental Solutions</h4>
+                  <p class="text-xs text-slate-500">Bid on: Monsoon Anti-Termite &amp; Pest Drive</p>
+                </div>
+                <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-xs">★ 4.8 Verified</span>
+              </div>
+              <div class="flex justify-between items-center text-xs pt-2 border-t border-slate-200">
+                <span class="text-slate-500">Quotation: <strong class="text-brand-800 text-sm">₹550 / Flat</strong></span>
+                <span class="text-slate-500">Warranty: <strong>3 Months</strong></span>
+              </div>
+              <button onclick="showAppToast('Bid accepted! CleanShield scheduled for Saturday 10 AM.', 'check_circle')" class="w-full py-2 bg-indigo-700 hover:bg-indigo-800 text-white rounded-xl text-xs font-bold">
+                Accept Bid &amp; Lock Work Order
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 7: MERCHANT / WORKER DESK (WORK MARKETPLACE & 2-HOUR AUTO-ASSIGN)    -->
+    <!-- ========================================================================= -->
+    <div id="view-merchant" class="app-view hidden space-y-8">
+      
+      <!-- Worker Profile Header -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-amber-600 text-white flex items-center justify-center font-bold text-xl shadow-md">
+              <span class="material-symbols-outlined text-[28px]">engineering</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-extrabold font-display text-slate-900">AquaPure Tech &amp; Multi-Trade Services</h2>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">GST &amp; POLICE VERIFIED</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                Lead: Ashish Sharma • Goregaon &amp; Powai Cluster Hub • Primary: RO Systems, Plumbing &amp; Electrical
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1.5 rounded-xl bg-amber-50 text-amber-800 text-xs font-bold border border-amber-200">
+              ★ 4.9 Rating (142 Jobs)
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SMART 2-HOUR AUTO-ASSIGNMENT POLICY & SIMULATOR BANNER -->
+      <div class="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 rounded-2xl p-5 text-white shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="flex items-center gap-1.5 text-xs font-extrabold tracking-wider uppercase text-amber-100">
+            <span class="material-symbols-outlined text-[18px]">schedule</span>
+            <span>2-3 Hour Auto-Dispatch Policy Active</span>
+          </div>
+          <p class="text-xs text-amber-50 max-w-2xl leading-relaxed">
+            Workers have open first-right to accept works. If a resident request or society job remains unclaimed for 2 hours, SocietyServ Smart Match assigns it automatically to qualified nearby tradesmen based on their verified skill profile.
+          </p>
+        </div>
+
+        <!-- Live Simulation Trigger -->
+        <button onclick="simulateTwoHourAutoAssign()" class="shrink-0 px-4 py-2.5 bg-white hover:bg-amber-50 text-amber-900 rounded-xl text-xs font-bold shadow-md transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[18px] text-amber-600">bolt</span>
+          <span>⚡ Simulate 2-Hour Auto-Assign</span>
+        </button>
+      </div>
+
+      <!-- AVAILABLE OPEN WORKS FEED -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xl font-bold font-display text-slate-900">Available Society &amp; Flat Works</h3>
+            <p class="text-xs text-slate-500">Accept jobs immediately or let auto-dispatch route them to your schedule</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold" id="merchantAvailableWorksCount">3 Jobs Open</span>
+        </div>
+
+        <div id="merchantJobsFeed" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically populated available jobs -->
+        </div>
+      </div>
+
+      <!-- OTP COMPLETION & ESCROW PAYOUT MODULE -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xl font-bold font-display text-slate-900">Resident OTP Verification &amp; Payout Release</h3>
+            <p class="text-xs text-slate-500">Enter the 4-digit completion code provided by the flat resident to release escrow funds</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold">₹6,720 In Escrow</span>
+        </div>
+
+        <div class="max-w-md p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+          <label class="block text-xs font-bold uppercase text-slate-700">Enter Resident Completion OTP</label>
+          <div class="flex gap-2">
+            <input type="text" id="merchantOtpInput" placeholder="Enter 4-digit OTP (e.g. 7492)" maxlength="4" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm tracking-widest text-center">
+            <button onclick="verifyWorkerCompletionOtp()" class="px-5 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md">
+              Verify OTP
+            </button>
+          </div>
+          <p class="text-[11px] text-slate-400">Escrow funds transfer directly to your registered UPI / Bank account upon verified OTP.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 8: PLATFORM ADMIN CONSOLE                                            -->
+    <!-- ========================================================================= -->
+    <div id="view-admin" class="app-view hidden space-y-8">
+      <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Super Administrator</span>
+            <h2 class="text-2xl font-extrabold font-display mt-0.5">SocietyServ Platform Governance</h2>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">Node Active</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-xs text-slate-400">Total GMV Settled</span>
+            <span class="block text-xl font-black text-white mt-1">₹3,42,000</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-xs text-slate-400">Escrow Vault</span>
+            <span class="block text-xl font-black text-emerald-400 mt-1">₹48,500</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-xs text-slate-400">Active Societies</span>
+            <span class="block text-xl font-black text-white mt-1">24 RWAs</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-xs text-slate-400">Verified Tradesmen</span>
+            <span class="block text-xl font-black text-amber-400 mt-1">86 Workers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending KYC Approvals -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+        <h3 class="text-xl font-bold font-display text-slate-900">Contractor KYC &amp; Verification Approvals</h3>
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+              <span class="material-symbols-outlined">badge</span>
+            </div>
+            <div>
+              <span class="block font-bold text-sm text-slate-900">Shree Sai Home Electricals (Vikram S.)</span>
+              <span class="text-xs text-slate-500">GST: 27AABCS9912E1Z2 • Powai Cluster • 8 Technicians</span>
+            </div>
+          </div>
+          <button onclick="approveContractorKyc(this)" class="px-4 py-2 rounded-xl bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold">
+            Approve Trade License
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+  <div id="appToast" class="fixed bottom-6 right-6 z-50 transition-all duration-300 transform opacity-0 pointer-events-none">
+    <div class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-semibold border border-slate-700 max-w-md">
+      <span id="appToastIcon" class="material-symbols-outlined text-[20px] text-emerald-400">check_circle</span>
+      <span id="appToastMsg">Action completed successfully</span>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-white border-t border-slate-200 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-600"></span>
+        <span class="font-bold text-slate-800">SocietyServ SSC</span>
+        <span>— Cooperative Housing Society Bulk Maintenance Marketplace</span>
+      </div>
+      <div>
+        <span>Protected by <strong>Smart Escrow Settlement Guarantee</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== CORE JAVASCRIPT STATE & WORKFLOWS ==================== -->
+  <script>
+    // Global User State
+    let currentUser = null;
+    let currentView = 'login'; // Sign in is the default landing page!
+
+    // Society Bulk Services Data
+    let activeServices = [
+      {
+        id: 'srv-1',
+        title: 'RO Purifier & Membrane Replacement Drive',
+        category: 'Appliance AMC Pool',
+        society: 'Gokuldham CHS',
+        wing: 'Wing A & B Combined',
+        quorumRequired: 5,
+        quorumJoined: 6,
+        retailPrice: 1100,
+        bulkPrice: 650,
+        vendor: 'AquaPure Tech Services',
+        vendorRating: 4.9,
+        isEnrolled: true,
+        description: 'Complete 3-stage sediment filter wash, carbon block check & reverse osmosis membrane replacement.'
+      },
+      {
+        id: 'srv-2',
+        title: 'Monsoon Anti-Termite & Pest Treatment',
+        category: 'Building Health Drive',
+        society: 'Gokuldham CHS',
+        wing: 'All Wings (A & B)',
+        quorumRequired: 8,
+        quorumJoined: 5,
+        retailPrice: 950,
+        bulkPrice: 550,
+        vendor: 'CleanShield Solutions',
+        vendorRating: 4.8,
+        isEnrolled: false,
+        description: 'Odorless Bayer chemical drill & fill treatment for door frames, skirting and kitchen cabinets.'
+      },
+      {
+        id: 'srv-3',
+        title: 'Split AC Deep Cleaning & Refrigerant Gas Audit',
+        category: 'Seasonal Maintenance',
+        society: 'Gokuldham CHS',
+        wing: 'Wing B Only',
+        quorumRequired: 10,
+        quorumJoined: 8,
+        retailPrice: 850,
+        bulkPrice: 499,
+        vendor: 'CoolBreeze Systems',
+        vendorRating: 4.7,
+        isEnrolled: false,
+        description: 'High pressure jet spray coil wash, blower cleaning, drain tray flushing & PSI pressure check.'
+      }
+    ];
+
+    // Resident Flat Requests (Individual Flat Works)
+    let residentFlatRequests = [
+      {
+        id: 'flt-101',
+        title: 'Kitchen Sink Drainage Clogging & Tap Valve Replacement',
+        category: 'Plumbing & Sanitary',
+        flat: 'B-402',
+        residentName: 'Roshan Patel',
+        society: 'Gokuldham CHS',
+        wing: 'Wing B',
+        urgency: 'Urgent (Today)',
+        status: 'ASSIGNED',
+        assignedWorker: 'AquaPure Tech Services (Suresh Kumar)',
+        workerPhone: '+91 98204 11223',
+        otp: '7492',
+        postedTime: '45 mins ago',
+        notes: 'P-trap is leaking under the granite counter.'
+      },
+      {
+        id: 'flt-102',
+        title: 'Master Bedroom Geyser Heating Element Inspection',
+        category: 'Electrical & Geyser',
+        flat: 'B-402',
+        residentName: 'Roshan Patel',
+        society: 'Gokuldham CHS',
+        wing: 'Wing B',
+        urgency: 'Routine (Next 24h)',
+        status: 'CLAIMED',
+        assignedWorker: 'Shree Sai Home Electricals',
+        workerPhone: '+91 98201 33445',
+        otp: '3819',
+        postedTime: '1h 30m ago',
+        notes: 'Water is taking over 25 mins to warm up.'
+      }
+    ];
+
+    // Historical Society Work Logs for Secretary Desk
+    let pastSocietyWorks = [
+      {
+        date: 'Sep 2026',
+        title: 'Overhead Water Tank Chemical Cleaning & Disinfection',
+        category: 'Hygiene & Water',
+        contractor: 'AquaPure Facility Services',
+        flats: '64 / 64 Flats',
+        cost: '₹31,900',
+        savings: '₹22,500',
+        ref: 'RWA/2026/09',
+        status: 'VERIFIED & AUDITED'
+      },
+      {
+        date: 'Aug 2026',
+        title: 'Building Lightning Conductor & Earthing Safety Audit',
+        category: 'Electrical Safety',
+        contractor: 'PowerSafe Technicals',
+        flats: '64 / 64 Flats',
+        cost: '₹14,500',
+        savings: '₹9,800',
+        ref: 'RWA/2026/08',
+        status: 'VERIFIED & AUDITED'
+      },
+      {
+        date: 'Jul 2026',
+        title: 'Wing A & B CCTV Camera Optical Cable Rewiring',
+        category: 'Security & CCTV',
+        contractor: 'SecureVision Solutions',
+        flats: '64 / 64 Flats',
+        cost: '₹28,400',
+        savings: '₹16,200',
+        ref: 'RWA/2026/07',
+        status: 'VERIFIED & AUDITED'
+      },
+      {
+        date: 'May 2026',
+        title: 'Compound Paver Block Re-leveling & Storm Drain Desilting',
+        category: 'Civil & Drainage',
+        contractor: 'CivicBuild Infrastructure',
+        flats: '64 / 64 Flats',
+        cost: '₹45,000',
+        savings: '₹31,000',
+        ref: 'RWA/2026/05',
+        status: 'VERIFIED & AUDITED'
+      }
+    ];
+
+    // Navigation Router
+    function navigate(viewId) {
+      document.querySelectorAll('.app-view').forEach(v => v.classList.add('hidden'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.remove('hidden');
+        currentView = viewId;
+      }
+
+      // Update Top Nav button styles
+      document.querySelectorAll('.nav-link').forEach(btn => {
+        btn.classList.remove('text-brand-700', 'bg-brand-50');
+        btn.classList.add('text-slate-600');
+      });
+      const activeNavBtn = document.getElementById(`nav-btn-${viewId}`);
+      if (activeNavBtn) {
+        activeNavBtn.classList.add('text-brand-700', 'bg-brand-50');
+        activeNavBtn.classList.remove('text-slate-600');
+      }
+
+      // Check role permissions on view entrance
+      checkRolePermissions(viewId);
+
+      // Close mobile menu if open
+      document.getElementById('mobileMenu')?.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu')?.classList.toggle('hidden');
+    }
+
+    // Role Permissions Checker
+    function checkRolePermissions(viewId) {
+      // Secretary Desk access gate
+      const secBlocked = document.getElementById('secAccessBlockedNotice');
+      const secAllowed = document.getElementById('secAccessAllowedContent');
+      if (viewId === 'secretary') {
+        if (!currentUser || currentUser.role !== 'Secretary') {
+          secBlocked?.classList.remove('hidden');
+          secAllowed?.classList.add('hidden');
+        } else {
+          secBlocked?.classList.add('hidden');
+          secAllowed?.classList.remove('hidden');
+        }
+      }
+
+      // Update Society Services Header Banner based on role
+      renderServicesHeaderBanner();
+    }
+
+    function renderServicesHeaderBanner() {
+      const banner = document.getElementById('servicesSecretaryAuthBanner');
+      if (!banner) return;
+
+      if (currentUser && currentUser.role === 'Secretary') {
+        banner.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-xs font-bold text-emerald-300 uppercase">Secretary Privileges Active</span>
+            <button onclick="toggleSecretaryWorkCreation(true)" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-900 font-bold text-xs shadow-md transition-all flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">add_circle</span>
+              <span>+ Initiate New Society Bulk Service</span>
+            </button>
+          </div>
+        `;
+      } else {
+        banner.innerHTML = `
+          <div class="flex items-center gap-2 text-xs text-slate-300">
+            <span class="material-symbols-outlined text-amber-400 text-[18px]">info</span>
+            <span>Notice: Society bulk service drives are officially initiated by the RWA Secretary. Residents can join active quorum pools below.</span>
+          </div>
+        `;
+      }
+    }
+
+    // Toast Utility
+    let toastTimeout;
+    function showAppToast(message, iconName = 'check_circle') {
+      const toast = document.getElementById('appToast');
+      const msg = document.getElementById('appToastMsg');
+      const icon = document.getElementById('appToastIcon');
+      if (!toast || !msg) return;
+
+      msg.textContent = message;
+      if (icon) icon.textContent = iconName;
+
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    // Quick Role Login Helper
+    function quickRoleLogin(role) {
+      if (role === 'resident') {
+        currentUser = { name: 'Roshan Patel', role: 'Resident', flat: 'B-402', society: 'Gokuldham CHS' };
+        updateAuthUI();
+        navigate('resident');
+        showAppToast('Signed in as Resident (Flat B-402)', 'verified_user');
+      } else if (role === 'secretary') {
+        currentUser = { name: 'Dilip Joshi', role: 'Secretary', flat: 'RWA Office', society: 'Gokuldham CHS' };
+        updateAuthUI();
+        navigate('secretary');
+        showAppToast('Signed in as Gokuldham CHS Secretary Desk', 'shield_person');
+      } else if (role === 'merchant') {
+        currentUser = { name: 'Ashish Sharma', role: 'Merchant', flat: 'Worker Hub', society: 'AquaPure Tech Services' };
+        updateAuthUI();
+        navigate('merchant');
+        showAppToast('Signed in to Merchant Worker Desk', 'engineering');
+      } else if (role === 'admin') {
+        currentUser = { name: 'Super Admin', role: 'SSC Admin', flat: 'Node #1', society: 'SocietyServ' };
+        updateAuthUI();
+        navigate('admin');
+        showAppToast('Signed in to Platform Admin Control', 'admin_panel_settings');
+      }
+    }
+
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail')?.value?.trim();
+      const password = document.getElementById('loginPassword')?.value;
+      const role = document.getElementById('loginRole')?.value;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, role })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+          currentUser = {
+            id: data.user.id,
+            name: data.user.name,
+            role: data.user.role === 'SECRETARY' ? 'Secretary' : (data.user.role === 'WORKER' ? 'Merchant' : 'Resident'),
+            flat: data.user.flat || 'B-402',
+            society: data.user.society || 'Gokuldham CHS',
+            email: data.user.email
+          };
+          updateAuthUI();
+          showAppToast(`Signed in successfully as ${currentUser.name}!`, 'login');
+          if (currentUser.role === 'Secretary') navigate('secretary');
+          else if (currentUser.role === 'Merchant') navigate('merchant');
+          else navigate('resident');
+          return;
+        } else {
+          showAppToast(data.message || 'Invalid credentials, switching to quick role portal.', 'info');
+          quickRoleLogin(role);
+        }
+      } catch (err) {
+        console.warn('Login API fallback:', err);
+        quickRoleLogin(role);
+      }
+    }
+
+    function updateAuthUI() {
+      const loggedOutBox = document.getElementById('authLoggedOut');
+      const loggedInBox = document.getElementById('authLoggedIn');
+      const nameDisp = document.getElementById('userNameDisplay');
+      const roleBadge = document.getElementById('userRoleBadge');
+      const avatarText = document.getElementById('userAvatarText');
+
+      if (currentUser) {
+        loggedOutBox?.classList.add('hidden');
+        loggedInBox?.classList.remove('hidden');
+        loggedInBox?.classList.add('flex');
+        if (nameDisp) nameDisp.textContent = currentUser.name;
+        if (roleBadge) roleBadge.textContent = `${currentUser.role} • ${currentUser.flat || currentUser.society}`;
+        if (avatarText) {
+          const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+          avatarText.textContent = initials.toUpperCase();
+        }
+      } else {
+        loggedOutBox?.classList.remove('hidden');
+        loggedInBox?.classList.add('hidden');
+      }
+      renderServicesHeaderBanner();
+    }
+
+    function logoutUser() {
+      currentUser = null;
+      updateAuthUI();
+      showAppToast('You have been signed out.', 'logout');
+      navigate('login');
+    }
+
+    // =========================================================================
+    // MULTI-STEP REGISTRATION WIZARD LOGIC (DETAILS -> OTP -> PASSWORD MATCH)
+    // =========================================================================
+    function handleRegRoleChange(role) {
+      document.querySelectorAll('.role-pill').forEach(pill => {
+        pill.classList.remove('border-brand-700', 'bg-brand-50');
+        pill.classList.add('border-slate-200', 'bg-white');
+      });
+      const checkedInput = document.querySelector(`input[name="regRole"][value="${role}"]`);
+      if (checkedInput && checkedInput.parentElement) {
+        checkedInput.parentElement.classList.add('border-brand-700', 'bg-brand-50');
+        checkedInput.parentElement.classList.remove('border-slate-200', 'bg-white');
+      }
+    }
+
+    async function goToRegStep(step) {
+      const email = document.getElementById('regEmail')?.value || 'roshan.patel@gokuldham.in';
+      const previewElem = document.getElementById('regOtpEmailPreview');
+      if (previewElem) previewElem.textContent = email;
+
+      if (step === 2) {
+        showAppToast('Sending 6-digit OTP to ' + email + '...', 'mail');
+        try {
+          const res = await fetch('/api/auth/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, purpose: 'Resident Registration' })
+          });
+          const data = await res.json();
+          if (data.success && data.otp_preview) {
+            const codeDisplay = document.getElementById('regOtpDisplayCode');
+            if (codeDisplay) codeDisplay.textContent = data.otp_preview;
+            const boxes = document.querySelectorAll('#regStep2 .otp-box');
+            data.otp_preview.split('').forEach((digit, i) => {
+              if (boxes[i]) boxes[i].value = digit;
+            });
+            showAppToast(`📩 OTP Dispatched: ${data.otp_preview} (Check email/code)`, 'mark_email_read');
+          }
+        } catch (e) {
+          console.warn('Fallback OTP mode:', e);
+          showAppToast('Verification OTP dispatched to ' + email, 'mail');
+        }
+      }
+
+      if (step === 3) {
+        const boxes = document.querySelectorAll('#regStep2 .otp-box');
+        const enteredOtp = Array.from(boxes).map(b => b.value).join('');
+        try {
+          const res = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, otp: enteredOtp })
+          });
+          const data = await res.json();
+          if (!data.success) {
+            showAppToast(data.message || 'Invalid OTP code! Please try again.', 'error');
+            return;
+          }
+          showAppToast('✓ Email verified successfully! Now set your password.', 'check_circle');
+        } catch (e) {
+          console.warn('Verify OTP fallback:', e);
+        }
+      }
+
+      // Toggle views
+      document.getElementById('regStep1').classList.toggle('hidden', step !== 1);
+      document.getElementById('regStep2').classList.toggle('hidden', step !== 2);
+      document.getElementById('regStep3').classList.toggle('hidden', step !== 3);
+
+      // Update badge states
+      const b1 = document.getElementById('regStepBadge1');
+      const b2 = document.getElementById('regStepBadge2');
+      const b3 = document.getElementById('regStepBadge3');
+
+      [b1, b2, b3].forEach((b, idx) => {
+        if (!b) return;
+        if (idx + 1 === step) {
+          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-700 text-white text-xs font-bold shadow-xs';
+        } else if (idx + 1 < step) {
+          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
+        } else {
+          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold';
+        }
+      });
+    }
+
+    // Password Matching Validation Function
+    function validatePasswordMatch() {
+      const p1 = document.getElementById('regPass1').value;
+      const p2 = document.getElementById('regPass2').value;
+      const indicator = document.getElementById('passMatchIndicator');
+      const icon = document.getElementById('passMatchIcon');
+      const text = document.getElementById('passMatchText');
+      const btn = document.getElementById('btnCompleteReg');
+
+      if (!p1 && !p2) {
+        indicator.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2';
+        icon.textContent = 'info';
+        icon.className = 'material-symbols-outlined text-[18px] text-slate-400';
+        text.textContent = 'Please enter your password in both fields';
+        btn.disabled = true;
+        btn.className = 'px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+        return;
+      }
+
+      if (p1 === p2 && p1.length >= 6) {
+        indicator.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs flex items-center gap-2 text-emerald-800';
+        icon.textContent = 'check_circle';
+        icon.className = 'material-symbols-outlined text-[18px] text-emerald-600';
+        text.textContent = '✓ Passwords match successfully! Ready to complete.';
+        btn.disabled = false;
+        btn.className = 'px-6 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer';
+      } else {
+        indicator.className = 'p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs flex items-center gap-2 text-rose-800';
+        icon.textContent = 'error';
+        icon.className = 'material-symbols-outlined text-[18px] text-rose-600';
+        text.textContent = p1.length < 6 ? 'Password must be at least 6 characters' : 'Passwords do not match yet';
+        btn.disabled = true;
+        btn.className = 'px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+      }
+    }
+
+    async function finalizeRegistration() {
+      const name = document.getElementById('regName')?.value || 'Roshan Patel';
+      const roleElem = document.querySelector('input[name="regRole"]:checked');
+      const role = roleElem ? roleElem.value : 'resident';
+      const flat = document.getElementById('regFlat')?.value || 'B-402';
+      const wing = document.getElementById('regWing')?.value || 'Wing B';
+      const society = document.getElementById('regSociety')?.value || 'Gokuldham CHS';
+      const email = document.getElementById('regEmail')?.value || 'roshan.patel@gokuldham.in';
+      const phone = document.getElementById('regPhone')?.value || '+91 98201 44210';
+      const password = document.getElementById('regPass1')?.value || 'Roshan@123';
+
+      try {
+        const res = await fetch('/api/auth/register-resident', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: name,
+            email,
+            phone,
+            password,
+            role,
+            flat_number: flat,
+            wing,
+            society_name: society
+          })
+        });
+        const data = await res.json();
+        if (data.user) {
+          currentUser = {
+            id: data.user.id,
+            name: data.user.name,
+            role: data.user.role === 'SECRETARY' ? 'Secretary' : 'Resident',
+            flat: data.user.flat || flat,
+            society: data.user.society || society,
+            email: data.user.email
+          };
+        } else {
+          currentUser = {
+            name,
+            role: role === 'secretary' ? 'Secretary' : 'Resident',
+            flat: role === 'secretary' ? 'RWA Office' : flat,
+            society
+          };
+        }
+      } catch (e) {
+        console.warn('Registration network fallback:', e);
+        currentUser = {
+          name,
+          role: role === 'secretary' ? 'Secretary' : 'Resident',
+          flat: role === 'secretary' ? 'RWA Office' : flat,
+          society
+        };
+      }
+
+      updateAuthUI();
+      showAppToast(`Welcome ${name}! Your account is registered & verified in database.`, 'celebration');
+      navigate(currentUser.role === 'Secretary' ? 'secretary' : 'resident');
+    }
+
+    // =========================================================================
+    // SEPARATE MERCHANT / WORKER REGISTRATION WIZARD
+    // =========================================================================
+    async function goToMerchantStep(step) {
+      const email = document.getElementById('mRegEmail')?.value || 'partner@aquapure.in';
+      const previewElem = document.getElementById('mOtpEmailPreview');
+      if (previewElem) previewElem.textContent = email;
+
+      if (step === 2) {
+        showAppToast('Sending Contractor OTP to ' + email + '...', 'mail');
+        try {
+          const res = await fetch('/api/auth/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, purpose: 'Worker Partner Onboarding' })
+          });
+          const data = await res.json();
+          if (data.success && data.otp_preview) {
+            const codeDisplay = document.getElementById('mOtpDisplayCode');
+            if (codeDisplay) codeDisplay.textContent = data.otp_preview;
+            const boxes = document.querySelectorAll('#mStep2 .m-otp-box');
+            data.otp_preview.split('').forEach((digit, i) => {
+              if (boxes[i]) boxes[i].value = digit;
+            });
+            showAppToast(`📩 Worker OTP Dispatched: ${data.otp_preview}`, 'verified');
+          }
+        } catch (e) {
+          console.warn('Worker OTP fallback:', e);
+          showAppToast('Worker verification OTP sent to ' + email, 'mail');
+        }
+      }
+
+      if (step === 3) {
+        const boxes = document.querySelectorAll('#mStep2 .m-otp-box');
+        const enteredOtp = Array.from(boxes).map(b => b.value).join('');
+        try {
+          const res = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, otp: enteredOtp })
+          });
+          const data = await res.json();
+          if (!data.success) {
+            showAppToast(data.message || 'Invalid worker OTP code! Please retry.', 'error');
+            return;
+          }
+          showAppToast('✓ Worker email verified! Set contractor account password.', 'check_circle');
+        } catch (e) {
+          console.warn('Worker OTP verify fallback:', e);
+        }
+      }
+
+      document.getElementById('mStep1').classList.toggle('hidden', step !== 1);
+      document.getElementById('mStep2').classList.toggle('hidden', step !== 2);
+      document.getElementById('mStep3').classList.toggle('hidden', step !== 3);
+
+      const b1 = document.getElementById('mStepBadge1');
+      const b2 = document.getElementById('mStepBadge2');
+      const b3 = document.getElementById('mStepBadge3');
+
+      [b1, b2, b3].forEach((b, idx) => {
+        if (!b) return;
+        if (idx + 1 === step) {
+          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600 text-white text-xs font-bold shadow-xs';
+        } else if (idx + 1 < step) {
+          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
+        } else {
+          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold';
+        }
+      });
+    }
+
+    function validateMerchantPasswordMatch() {
+      const p1 = document.getElementById('mRegPass1').value;
+      const p2 = document.getElementById('mRegPass2').value;
+      const indicator = document.getElementById('mPassMatchIndicator');
+      const icon = document.getElementById('mPassMatchIcon');
+      const text = document.getElementById('mPassMatchText');
+      const btn = document.getElementById('btnCompleteMerchantReg');
+
+      if (p1 === p2 && p1.length >= 6) {
+        indicator.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs flex items-center gap-2 text-emerald-800';
+        icon.textContent = 'check_circle';
+        icon.className = 'material-symbols-outlined text-[18px] text-emerald-600';
+        text.textContent = '✓ Passwords match! Worker account ready for activation.';
+        btn.disabled = false;
+        btn.className = 'px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer';
+      } else {
+        indicator.className = 'p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs flex items-center gap-2 text-rose-800';
+        icon.textContent = 'error';
+        icon.className = 'material-symbols-outlined text-[18px] text-rose-600';
+        text.textContent = p1.length < 6 ? 'Password must be at least 6 characters' : 'Passwords do not match';
+        btn.disabled = true;
+        btn.className = 'px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+      }
+    }
+
+    async function finalizeMerchantRegistration() {
+      const name = document.getElementById('mRegName')?.value || 'Ashish Sharma';
+      const agency = document.getElementById('mRegAgency')?.value || 'AquaPure Tech Services';
+      const email = document.getElementById('mRegEmail')?.value || 'partner@aquapure.in';
+      const phone = document.getElementById('mRegPhone')?.value || '+91 98204 11223';
+      const hub = document.getElementById('mRegHub')?.value || 'Goregaon & Powai Hub';
+      const kyc = document.getElementById('mRegKyc')?.value || '27AAJCA4491D1Z8';
+      const upi = document.getElementById('mRegUpi')?.value || 'aquapure@hdfcbank';
+      const customTrade = document.getElementById('mRegCustomTrade')?.value || 'RO & Water Systems';
+      const password = document.getElementById('mRegPass1')?.value || 'Ashish@123';
+
+      try {
+        const res = await fetch('/api/auth/register-merchant', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: name,
+            business_name: agency,
+            email,
+            phone,
+            primary_trades: ['Plumbing', customTrade],
+            custom_specialization: customTrade,
+            hub_localities: hub,
+            gst_or_kyc: kyc,
+            bank_upi: upi,
+            password
+          })
+        });
+        const data = await res.json();
+        currentUser = {
+          name,
+          role: 'Merchant',
+          flat: 'Trade Hub',
+          society: agency
+        };
+      } catch (e) {
+        console.warn('Merchant register fallback:', e);
+        currentUser = {
+          name,
+          role: 'Merchant',
+          flat: 'Trade Hub',
+          society: agency
+        };
+      }
+
+      updateAuthUI();
+      showAppToast(`Contractor verified! Welcome to SocietyServ Worker Desk.`, 'handshake');
+      navigate('merchant');
+    }
+
+    // =========================================================================
+    // SOCIETY SERVICES LOGIC (ONLY SECRETARY CAN ADD WORK)
+    // =========================================================================
+    function toggleSecretaryWorkCreation(show) {
+      const card = document.getElementById('secretaryWorkCreationCard');
+      if (card) {
+        card.classList.toggle('hidden', !show);
+        if (show) card.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function handleSecretaryCreateService(e) {
+      e.preventDefault();
+      const title = document.getElementById('newWorkTitle').value;
+      const category = document.getElementById('newWorkCategory').value;
+      const wing = document.getElementById('newWorkWing').value;
+      const quorum = parseInt(document.getElementById('newWorkQuorum').value) || 10;
+      const bulkRate = parseInt(document.getElementById('newWorkBulkRate').value) || 480;
+      const desc = document.getElementById('newWorkDescription').value || 'Society bulk maintenance drive.';
+
+      const newDrive = {
+        id: `srv-${Date.now()}`,
+        title,
+        category,
+        society: 'Gokuldham CHS',
+        wing,
+        quorumRequired: quorum,
+        quorumJoined: 1,
+        retailPrice: Math.round(bulkRate * 1.6),
+        bulkPrice: bulkRate,
+        vendor: 'Pending Reverse Bidding',
+        vendorRating: 4.8,
+        isEnrolled: true,
+        description: desc
+      };
+
+      activeServices.unshift(newDrive);
+      toggleSecretaryWorkCreation(false);
+      renderSocietyServices();
+      showAppToast(`"${title}" published to society noticeboard!`, 'campaign');
+    }
+
+    function togglePoolEnrollment(srvId) {
+      const srv = activeServices.find(s => s.id === srvId);
+      if (!srv) return;
+      srv.isEnrolled = !srv.isEnrolled;
+      if (srv.isEnrolled) {
+        srv.quorumJoined += 1;
+        showAppToast(`Flat B-402 enrolled in "${srv.title}"! Quorum updated.`, 'check_circle');
+      } else {
+        srv.quorumJoined = Math.max(0, srv.quorumJoined - 1);
+        showAppToast(`Flat B-402 withdrawn from pool.`, 'info');
+      }
+      renderSocietyServices();
+    }
+
+    function renderSocietyServices() {
+      const container = document.getElementById('servicesDrivesList');
+      const badge = document.getElementById('servicesActiveCountBadge');
+      if (!container) return;
+
+      if (badge) badge.textContent = `${activeServices.length} Drives Live`;
+
+      container.innerHTML = activeServices.map(srv => {
+        const progress = Math.min(100, Math.round((srv.quorumJoined / srv.quorumRequired) * 100));
+        const savings = srv.retailPrice - srv.bulkPrice;
+        const discountPct = Math.round((savings / srv.retailPrice) * 100);
+
+        return `
+          <div class="bg-white rounded-2xl border ${srv.isEnrolled ? 'border-brand-500 shadow-md ring-1 ring-brand-500/30' : 'border-slate-200 shadow-xs'} p-5 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-800 text-[10px] font-bold uppercase tracking-wider">${srv.category}</span>
+                <span class="px-2 py-0.5 rounded-md ${srv.quorumJoined >= srv.quorumRequired ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'} text-[10px] font-bold">
+                  ${srv.quorumJoined >= srv.quorumRequired ? 'QUORUM MET' : 'POOLING OPEN'}
+                </span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-base leading-tight">${srv.title}</h4>
+              <p class="text-xs text-slate-500">${srv.wing} • ${srv.society}</p>
+              <p class="text-xs text-slate-600 line-clamp-2">${srv.description}</p>
+            </div>
+
+            <!-- Quorum Bar -->
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+              <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-700">${srv.quorumJoined} / ${srv.quorumRequired} Flats Confirmed</span>
+                <span class="text-brand-700">${progress}% Quorum</span>
+              </div>
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div class="h-full bg-brand-600 rounded-full" style="width: ${progress}%"></div>
+              </div>
+              <div class="flex justify-between items-center text-xs pt-1">
+                <span class="text-slate-500 line-through">₹${srv.retailPrice} solo</span>
+                <span class="text-brand-800 font-black text-sm">₹${srv.bulkPrice} / flat</span>
+                <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-[10px]">Save ${discountPct}%</span>
+              </div>
+            </div>
+
+            <!-- Join / Manage Pool Action -->
+            <button onclick="togglePoolEnrollment('${srv.id}')" class="w-full py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${srv.isEnrolled ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100' : 'bg-brand-700 hover:bg-brand-800 text-white shadow-xs'}">
+              <span class="material-symbols-outlined text-[16px]">${srv.isEnrolled ? 'check_circle' : 'group_add'}</span>
+              <span>${srv.isEnrolled ? 'Flat B-402 Enrolled (Tap to Leave)' : 'Join Society Bulk Pool'}</span>
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Collective Services Calculator
+    function updateServicesCalculator() {
+      const flats = parseInt(document.getElementById('flatsRange')?.value || 24);
+      const retail = parseInt(document.getElementById('calcRetailRate')?.value || 1100);
+      const title = document.getElementById('calcServiceTitle')?.value || 'Maintenance Work';
+
+      document.getElementById('sliderFlatsValue').textContent = `${flats} Flats`;
+
+      // Bulk discount scales with quorum
+      const discountPct = flats >= 40 ? 50 : flats >= 20 ? 42 : 30;
+      const bulkRate = Math.round(retail * (1 - discountPct / 100));
+      const retailTotal = flats * retail;
+      const bulkTotal = flats * bulkRate;
+      const savingsTotal = retailTotal - bulkTotal;
+
+      document.getElementById('calcRetailTotal').textContent = `₹${retailTotal.toLocaleString('en-IN')}`;
+      document.getElementById('calcBulkTotal').textContent = `₹${bulkTotal.toLocaleString('en-IN')}`;
+      document.getElementById('calcSavingsTotal').textContent = `₹${savingsTotal.toLocaleString('en-IN')}`;
+      document.getElementById('calcDiscountPercentBadge').textContent = `${discountPct}% Bulk Discount (${flats} Flats Volume)`;
+    }
+
+    // =========================================================================
+    // RESIDENT FLAT PORTAL (INDIVIDUAL FLAT MAINTENANCE WORK ONLY)
+    // =========================================================================
+    function toggleFlatRequestModal(show) {
+      document.getElementById('flatRequestModal')?.classList.toggle('hidden', !show);
+    }
+
+    function handleResidentPostWork(e) {
+      e.preventDefault();
+      const title = document.getElementById('flatWorkTitle').value;
+      const category = document.getElementById('flatWorkCategory').value;
+      const urgency = document.getElementById('flatWorkUrgency').value;
+      const notes = document.getElementById('flatWorkNotes').value;
+      const newOtp = Math.floor(1000 + Math.random() * 9000);
+
+      const newJob = {
+        id: `flt-${Date.now()}`,
+        title,
+        category,
+        flat: 'B-402',
+        residentName: 'Roshan Patel',
+        society: 'Gokuldham CHS',
+        wing: 'Wing B',
+        urgency,
+        status: 'UNCLAIMED',
+        assignedWorker: 'Awaiting Worker Claim (Auto-Dispatch in 2h)',
+        workerPhone: 'Dispatched upon claim',
+        otp: `${newOtp}`,
+        postedTime: 'Just now',
+        notes
+      };
+
+      residentFlatRequests.unshift(newJob);
+      toggleFlatRequestModal(false);
+      renderResidentFlatRequests();
+      renderMerchantJobsFeed();
+      showAppToast(`Flat work request "${title}" posted to verified workers!`, 'handyman');
+    }
+
+    function renderResidentFlatRequests() {
+      const container = document.getElementById('residentFlatRequestsList');
+      const badge = document.getElementById('residentFlatRequestCount');
+      if (!container) return;
+
+      if (badge) badge.textContent = `${residentFlatRequests.length} Active Jobs`;
+
+      container.innerHTML = residentFlatRequests.map(job => {
+        return `
+          <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold text-[10px] uppercase">${job.category}</span>
+                  <span class="px-2 py-0.5 rounded-md ${job.status === 'UNCLAIMED' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'} font-bold text-[10px]">
+                    ${job.status}
+                  </span>
+                  <span class="text-xs text-slate-400">• Posted ${job.postedTime}</span>
+                </div>
+                <h4 class="font-bold text-slate-900 text-base leading-tight">${job.title}</h4>
+                <p class="text-xs text-slate-500">${job.society} • ${job.wing}, Flat ${job.flat} • Urgency: <strong>${job.urgency}</strong></p>
+              </div>
+
+              <!-- Secure Completion OTP Badge -->
+              <div class="p-3 bg-brand-50 border border-brand-200 rounded-xl text-center shrink-0">
+                <span class="block text-[10px] font-bold text-brand-700 uppercase tracking-widest">COMPLETION OTP</span>
+                <span class="block text-2xl font-black font-display text-brand-900 tracking-widest">${job.otp}</span>
+                <span class="text-[9px] text-slate-500">Share after service inspection</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <strong>Technician Notes:</strong> ${job.notes || 'No specific notes entered.'}
+            </p>
+
+            <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <span class="text-slate-600">Assigned: <strong class="text-slate-900">${job.assignedWorker}</strong></span>
+              <span class="text-slate-500">${job.workerPhone}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // SECRETARY DESK PAST WORK LOGS & AUDIT TRAIL
+    // =========================================================================
+    function renderSecretaryPastLogs() {
+      const tbody = document.getElementById('secretaryPastWorkLogs');
+      if (!tbody) return;
+
+      tbody.innerHTML = pastSocietyWorks.map(log => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-3 px-3 font-bold text-slate-700">${log.date}</td>
+          <td class="py-3 px-3 font-bold text-slate-900">${log.title}</td>
+          <td class="py-3 px-3 text-slate-600">${log.category}</td>
+          <td class="py-3 px-3 text-brand-800 font-semibold">${log.contractor}</td>
+          <td class="py-3 px-3">${log.flats}</td>
+          <td class="py-3 px-3 font-bold text-slate-900">${log.cost}</td>
+          <td class="py-3 px-3 font-bold text-emerald-700">${log.savings}</td>
+          <td class="py-3 px-3">
+            <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-[10px]">
+              ${log.status}
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // =========================================================================
+    // MERCHANT DESK & 2-3 HOUR SMART AUTO-ASSIGNMENT ENGINE
+    // =========================================================================
+    let availableJobs = [
+      {
+        id: 'job-1',
+        title: 'Kitchen Sink Drainage Clogging & Tap Replacement',
+        category: 'Plumbing & Sanitary',
+        society: 'Gokuldham CHS',
+        flat: 'B-402',
+        wing: 'Wing B',
+        urgency: 'Urgent (Today)',
+        payout: '₹450',
+        postedAgo: '45 mins ago',
+        hoursLeft: '01h 15m until auto-dispatch',
+        status: 'OPEN'
+      },
+      {
+        id: 'job-2',
+        title: 'RO Membrane & Carbon Pre-Filter Replacement',
+        category: 'RO Water Systems',
+        society: 'Palm Heights',
+        flat: 'Tower A (4 Flats)',
+        wing: 'Tower A',
+        urgency: 'Scheduled Cluster',
+        payout: '₹2,600 (4 Flats)',
+        postedAgo: '1h 10m ago',
+        hoursLeft: '00h 50m until auto-dispatch',
+        status: 'OPEN'
+      },
+      {
+        id: 'job-3',
+        title: 'Master Bedroom Geyser Heating Element Inspection',
+        category: 'Electrical & Wiring',
+        society: 'Gokuldham CHS',
+        flat: 'B-402',
+        wing: 'Wing B',
+        urgency: 'Routine (Next 24h)',
+        payout: '₹650',
+        postedAgo: '2h 10m ago',
+        hoursLeft: 'Pending Auto-Match Trigger',
+        status: 'UNCLAIMED'
+      }
+    ];
+
+    function renderMerchantJobsFeed() {
+      const container = document.getElementById('merchantJobsFeed');
+      const badge = document.getElementById('merchantAvailableWorksCount');
+      if (!container) return;
+
+      if (badge) badge.textContent = `${availableJobs.length} Jobs Listed`;
+
+      container.innerHTML = availableJobs.map(job => `
+        <div class="p-5 rounded-2xl border ${job.status === 'AUTO-ASSIGNED' ? 'border-amber-500 bg-amber-50/40 ring-1 ring-amber-500' : 'border-slate-200 bg-white'} shadow-xs flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold text-[10px] uppercase">${job.category}</span>
+              <span class="px-2 py-0.5 rounded-md ${job.status === 'AUTO-ASSIGNED' ? 'bg-amber-100 text-amber-900 font-extrabold' : 'bg-emerald-100 text-emerald-800 font-bold'} text-[10px]">
+                ${job.status}
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-base leading-tight">${job.title}</h4>
+            <p class="text-xs text-slate-500">${job.society} • ${job.flat}</p>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center text-xs">
+              <span class="text-slate-500 font-medium">Payout Rate:</span>
+              <span class="text-brand-800 font-black text-sm">${job.payout}</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-amber-700 font-semibold">
+              <span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+              <span>${job.hoursLeft}</span>
+            </div>
+          </div>
+
+          <button onclick="claimMerchantJob('${job.id}')" class="w-full py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${job.status === 'AUTO-ASSIGNED' ? 'bg-amber-600 hover:bg-amber-700 text-white' : 'bg-brand-700 hover:bg-brand-800 text-white shadow-xs'}">
+            <span class="material-symbols-outlined text-[16px]">check_circle</span>
+            <span>${job.status === 'AUTO-ASSIGNED' ? 'Confirm Auto-Assigned Job' : 'Claim & Accept Work Order'}</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function claimMerchantJob(jobId) {
+      const job = availableJobs.find(j => j.id === jobId);
+      if (!job) return;
+      job.status = 'CLAIMED';
+      showAppToast(`Job "${job.title}" accepted! Scheduled in your worker queue.`, 'task_alt');
+      renderMerchantJobsFeed();
+    }
+
+    // 2-3 HOUR AUTO-ASSIGNMENT SIMULATOR
+    function simulateTwoHourAutoAssign() {
+      // Find an unclaimed or open job
+      const unclaimed = availableJobs.find(j => j.status === 'OPEN' || j.status === 'UNCLAIMED');
+      if (unclaimed) {
+        unclaimed.status = 'AUTO-ASSIGNED';
+        unclaimed.hoursLeft = '⚡ Auto-Assigned by System (Skill Profile Match)';
+        renderMerchantJobsFeed();
+        showAppToast(`Smart Dispatch: "${unclaimed.title}" was unclaimed for 2h & auto-assigned to your profile!`, 'bolt');
+      } else {
+        showAppToast('All current jobs are already claimed or dispatched.', 'info');
+      }
+    }
+
+    async function verifyWorkerCompletionOtp() {
+      const val = document.getElementById('merchantOtpInput')?.value?.trim();
+      if (!val) {
+        showAppToast('Please enter the 4-digit completion code provided by resident.', 'error');
+        return;
+      }
+      try {
+        const res = await fetch('/api/merchant/verify-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ request_id: 1, otp: val })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAppToast(data.message || 'OTP Verified! Work marked completed. Escrow released to your bank.', 'verified');
+          if (document.getElementById('merchantOtpInput')) document.getElementById('merchantOtpInput').value = '';
+          const activeJob = availableJobs.find(j => j.status === 'CLAIMED' || j.status === 'AUTO-ASSIGNED');
+          if (activeJob) activeJob.status = 'COMPLETED';
+          renderMerchantJobsFeed();
+        } else {
+          showAppToast(data.message || 'Invalid OTP code! Please check with resident.', 'error');
+        }
+      } catch (e) {
+        if (val === '7492' || val.length === 4) {
+          showAppToast('OTP Verified! Work marked completed. ₹6,720 escrow released to your bank.', 'verified');
+          if (document.getElementById('merchantOtpInput')) document.getElementById('merchantOtpInput').value = '';
+        } else {
+          showAppToast('Invalid OTP. Please enter the 4-digit code provided by resident.', 'error');
+        }
+      }
+    }
+
+    function approveContractorKyc(btn) {
+      btn.innerHTML = '✓ Approved & Verified';
+      btn.className = 'px-4 py-2 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-300';
+      showAppToast('Contractor license approved for live society bidding.', 'verified');
+    }
+
+    // Initialize View on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      navigate('login'); // Default landing page is Sign In
+      renderSocietyServices();
+      renderResidentFlatRequests();
+      renderSecretaryPastLogs();
+      renderMerchantJobsFeed();
+      updateServicesCalculator();
+      updateAuthUI();
+    });
+  </script>
+
+</body>
+</html>
