@@ -67,3 +67,16 @@ CREATE TABLE IF NOT EXISTS auto_assignment_logs (
     matched_worker_id INT REFERENCES worker_profiles(id),
     reason TEXT NOT NULL
 );
+
+-- 6. PERSISTENT SERVERLESS EMAIL OTPS TABLE
+CREATE TABLE IF NOT EXISTS email_otps (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    otp_code VARCHAR(10) NOT NULL,
+    purpose VARCHAR(100),
+    expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    verified BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_email_otps_lookup ON email_otps (email, otp_code);
+

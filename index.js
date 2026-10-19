@@ -9,6 +9,16 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Normalize URL prefix for both Vercel serverless /api rewrite and direct execution
+app.use((req, res, next) => {
+  if (!req.url.startsWith('/api') && req.url !== '/' && !req.url.startsWith('/index.html') && !req.url.startsWith('/favicon')) {
+    req.url = '/api' + (req.url.startsWith('/') ? req.url : '/' + req.url);
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname)));
 
 // ============================================================================
@@ -46,12 +56,16 @@ const mailTransporter = nodemailer.createTransport({
   auth: {
     user: SENDER_EMAIL,
     pass: GMAIL_APP_PASS
-  }
+  },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 15000
 });
 
 const otpStore = new Map();
 
 async function sendEmailOtp(toEmail, otpCode, purpose = 'Verification') {
+  const cleanTo = (toEmail || '').trim().toLowerCase();
   const subject = `[Society Sync] Your ${purpose} Security Code: ${otpCode}`;
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 550px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #ffffff;">
@@ -65,7 +79,7 @@ async function sendEmailOtp(toEmail, otpCode, purpose = 'Verification') {
         <p style="margin: 0; font-size: 12px; color: #64748b;">Valid for the next 10 minutes. Do not share this code with anyone.</p>
       </div>
       <p style="font-size: 13px; color: #475569; line-height: 1.6;">
-        You received this security verification code because an action was initiated for your Society Sync account associated with <strong>${toEmail}</strong>.
+        You received this security verification code because an action was initiated for your Society Sync account associated with <strong>${cleanTo}</strong>.
       </p>
       <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;">
       <p style="font-size: 11px; color: #94a3b8; text-align: center; margin: 0;">
@@ -75,15 +89,17 @@ async function sendEmailOtp(toEmail, otpCode, purpose = 'Verification') {
   `;
 
   try {
-    await mailTransporter.sendMail({
+    const info = await mailTransporter.sendMail({
       from: `"Society Sync" <${SENDER_EMAIL}>`,
-      to: toEmail,
+      to: cleanTo,
       subject,
       html
     });
-    console.log(`📨 [REAL GMAIL SENT] Successfully sent OTP from ${SENDER_EMAIL} to ${toEmail}`);
+    console.log(`📨 [REAL GMAIL SENT] Successfully sent OTP from ${SENDER_EMAIL} to ${cleanTo}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
   } catch (err) {
-    console.error(`⚠️ Gmail delivery error to ${toEmail}:`, err.message);
+    console.error(`⚠️ Gmail delivery error to ${cleanTo}:`, err.message);
+    return { success: false, error: err.message };
   }
 }
 
@@ -261,44 +277,81 @@ app.post('/api/auth/send-otp', async (req, res) => {
 
   const cleanEmail = email.trim().toLowerCase();
   const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-  const expiresAt = Date.now() + 10 * 60 * 1000;
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
-  otpStore.set(cleanEmail, { otp: otpCode, expiresAt, verified: false });
-  await sendEmailOtp(cleanEmail, otpCode, purpose || 'Verification');
+  // 1. In-memory backup
+  otpStore.set(cleanEmail, { otp: otpCode, expiresAt: expiresAt.getTime(), verified: false });
+
+  // 2. Persist in Supabase PostgreSQL (survives any serverless cold restart)
+  try {
+    await pool.query(
+      `INSERT INTO email_otps (email, otp_code, purpose, expires_at, verified)
+       VALUES ($1, $2, $3, $4, FALSE)`,
+      [cleanEmail, otpCode, purpose || 'Verification', expiresAt]
+    );
+  } catch (dbErr) {
+    console.warn('DB OTP persist warning:', dbErr.message);
+  }
+
+  // 3. Dispatch live Gmail
+  const mailResult = await sendEmailOtp(cleanEmail, otpCode, purpose || 'Verification');
 
   res.json({
     success: true,
-    message: `Security OTP dispatched to ${cleanEmail}`,
+    message: mailResult.success ? `Security OTP dispatched to ${cleanEmail}` : `OTP generated (${mailResult.error || 'Delivery notice'})`,
     email: cleanEmail,
-    otp_preview: otpCode
+    otp_preview: otpCode,
+    mail_sent: !!mailResult.success
   });
 });
 
-app.post('/api/auth/verify-otp', (req, res) => {
+app.post('/api/auth/verify-otp', async (req, res) => {
   const { email, otp } = req.body;
   if (!email || !otp) {
     return res.status(400).json({ success: false, message: 'Email and OTP are required.' });
   }
 
   const cleanEmail = email.trim().toLowerCase();
+  const enteredOtp = otp.toString().trim();
+
+  // Universal master demo bypass code
+  if (enteredOtp === '482910') {
+    return res.json({ success: true, message: 'Email verified successfully (Master Demo Code).' });
+  }
+
+  // 1. Check in database first (Serverless resilient)
+  try {
+    const dbRes = await pool.query(
+      `SELECT id, otp_code, expires_at, verified
+       FROM email_otps
+       WHERE LOWER(email) = LOWER($1)
+       ORDER BY id DESC LIMIT 5`,
+      [cleanEmail]
+    );
+
+    const match = dbRes.rows.find(r => r.otp_code === enteredOtp && new Date(r.expires_at) > new Date());
+    if (match) {
+      await pool.query(`UPDATE email_otps SET verified = TRUE WHERE id = $1`, [match.id]);
+      return res.json({ success: true, message: 'Email verification successful!' });
+    }
+  } catch (dbErr) {
+    console.warn('DB OTP check error, checking cache:', dbErr.message);
+  }
+
+  // 2. Check in-memory fallback
   const record = otpStore.get(cleanEmail);
-
-  if (!record) {
-    if (otp === '482910') return res.json({ success: true, message: 'OTP verified successfully.' });
-    return res.status(400).json({ success: false, message: 'OTP expired or not found.' });
+  if (record) {
+    if (Date.now() > record.expiresAt) {
+      otpStore.delete(cleanEmail);
+      return res.status(400).json({ success: false, message: 'OTP expired. Please request a new one.' });
+    }
+    if (record.otp === enteredOtp) {
+      record.verified = true;
+      return res.json({ success: true, message: 'Email verification successful!' });
+    }
   }
 
-  if (Date.now() > record.expiresAt) {
-    otpStore.delete(cleanEmail);
-    return res.status(400).json({ success: false, message: 'OTP expired. Please request a new one.' });
-  }
-
-  if (record.otp === otp.trim() || otp.trim() === '482910') {
-    record.verified = true;
-    return res.json({ success: true, message: 'Email verification successful!' });
-  }
-
-  return res.status(400).json({ success: false, message: 'Invalid verification code.' });
+  return res.status(400).json({ success: false, message: 'Invalid or expired verification code.' });
 });
 
 // Role-Scoped Login
