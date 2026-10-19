@@ -116,32 +116,37 @@
 
         <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center gap-1">
-          <button onclick="navigate('login')" id="nav-btn-login" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100/60 transition-all flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[18px]">login</span>
-            <span>Sign In</span>
+          <button onclick="navigate('login')" id="nav-btn-login" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100/60 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">home</span>
+            <span>Home Desk</span>
           </button>
           
-          <button onclick="navigate('services')" id="nav-btn-services" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <button onclick="navigate('services')" id="nav-btn-services" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[18px]">handyman</span>
             <span>Society Services</span>
           </button>
 
-          <button onclick="navigate('resident')" id="nav-btn-resident" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <button onclick="navigate('resident')" id="nav-btn-resident" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[18px]">home_work</span>
-            <span>Resident Flat Portal</span>
+            <span>Residence</span>
           </button>
 
-          <button onclick="navigate('secretary')" id="nav-btn-secretary" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <button onclick="navigate('secretary')" id="nav-btn-secretary" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[18px]">shield_person</span>
             <span>Secretary Desk</span>
           </button>
 
-          <button onclick="navigate('merchant')" id="nav-btn-merchant" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <button onclick="navigate('merchant')" id="nav-btn-merchant" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[18px]">engineering</span>
             <span>Merchant Desk</span>
           </button>
 
-          <button onclick="navigate('admin')" id="nav-btn-admin" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <button onclick="navigate('chat')" id="nav-btn-chat" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">forum</span>
+            <span>Residence Chat</span>
+          </button>
+
+          <button onclick="navigate('admin')" id="nav-btn-admin" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
             <span>Admin</span>
           </button>
@@ -189,19 +194,22 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1">
       <button onclick="navigate('login')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-brand-700 bg-brand-50 flex items-center gap-2">
-        <span class="material-symbols-outlined text-[18px]">login</span> Sign In
+        <span class="material-symbols-outlined text-[18px]">home</span> Home Desk
       </button>
       <button onclick="navigate('services')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">handyman</span> Society Services
       </button>
       <button onclick="navigate('resident')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
-        <span class="material-symbols-outlined text-[18px]">home_work</span> Resident Flat Portal
+        <span class="material-symbols-outlined text-[18px]">home_work</span> Residence Portal
       </button>
       <button onclick="navigate('secretary')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">shield_person</span> Secretary Desk
       </button>
       <button onclick="navigate('merchant')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">engineering</span> Merchant Desk
+      </button>
+      <button onclick="navigate('chat')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">forum</span> Residence Chat
       </button>
       <button onclick="navigate('admin')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span> Platform Admin
@@ -217,11 +225,90 @@
   <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
 
     <!-- ========================================================================= -->
-    <!-- VIEW 1: SIGN IN (DEFAULT LANDING PAGE ON STARTUP)                         -->
+    <!-- VIEW 1: HOME DESK & ROLE-BASED PORTAL SELECTOR                            -->
     <!-- ========================================================================= -->
-    <div id="view-login" class="app-view max-w-6xl mx-auto my-4 sm:my-6">
+    <div id="view-login" class="app-view max-w-6xl mx-auto my-4 sm:my-6 space-y-8">
+      
+      <!-- 3 PROMINENT ROLE-SELECTION ENTRY CARDS (HOME DESK) -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="text-center max-w-2xl mx-auto mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-bold uppercase tracking-wider mb-2">
+            <span class="material-symbols-outlined text-[16px] text-brand-700">hub</span>
+            <span>Home Desk • Select Your Dedicated Workspace</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900 tracking-tight">
+            Role-Based Portals Connected by Unified Job Workflows
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            Choose your account role below to open your dedicated dashboard, or sign in directly with role-scoped credentials.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Card 1: Society / Secretary -->
+          <div onclick="selectRolePortal('secretary')" id="roleCard-secretary" class="role-selector-card group cursor-pointer bg-slate-50/70 hover:bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-indigo-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
+            <div class="space-y-2.5">
+              <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 group-hover:bg-indigo-700 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
+                <span class="material-symbols-outlined text-[26px]">shield_person</span>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-base text-slate-900">Society Services</h3>
+                <span class="text-[11px] font-bold text-indigo-700 uppercase tracking-wider">Secretary / Administrator</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Manage an entire housing society, bulk maintenance drives, common facility assets, reverse quotations, and audited past work history.
+              </p>
+            </div>
+            <div class="flex items-center justify-between text-xs font-bold text-indigo-700 pt-3 border-t border-slate-200/80">
+              <span>Access Secretary Desk</span>
+              <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Residence / Resident -->
+          <div onclick="selectRolePortal('resident')" id="roleCard-resident" class="role-selector-card group cursor-pointer bg-brand-50/30 hover:bg-white rounded-2xl p-6 border-2 border-brand-500 hover:border-brand-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
+            <div class="space-y-2.5">
+              <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 group-hover:bg-brand-700 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
+                <span class="material-symbols-outlined text-[26px]">home_work</span>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-base text-slate-900">Residence Portal</h3>
+                <span class="text-[11px] font-bold text-brand-700 uppercase tracking-wider">Individual Flat / Resident</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Post personal flat maintenance requests with itemized repair breakdowns, monitor secure 4-digit completion OTP, and chat directly with technicians.
+              </p>
+            </div>
+            <div class="flex items-center justify-between text-xs font-bold text-brand-700 pt-3 border-t border-brand-200/80">
+              <span>Enter Residence Portal</span>
+              <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Merchant / Worker -->
+          <div onclick="selectRolePortal('merchant')" id="roleCard-merchant" class="role-selector-card group cursor-pointer bg-slate-50/70 hover:bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-amber-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
+            <div class="space-y-2.5">
+              <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
+                <span class="material-symbols-outlined text-[26px]">engineering</span>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-base text-slate-900">Merchant Desk</h3>
+                <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wider">Verified Contractor / Worker</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Accept open society &amp; flat jobs, automated 2-hour SLA assignment match, atomic claim protection, and direct smart escrow payout release.
+              </p>
+            </div>
+            <div class="flex items-center justify-between text-xs font-bold text-amber-700 pt-3 border-t border-slate-200/80">
+              <span>Open Merchant Desk</span>
+              <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN HERO & SIGN IN CARD -->
       <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl p-6 sm:p-10 relative bg-isometric-grid">
-        
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <!-- LEFT COLUMN: 3D ISOMETRIC VECTOR HOUSING COMPLEX ARTWORK -->
@@ -365,21 +452,34 @@
 
           </div>
 
-          <!-- RIGHT COLUMN: SIGN IN FORM CARD -->
+          <!-- RIGHT COLUMN: ROLE-SCOPED SIGN IN CARD -->
           <div class="lg:col-span-5 relative">
             <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xl">
               
-              <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center mx-auto mb-3 shadow-xs">
-                  <span class="material-symbols-outlined text-[26px]">lock</span>
-                </div>
-                <h2 class="text-2xl font-extrabold font-display text-slate-900">Sign In to SocietyServ</h2>
-                <p class="text-xs text-slate-500 mt-1">Access your society dashboard, flat requests &amp; escrow</p>
+              <!-- Role Tabs for Login -->
+              <div class="flex items-center justify-between p-1 bg-slate-100 rounded-xl mb-6">
+                <button type="button" onclick="setLoginPortalTab('resident')" id="loginTab-resident" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-brand-800 bg-white shadow-xs transition-all">
+                  Resident
+                </button>
+                <button type="button" onclick="setLoginPortalTab('secretary')" id="loginTab-secretary" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+                  Secretary
+                </button>
+                <button type="button" onclick="setLoginPortalTab('merchant')" id="loginTab-merchant" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+                  Worker
+                </button>
               </div>
 
-              <!-- Quick Role Portals -->
+              <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center mx-auto mb-3 shadow-xs" id="loginHeaderIcon">
+                  <span class="material-symbols-outlined text-[26px]">home_work</span>
+                </div>
+                <h2 class="text-2xl font-extrabold font-display text-slate-900" id="loginHeaderTitle">Sign In to Residence Portal</h2>
+                <p class="text-xs text-slate-500 mt-1" id="loginHeaderSubtitle">Access flat repair requests, completion OTP &amp; worker chat</p>
+              </div>
+
+              <!-- Quick 1-Click Role Login Portal Helper -->
               <div class="mb-5 p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
-                <span class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">⚡ Quick Role Access</span>
+                <span class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">⚡ Instant 1-Click Role Access</span>
                 <div class="grid grid-cols-2 gap-2">
                   <button onclick="quickRoleLogin('resident')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-brand-100 hover:bg-brand-200 text-brand-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
                     <span class="material-symbols-outlined text-[16px]">home</span> Resident Flat
@@ -391,7 +491,7 @@
                     <span class="material-symbols-outlined text-[16px]">engineering</span> Worker Desk
                   </button>
                   <button onclick="quickRoleLogin('admin')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
-                    <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span> SSC Admin
+                    <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span> Platform Admin
                   </button>
                 </div>
               </div>
@@ -401,7 +501,7 @@
                 <span class="bg-white px-3 text-xs text-slate-400 font-semibold uppercase">or email login</span>
               </div>
 
-              <!-- Standard Sign In Form -->
+              <!-- Standard Sign In Form with Show/Hide Password -->
               <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
                 <div>
                   <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Registered Email ID</label>
@@ -418,13 +518,16 @@
                   </div>
                   <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock</span>
-                    <input required type="password" id="loginPassword" value="Society@2026" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                    <input required type="password" id="loginPassword" value="Society@2026" class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                    <button type="button" onclick="togglePasswordVisibility('loginPassword', 'eyeIconLogin')" class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 focus:outline-hidden">
+                      <span id="eyeIconLogin" class="material-symbols-outlined text-[20px]">visibility</span>
+                    </button>
                   </div>
                 </div>
 
                 <div>
                   <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Portal Account Role</label>
-                  <select id="loginRole" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
+                  <select id="loginRole" onchange="syncRoleTabWithSelect()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
                     <option value="resident">Resident Flat Member (Flat B-402 • Gokuldham CHS)</option>
                     <option value="secretary">Society Secretary (RWA Office • Gokuldham CHS)</option>
                     <option value="merchant">Verified Worker / Contractor (AquaPure Tech Services)</option>
@@ -432,9 +535,9 @@
                   </select>
                 </div>
 
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                <button type="submit" id="loginSubmitBtn" class="w-full py-3.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
                   <span class="material-symbols-outlined text-[18px]">login</span>
-                  <span>Sign In to Account</span>
+                  <span id="loginSubmitBtnText">Sign In to Account</span>
                 </button>
               </form>
 
@@ -454,6 +557,9 @@
           </div>
 
         </div>
+      </div>
+
+    </div>
 
       </div>
     </div>
@@ -933,6 +1039,24 @@
             <textarea id="newWorkDescription" rows="2" placeholder="Specify technical scope, parts warranty, required certifications, inspection criteria..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm"></textarea>
           </div>
 
+          <!-- DYNAMIC WORK ITEMS BREAKDOWN -->
+          <div class="border-t border-slate-200 pt-3 space-y-2">
+            <div class="flex items-center justify-between">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700">Detailed Multi-Item Breakdown</label>
+                <p class="text-[11px] text-slate-500">Add specific materials, equipment cartridges, or tasks included in this bulk drive</p>
+              </div>
+              <button type="button" onclick="addSecretaryItemRow()" class="px-3 py-1.5 text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-xl flex items-center gap-1 border border-brand-200 shadow-2xs">
+                <span class="material-symbols-outlined text-[16px]">add</span>
+                <span>+ Add Item Row</span>
+              </button>
+            </div>
+            
+            <div id="secretaryItemsContainer" class="space-y-2 max-h-48 overflow-y-auto p-1">
+              <!-- Item rows injected dynamically -->
+            </div>
+          </div>
+
           <div class="flex justify-end gap-2 pt-2">
             <button onclick="toggleSecretaryWorkCreation(false)" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl">Cancel</button>
             <button type="submit" class="px-6 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5">
@@ -1100,6 +1224,24 @@
               <textarea id="flatWorkNotes" rows="2" placeholder="Explain the issue for the technician (e.g. water pressure low, please bring spare heating element)" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs"></textarea>
             </div>
 
+            <!-- DYNAMIC FLAT REPAIR ITEMS BREAKDOWN -->
+            <div class="border-t border-slate-200 pt-3 space-y-2">
+              <div class="flex items-center justify-between">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700">Repair Items / Parts Breakdown</label>
+                  <p class="text-[11px] text-slate-500">List individual components or issues needing inspection</p>
+                </div>
+                <button type="button" onclick="addFlatItemRow()" class="px-2.5 py-1 text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-xl flex items-center gap-1 border border-brand-200 shadow-2xs">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                  <span>+ Add Item</span>
+                </button>
+              </div>
+              
+              <div id="flatItemsContainer" class="space-y-2 max-h-40 overflow-y-auto p-1">
+                <!-- Flat item rows injected dynamically -->
+              </div>
+            </div>
+
             <div class="p-3 bg-brand-50 rounded-xl text-xs text-brand-900 flex items-center gap-2 border border-brand-200">
               <span class="material-symbols-outlined text-[18px] text-brand-700">lock</span>
               <span>Your security OTP will be generated upon technician dispatch.</span>
@@ -1192,6 +1334,86 @@
               <span class="text-[11px] font-bold text-slate-400 uppercase">Escrow Reserve Balance</span>
               <span class="block text-sm font-extrabold text-brand-700 mt-0.5">₹48,500 Locked</span>
             </div>
+          </div>
+        <!-- SECTION: SOCIETY COMMON FACILITIES & INFRASTRUCTURE ASSETS -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-xl font-bold font-display text-slate-900">Society Common Facilities &amp; Equipment</h3>
+              <p class="text-xs text-slate-500">Managed infrastructure assets across Gokuldham CHS common areas</p>
+            </div>
+            <button onclick="toggleFacilityModal(true)" class="px-4 py-2 bg-indigo-700 hover:bg-indigo-800 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5 transition-all">
+              <span class="material-symbols-outlined text-[16px]">add_circle</span>
+              <span>+ Add Common Facility</span>
+            </button>
+          </div>
+
+          <div id="secretaryFacilitiesList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Loaded dynamically from /api/society/details -->
+          </div>
+        </div>
+
+        <!-- ADD COMMON FACILITY MODAL -->
+        <div id="facilityModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+                </span>
+                <h3 class="text-lg font-bold text-slate-900">Add Society Common Facility</h3>
+              </div>
+              <button onclick="toggleFacilityModal(false)" class="text-slate-400 hover:text-slate-600">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </div>
+
+            <form onsubmit="handleAddFacility(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Facility / Asset Name</label>
+                <input required type="text" id="facName" placeholder="e.g. Sewage Treatment Plant (STP) Blower" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-sm">
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Asset Category</label>
+                  <select id="facCategory" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-xs font-semibold">
+                    <option value="Water & Pumping">Water &amp; Pumping</option>
+                    <option value="Elevator & Mobility">Elevator &amp; Mobility</option>
+                    <option value="Power & Solar">Power &amp; Solar</option>
+                    <option value="Security & Access">Security &amp; Access</option>
+                    <option value="Fire & Safety">Fire &amp; Safety</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Quantity</label>
+                  <input required type="number" id="facQty" value="1" min="1" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-xs">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Location in Society</label>
+                  <input required type="text" id="facLocation" placeholder="e.g. Basement Pump Room" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-xs">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Wing Scope</label>
+                  <input required type="text" id="facWing" value="Wing A & B" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-xs">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Asset Specifications / AMC Details</label>
+                <textarea id="facDescription" rows="2" placeholder="e.g. Kirloskar 7.5 HP 3-phase induction motor with automatic float switch" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-xs"></textarea>
+              </div>
+
+              <div class="flex justify-end gap-2 pt-2">
+                <button onclick="toggleFacilityModal(false)" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl">Cancel</button>
+                <button type="submit" class="px-5 py-2.5 bg-indigo-700 hover:bg-indigo-800 text-white rounded-xl text-xs font-bold shadow-md">
+                  Save Facility Asset
+                </button>
+              </div>
+            </form>
           </div>
         </div>
 
@@ -1423,6 +1645,93 @@
           </button>
         </div>
       </div>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 9: RESIDENCE CHAT (AUTHENTICATED RESIDENT ⇄ TECHNICIAN MESSAGING)    -->
+    <!-- ========================================================================= -->
+    <div id="view-chat" class="app-view hidden max-w-6xl mx-auto space-y-6">
+      
+      <!-- Chat Overview Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-brand-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-bold uppercase tracking-wider">
+            <span class="material-symbols-outlined text-[16px]">forum</span>
+            <span>Residence Chat • Secure Order Channel</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display">Direct Resident &amp; Worker Communication</h2>
+          <p class="text-slate-400 text-xs sm:text-sm max-w-2xl leading-relaxed">
+            Coordinate arrival timings, share part model numbers, and clarify maintenance scope in an isolated, encrypted order conversation.
+          </p>
+        </div>
+        <div class="p-3 bg-white/5 border border-white/10 rounded-2xl text-center shrink-0">
+          <span class="block text-[10px] font-bold text-brand-300 uppercase tracking-widest">ACTIVE CHANNELS</span>
+          <span class="block text-2xl font-black font-display text-white" id="chatTotalCountBadge">1 Active</span>
+          <span class="text-[9px] text-slate-400">Linked to Work Orders</span>
+        </div>
+      </div>
+
+      <!-- Main Two-Column Chat Messenger Box -->
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12 min-h-[580px]">
+        
+        <!-- Left Column: Conversations List -->
+        <div class="md:col-span-5 lg:col-span-4 border-r border-slate-200 p-4 flex flex-col justify-between bg-slate-50/40">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+              <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">Active Conversations</span>
+              <button onclick="loadChatConversations()" title="Refresh" class="text-slate-400 hover:text-brand-700">
+                <span class="material-symbols-outlined text-[18px]">refresh</span>
+              </button>
+            </div>
+            
+            <div id="chatConversationsList" class="space-y-2 overflow-y-auto max-h-[460px]">
+              <!-- Injected by loadChatConversations() -->
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-200 text-center">
+            <span class="text-[11px] text-slate-400 font-medium">Auto-created when job is claimed or auto-assigned</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Active Conversation Thread -->
+        <div class="md:col-span-7 lg:col-span-8 flex flex-col justify-between bg-white">
+          
+          <!-- Conversation Header -->
+          <div id="chatActiveHeader" class="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center font-bold text-sm shadow-xs" id="chatPartnerAvatar">
+                AS
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm" id="chatPartnerName">Ashish Sharma (AquaPure Tech Services)</h4>
+                <p class="text-[11px] text-slate-500" id="chatJobContext">Order #1: Kitchen Sink Drainage &amp; Tap Replacement • Flat B-402</p>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+              LIVE CHANNEL
+            </span>
+          </div>
+
+          <!-- Messages Thread -->
+          <div id="chatMessagesThread" class="flex-1 p-4 sm:p-6 space-y-3.5 overflow-y-auto max-h-[420px] bg-slate-50/30">
+            <!-- Loaded by selectConversation() -->
+          </div>
+
+          <!-- Message Input Form -->
+          <form onsubmit="handleSendChatMessage(event)" class="p-3.5 sm:p-4 bg-white border-t border-slate-200 flex items-center gap-2">
+            <input type="text" id="chatMessageInput" required placeholder="Type a message to technician / resident..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            <button type="submit" class="px-5 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl font-bold text-xs shadow-md flex items-center gap-1.5 transition-all">
+              <span>Send</span>
+              <span class="material-symbols-outlined text-[16px]">send</span>
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+
     </div>
 
   </main>
@@ -1682,29 +1991,117 @@
       }, 3500);
     }
 
+    // =========================================================================
+    // ROLE SELECTION & LOGIN TAB SWITCHER (HOME DESK)
+    // =========================================================================
+    function selectRolePortal(role) {
+      document.querySelectorAll('.role-selector-card').forEach(c => {
+        c.classList.remove('ring-4', 'ring-brand-500/30', 'border-brand-600', 'border-indigo-600', 'border-amber-600');
+      });
+      const card = document.getElementById(`roleCard-${role}`);
+      if (card) {
+        if (role === 'secretary') card.classList.add('ring-4', 'ring-indigo-500/20', 'border-indigo-600');
+        else if (role === 'merchant') card.classList.add('ring-4', 'ring-amber-500/20', 'border-amber-600');
+        else card.classList.add('ring-4', 'ring-brand-500/20', 'border-brand-600');
+      }
+
+      setLoginPortalTab(role);
+      const signinCard = document.getElementById('loginEmail');
+      if (signinCard) {
+        signinCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        signinCard.focus();
+      }
+    }
+
+    function setLoginPortalTab(role) {
+      document.querySelectorAll('.login-role-tab').forEach(tab => {
+        tab.className = 'login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all';
+      });
+
+      const activeTab = document.getElementById(`loginTab-${role}`);
+      const title = document.getElementById('loginHeaderTitle');
+      const subtitle = document.getElementById('loginHeaderSubtitle');
+      const icon = document.getElementById('loginHeaderIcon');
+      const roleSelect = document.getElementById('loginRole');
+      const emailInput = document.getElementById('loginEmail');
+      const passInput = document.getElementById('loginPassword');
+      const submitText = document.getElementById('loginSubmitBtnText');
+
+      if (activeTab) {
+        activeTab.className = 'login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-brand-800 bg-white shadow-xs transition-all';
+      }
+
+      if (role === 'secretary') {
+        if (title) title.textContent = 'Sign In to Society Services';
+        if (subtitle) subtitle.textContent = 'RWA executive credentials • bulk drives & past work audit';
+        if (icon) icon.innerHTML = '<span class="material-symbols-outlined text-[26px] text-indigo-700">shield_person</span>';
+        if (roleSelect) roleSelect.value = 'secretary';
+        if (emailInput) emailInput.value = 'secretary@gokuldham.in';
+        if (passInput) passInput.value = 'Society@2026';
+        if (submitText) submitText.textContent = 'Sign In as Society Secretary';
+      } else if (role === 'merchant') {
+        if (title) title.textContent = 'Sign In to Merchant Desk';
+        if (subtitle) subtitle.textContent = 'Contractor credentials • open jobs & escrow payout';
+        if (icon) icon.innerHTML = '<span class="material-symbols-outlined text-[26px] text-amber-700">engineering</span>';
+        if (roleSelect) roleSelect.value = 'merchant';
+        if (emailInput) emailInput.value = 'partner@aquapure.in';
+        if (passInput) passInput.value = 'Worker@123';
+        if (submitText) submitText.textContent = 'Sign In to Merchant Desk';
+      } else {
+        if (title) title.textContent = 'Sign In to Residence Portal';
+        if (subtitle) subtitle.textContent = 'Flat member credentials • repair requests & completion OTP';
+        if (icon) icon.innerHTML = '<span class="material-symbols-outlined text-[26px] text-brand-700">home_work</span>';
+        if (roleSelect) roleSelect.value = 'resident';
+        if (emailInput) emailInput.value = 'roshan.patel@gokuldham.in';
+        if (passInput) passInput.value = 'Society@2026';
+        if (submitText) submitText.textContent = 'Sign In to Flat Portal';
+      }
+    }
+
+    function syncRoleTabWithSelect() {
+      const val = document.getElementById('loginRole')?.value;
+      if (val === 'secretary' || val === 'merchant' || val === 'resident') {
+        setLoginPortalTab(val);
+      }
+    }
+
+    function togglePasswordVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (!input || !icon) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
     // Quick Role Login Helper
     function quickRoleLogin(role) {
       if (role === 'resident') {
-        currentUser = { name: 'Roshan Patel', role: 'Resident', flat: 'B-402', society: 'Gokuldham CHS' };
+        currentUser = { id: 1, name: 'Roshan Patel', role: 'Resident', flat: 'B-402', society: 'Gokuldham CHS', email: 'roshan.patel@gokuldham.in' };
         updateAuthUI();
         navigate('resident');
         showAppToast('Signed in as Resident (Flat B-402)', 'verified_user');
       } else if (role === 'secretary') {
-        currentUser = { name: 'Dilip Joshi', role: 'Secretary', flat: 'RWA Office', society: 'Gokuldham CHS' };
+        currentUser = { id: 2, name: 'Dilip Joshi', role: 'Secretary', flat: 'RWA Office', society: 'Gokuldham CHS', email: 'secretary@gokuldham.in' };
         updateAuthUI();
         navigate('secretary');
         showAppToast('Signed in as Gokuldham CHS Secretary Desk', 'shield_person');
       } else if (role === 'merchant') {
-        currentUser = { name: 'Ashish Sharma', role: 'Merchant', flat: 'Worker Hub', society: 'AquaPure Tech Services' };
+        currentUser = { id: 3, name: 'Ashish Sharma', role: 'Merchant', flat: 'Worker Hub', society: 'AquaPure Tech Services', email: 'partner@aquapure.in' };
         updateAuthUI();
         navigate('merchant');
         showAppToast('Signed in to Merchant Worker Desk', 'engineering');
       } else if (role === 'admin') {
-        currentUser = { name: 'Super Admin', role: 'SSC Admin', flat: 'Node #1', society: 'SocietyServ' };
+        currentUser = { id: 4, name: 'Super Admin', role: 'SSC Admin', flat: 'Node #1', society: 'SocietyServ', email: 'admin@societyserv.com' };
         updateAuthUI();
         navigate('admin');
         showAppToast('Signed in to Platform Admin Control', 'admin_panel_settings');
       }
+      loadChatConversations();
     }
 
     async function handleLoginSubmit(e) {
@@ -1712,12 +2109,15 @@
       const email = document.getElementById('loginEmail')?.value?.trim();
       const password = document.getElementById('loginPassword')?.value;
       const role = document.getElementById('loginRole')?.value;
+      const submitBtn = document.getElementById('loginSubmitBtn');
+
+      if (submitBtn) submitBtn.disabled = true;
 
       try {
         const res = await fetch('/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, role })
+          body: JSON.stringify({ email, password, required_role: role })
         });
         const data = await res.json();
         if (data.success && data.user) {
@@ -1734,14 +2134,16 @@
           if (currentUser.role === 'Secretary') navigate('secretary');
           else if (currentUser.role === 'Merchant') navigate('merchant');
           else navigate('resident');
+          loadChatConversations();
           return;
         } else {
-          showAppToast(data.message || 'Invalid credentials, switching to quick role portal.', 'info');
-          quickRoleLogin(role);
+          showAppToast(data.message || 'Invalid credentials.', 'error');
         }
       } catch (err) {
-        console.warn('Login API fallback:', err);
+        console.warn('Login network fallback:', err);
         quickRoleLogin(role);
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
       }
     }
 
@@ -1840,12 +2242,10 @@
         }
       }
 
-      // Toggle views
       document.getElementById('regStep1').classList.toggle('hidden', step !== 1);
       document.getElementById('regStep2').classList.toggle('hidden', step !== 2);
       document.getElementById('regStep3').classList.toggle('hidden', step !== 3);
 
-      // Update badge states
       const b1 = document.getElementById('regStepBadge1');
       const b2 = document.getElementById('regStepBadge2');
       const b3 = document.getElementById('regStepBadge3');
@@ -1862,7 +2262,6 @@
       });
     }
 
-    // Password Matching Validation Function
     function validatePasswordMatch() {
       const p1 = document.getElementById('regPass1').value;
       const p2 = document.getElementById('regPass2').value;
@@ -1935,21 +2334,10 @@
             email: data.user.email
           };
         } else {
-          currentUser = {
-            name,
-            role: role === 'secretary' ? 'Secretary' : 'Resident',
-            flat: role === 'secretary' ? 'RWA Office' : flat,
-            society
-          };
+          currentUser = { id: Date.now(), name, role: role === 'secretary' ? 'Secretary' : 'Resident', flat, society, email };
         }
       } catch (e) {
-        console.warn('Registration network fallback:', e);
-        currentUser = {
-          name,
-          role: role === 'secretary' ? 'Secretary' : 'Resident',
-          flat: role === 'secretary' ? 'RWA Office' : flat,
-          society
-        };
+        currentUser = { id: 1, name, role: role === 'secretary' ? 'Secretary' : 'Resident', flat, society, email };
       }
 
       updateAuthUI();
@@ -1984,7 +2372,6 @@
             showAppToast(`📩 Worker OTP Dispatched: ${data.otp_preview}`, 'verified');
           }
         } catch (e) {
-          console.warn('Worker OTP fallback:', e);
           showAppToast('Worker verification OTP sent to ' + email, 'mail');
         }
       }
@@ -2082,26 +2469,63 @@
             password
           })
         });
-        const data = await res.json();
-        currentUser = {
-          name,
-          role: 'Merchant',
-          flat: 'Trade Hub',
-          society: agency
-        };
+        currentUser = { id: 3, name, role: 'Merchant', flat: 'Trade Hub', society: agency, email };
       } catch (e) {
-        console.warn('Merchant register fallback:', e);
-        currentUser = {
-          name,
-          role: 'Merchant',
-          flat: 'Trade Hub',
-          society: agency
-        };
+        currentUser = { id: 3, name, role: 'Merchant', flat: 'Trade Hub', society: agency, email };
       }
 
       updateAuthUI();
       showAppToast(`Contractor verified! Welcome to SocietyServ Worker Desk.`, 'handshake');
       navigate('merchant');
+    }
+
+    // =========================================================================
+    // DYNAMIC WORK ITEMS BREAKDOWN HELPERS
+    // =========================================================================
+    function addSecretaryItemRow(name = '', cat = 'General', qty = 1, unit = 'units', desc = '') {
+      const container = document.getElementById('secretaryItemsContainer');
+      if (!container) return;
+      const rowId = `sec-item-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
+      const div = document.createElement('div');
+      div.id = rowId;
+      div.className = 'flex items-center gap-2 p-2 bg-slate-50 rounded-xl border border-slate-200 text-xs';
+      div.innerHTML = `
+        <input type="text" placeholder="Item name / part / task" value="${name}" class="sec-item-name flex-2 px-2.5 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs">
+        <input type="text" placeholder="Category" value="${cat}" class="sec-item-cat flex-1 px-2.5 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs">
+        <input type="number" placeholder="Qty" value="${qty}" min="1" class="sec-item-qty w-16 px-2 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs text-center">
+        <input type="text" placeholder="Unit" value="${unit}" class="sec-item-unit w-20 px-2 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs">
+        <button type="button" onclick="removeSecretaryItemRow('${rowId}')" class="p-1 text-slate-400 hover:text-rose-600 rounded-lg">
+          <span class="material-symbols-outlined text-[18px]">delete</span>
+        </button>
+      `;
+      container.appendChild(div);
+    }
+
+    function removeSecretaryItemRow(rowId) {
+      document.getElementById(rowId)?.remove();
+    }
+
+    function addFlatItemRow(name = '', cat = 'General', qty = 1, unit = 'units', desc = '') {
+      const container = document.getElementById('flatItemsContainer');
+      if (!container) return;
+      const rowId = `flt-item-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
+      const div = document.createElement('div');
+      div.id = rowId;
+      div.className = 'flex items-center gap-2 p-2 bg-slate-50 rounded-xl border border-slate-200 text-xs';
+      div.innerHTML = `
+        <input type="text" placeholder="Part / issue description" value="${name}" class="flt-item-name flex-2 px-2.5 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs">
+        <input type="text" placeholder="Category" value="${cat}" class="flt-item-cat flex-1 px-2.5 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs">
+        <input type="number" placeholder="Qty" value="${qty}" min="1" class="flt-item-qty w-16 px-2 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs text-center">
+        <input type="text" placeholder="Unit" value="${unit}" class="flt-item-unit w-16 px-2 py-1.5 rounded-lg border border-slate-300 focus:outline-hidden text-xs">
+        <button type="button" onclick="removeFlatItemRow('${rowId}')" class="p-1 text-slate-400 hover:text-rose-600 rounded-lg">
+          <span class="material-symbols-outlined text-[18px]">delete</span>
+        </button>
+      `;
+      container.appendChild(div);
+    }
+
+    function removeFlatItemRow(rowId) {
+      document.getElementById(rowId)?.remove();
     }
 
     // =========================================================================
@@ -2115,7 +2539,36 @@
       }
     }
 
-    function handleSecretaryCreateService(e) {
+    async function fetchSocietyServices() {
+      try {
+        const res = await fetch('/api/society/services');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.services) && data.services.length > 0) {
+          activeServices = data.services.map(s => ({
+            id: `srv-${s.id}`,
+            numericId: s.id,
+            title: s.title,
+            category: s.category,
+            society: 'Gokuldham CHS',
+            wing: s.wing_scope || 'All Wings',
+            quorumRequired: s.quorum_required,
+            quorumJoined: s.quorum_joined || 1,
+            retailPrice: parseFloat(s.retail_price_estimate || s.bulk_price_per_flat * 1.6),
+            bulkPrice: parseFloat(s.bulk_price_per_flat),
+            vendor: 'AquaPure Tech Services',
+            vendorRating: 4.9,
+            isEnrolled: true,
+            description: s.description,
+            work_items: s.work_items || []
+          }));
+          renderSocietyServices();
+        }
+      } catch (e) {
+        console.warn('Fallback society services:', e);
+      }
+    }
+
+    async function handleSecretaryCreateService(e) {
       e.preventDefault();
       const title = document.getElementById('newWorkTitle').value;
       const category = document.getElementById('newWorkCategory').value;
@@ -2123,6 +2576,42 @@
       const quorum = parseInt(document.getElementById('newWorkQuorum').value) || 10;
       const bulkRate = parseInt(document.getElementById('newWorkBulkRate').value) || 480;
       const desc = document.getElementById('newWorkDescription').value || 'Society bulk maintenance drive.';
+
+      // Collect dynamic item rows
+      const items = [];
+      document.querySelectorAll('#secretaryItemsContainer > div').forEach(row => {
+        const name = row.querySelector('.sec-item-name')?.value?.trim();
+        const cat = row.querySelector('.sec-item-cat')?.value?.trim();
+        const qty = parseInt(row.querySelector('.sec-item-qty')?.value) || 1;
+        const unit = row.querySelector('.sec-item-unit')?.value?.trim() || 'units';
+        if (name) items.push({ name, category: cat || category, quantity: qty, unit, reference: wing, description: '' });
+      });
+
+      try {
+        const res = await fetch('/api/secretary/services', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title,
+            category,
+            wing_scope: wing,
+            quorum_required: quorum,
+            bulk_price: bulkRate,
+            retail_price: Math.round(bulkRate * 1.6),
+            description: desc,
+            items
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAppToast(`"${title}" published to society noticeboard!`, 'campaign');
+          toggleSecretaryWorkCreation(false);
+          await fetchSocietyServices();
+          return;
+        }
+      } catch (err) {
+        console.warn('Fallback secretary create:', err);
+      }
 
       const newDrive = {
         id: `srv-${Date.now()}`,
@@ -2137,7 +2626,8 @@
         vendor: 'Pending Reverse Bidding',
         vendorRating: 4.8,
         isEnrolled: true,
-        description: desc
+        description: desc,
+        work_items: items
       };
 
       activeServices.unshift(newDrive);
@@ -2184,6 +2674,15 @@
               <h4 class="font-bold text-slate-900 text-base leading-tight">${srv.title}</h4>
               <p class="text-xs text-slate-500">${srv.wing} • ${srv.society}</p>
               <p class="text-xs text-slate-600 line-clamp-2">${srv.description}</p>
+
+              ${srv.work_items && srv.work_items.length > 0 ? `
+                <div class="mt-2 pt-2 border-t border-slate-100 text-[11px] text-slate-600 space-y-1">
+                  <span class="font-bold text-slate-700 uppercase block text-[10px]">Work Breakdown:</span>
+                  <ul class="list-disc list-inside space-y-0.5">
+                    ${srv.work_items.slice(0, 3).map(it => `<li>${it.item_name} (${it.quantity} ${it.unit || ''})</li>`).join('')}
+                  </ul>
+                </div>
+              ` : ''}
             </div>
 
             <!-- Quorum Bar -->
@@ -2216,11 +2715,9 @@
     function updateServicesCalculator() {
       const flats = parseInt(document.getElementById('flatsRange')?.value || 24);
       const retail = parseInt(document.getElementById('calcRetailRate')?.value || 1100);
-      const title = document.getElementById('calcServiceTitle')?.value || 'Maintenance Work';
 
       document.getElementById('sliderFlatsValue').textContent = `${flats} Flats`;
 
-      // Bulk discount scales with quorum
       const discountPct = flats >= 40 ? 50 : flats >= 20 ? 42 : 30;
       const bulkRate = Math.round(retail * (1 - discountPct / 100));
       const retailTotal = flats * retail;
@@ -2240,16 +2737,83 @@
       document.getElementById('flatRequestModal')?.classList.toggle('hidden', !show);
     }
 
-    function handleResidentPostWork(e) {
+    async function fetchResidentFlatRequests() {
+      try {
+        const res = await fetch('/api/resident/flat-requests');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.requests) && data.requests.length > 0) {
+          residentFlatRequests = data.requests.map(r => ({
+            id: `flt-${r.id}`,
+            numericId: r.id,
+            title: r.title,
+            category: r.category,
+            flat: r.flat_number || 'B-402',
+            residentName: r.resident_name || 'Roshan Patel',
+            society: 'Gokuldham CHS',
+            wing: r.wing || 'Wing B',
+            urgency: r.urgency || 'Routine (Next 24h)',
+            status: r.status,
+            assignedWorker: r.worker_agency || r.worker_name || 'Awaiting Worker Claim (Auto-Dispatch in 2h)',
+            workerPhone: r.worker_phone || 'Dispatched upon claim',
+            otp: r.completion_otp || '7492',
+            postedTime: 'Active Order',
+            notes: r.problem_description || 'No specific notes entered.',
+            work_items: r.work_items || []
+          }));
+          renderResidentFlatRequests();
+        }
+      } catch (e) {
+        console.warn('Fallback resident requests:', e);
+      }
+    }
+
+    async function handleResidentPostWork(e) {
       e.preventDefault();
       const title = document.getElementById('flatWorkTitle').value;
       const category = document.getElementById('flatWorkCategory').value;
       const urgency = document.getElementById('flatWorkUrgency').value;
       const notes = document.getElementById('flatWorkNotes').value;
-      const newOtp = Math.floor(1000 + Math.random() * 9000);
 
+      // Collect dynamic item rows
+      const items = [];
+      document.querySelectorAll('#flatItemsContainer > div').forEach(row => {
+        const name = row.querySelector('.flt-item-name')?.value?.trim();
+        const cat = row.querySelector('.flt-item-cat')?.value?.trim();
+        const qty = parseInt(row.querySelector('.flt-item-qty')?.value) || 1;
+        const unit = row.querySelector('.flt-item-unit')?.value?.trim() || 'units';
+        if (name) items.push({ name, category: cat || category, quantity: qty, unit, description: '' });
+      });
+
+      try {
+        const res = await fetch('/api/resident/flat-requests', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title,
+            category,
+            description: notes,
+            urgency,
+            flat_id: currentUser?.flat_id || 1,
+            resident_user_id: currentUser?.id || 1,
+            items
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAppToast(`Flat work request "${title}" posted to verified workers! Completion OTP: ${data.otp}`, 'handyman');
+          toggleFlatRequestModal(false);
+          await fetchResidentFlatRequests();
+          await fetchMerchantJobs();
+          return;
+        }
+      } catch (err) {
+        console.warn('Fallback flat request post:', err);
+      }
+
+      const newOtp = Math.floor(1000 + Math.random() * 9000);
       const newJob = {
         id: `flt-${Date.now()}`,
+        numericId: Date.now(),
         title,
         category,
         flat: 'B-402',
@@ -2262,7 +2826,8 @@
         workerPhone: 'Dispatched upon claim',
         otp: `${newOtp}`,
         postedTime: 'Just now',
-        notes
+        notes,
+        work_items: items
       };
 
       residentFlatRequests.unshift(newJob);
@@ -2289,7 +2854,7 @@
                   <span class="px-2 py-0.5 rounded-md ${job.status === 'UNCLAIMED' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'} font-bold text-[10px]">
                     ${job.status}
                   </span>
-                  <span class="text-xs text-slate-400">• Posted ${job.postedTime}</span>
+                  <span class="text-xs text-slate-400">• ${job.postedTime}</span>
                 </div>
                 <h4 class="font-bold text-slate-900 text-base leading-tight">${job.title}</h4>
                 <p class="text-xs text-slate-500">${job.society} • ${job.wing}, Flat ${job.flat} • Urgency: <strong>${job.urgency}</strong></p>
@@ -2299,9 +2864,24 @@
               <div class="p-3 bg-brand-50 border border-brand-200 rounded-xl text-center shrink-0">
                 <span class="block text-[10px] font-bold text-brand-700 uppercase tracking-widest">COMPLETION OTP</span>
                 <span class="block text-2xl font-black font-display text-brand-900 tracking-widest">${job.otp}</span>
-                <span class="text-[9px] text-slate-500">Share after service inspection</span>
+                <span class="text-[9px] text-slate-500">Share after technician completion</span>
               </div>
             </div>
+
+            <!-- Itemized breakdown if present -->
+            ${job.work_items && job.work_items.length > 0 ? `
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+                <span class="font-bold text-[11px] text-slate-700 uppercase block">Work Items Breakdown (${job.work_items.length} specified):</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                  ${job.work_items.map(it => `
+                    <div class="p-2 rounded-lg bg-white border border-slate-100 flex items-center justify-between">
+                      <span class="font-semibold text-slate-800">${it.item_name}</span>
+                      <span class="text-slate-500 font-mono text-[11px]">${it.quantity} ${it.unit || 'units'}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
 
             <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
               <strong>Technician Notes:</strong> ${job.notes || 'No specific notes entered.'}
@@ -2309,7 +2889,15 @@
 
             <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
               <span class="text-slate-600">Assigned: <strong class="text-slate-900">${job.assignedWorker}</strong></span>
-              <span class="text-slate-500">${job.workerPhone}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-500">${job.workerPhone}</span>
+                ${job.status === 'ASSIGNED' || job.status === 'CLAIMED' ? `
+                  <button onclick="openChatForJob(${job.numericId || 1})" class="px-3 py-1.5 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-xs flex items-center gap-1 border border-brand-200 shadow-2xs">
+                    <span class="material-symbols-outlined text-[16px]">chat</span>
+                    <span>Chat with Technician</span>
+                  </button>
+                ` : ''}
+              </div>
             </div>
           </div>
         `;
@@ -2317,8 +2905,78 @@
     }
 
     // =========================================================================
-    // SECRETARY DESK PAST WORK LOGS & AUDIT TRAIL
+    // SECRETARY DESK: COMMON FACILITIES & PAST WORK LOGS
     // =========================================================================
+    let societyFacilities = [];
+
+    async function fetchSocietyFacilities() {
+      try {
+        const res = await fetch('/api/society/details');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.facilities)) {
+          societyFacilities = data.facilities;
+          renderSocietyFacilities();
+        }
+      } catch (e) {
+        console.warn('Fallback facilities:', e);
+      }
+    }
+
+    function renderSocietyFacilities() {
+      const container = document.getElementById('secretaryFacilitiesList');
+      if (!container) return;
+
+      container.innerHTML = societyFacilities.map(f => `
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between space-y-2.5 shadow-2xs">
+          <div class="space-y-1">
+            <span class="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 font-bold text-[10px] uppercase">${f.category}</span>
+            <h4 class="font-bold text-slate-900 text-sm leading-tight">${f.name}</h4>
+            <p class="text-xs text-slate-500">${f.location} • ${f.wing}</p>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-xs">
+            <span class="text-slate-500">Qty: <strong>${f.quantity}</strong></span>
+            <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-[10px]">OPERATIONAL</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFacilityModal(show) {
+      document.getElementById('facilityModal')?.classList.toggle('hidden', !show);
+    }
+
+    async function handleAddFacility(e) {
+      e.preventDefault();
+      const name = document.getElementById('facName').value;
+      const category = document.getElementById('facCategory').value;
+      const quantity = document.getElementById('facQty').value;
+      const location = document.getElementById('facLocation').value;
+      const wing = document.getElementById('facWing').value;
+      const description = document.getElementById('facDescription').value;
+
+      try {
+        const res = await fetch('/api/society/facilities', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, category, quantity, location, wing, description })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAppToast(`Facility "${name}" added to society inventory!`, 'check_circle');
+          toggleFacilityModal(false);
+          await fetchSocietyFacilities();
+          return;
+        }
+      } catch (err) {
+        console.warn('Facility add error:', err);
+      }
+
+      societyFacilities.push({ id: Date.now(), name, category, quantity, location, wing, description });
+      renderSocietyFacilities();
+      toggleFacilityModal(false);
+      showAppToast(`Facility "${name}" added to society inventory!`, 'check_circle');
+    }
+
     function renderSecretaryPastLogs() {
       const tbody = document.getElementById('secretaryPastWorkLogs');
       if (!tbody) return;
@@ -2342,49 +3000,33 @@
     }
 
     // =========================================================================
-    // MERCHANT DESK & 2-3 HOUR SMART AUTO-ASSIGNMENT ENGINE
+    // MERCHANT DESK & 2-HOUR SMART AUTO-ASSIGNMENT ENGINE
     // =========================================================================
-    let availableJobs = [
-      {
-        id: 'job-1',
-        title: 'Kitchen Sink Drainage Clogging & Tap Replacement',
-        category: 'Plumbing & Sanitary',
-        society: 'Gokuldham CHS',
-        flat: 'B-402',
-        wing: 'Wing B',
-        urgency: 'Urgent (Today)',
-        payout: '₹450',
-        postedAgo: '45 mins ago',
-        hoursLeft: '01h 15m until auto-dispatch',
-        status: 'OPEN'
-      },
-      {
-        id: 'job-2',
-        title: 'RO Membrane & Carbon Pre-Filter Replacement',
-        category: 'RO Water Systems',
-        society: 'Palm Heights',
-        flat: 'Tower A (4 Flats)',
-        wing: 'Tower A',
-        urgency: 'Scheduled Cluster',
-        payout: '₹2,600 (4 Flats)',
-        postedAgo: '1h 10m ago',
-        hoursLeft: '00h 50m until auto-dispatch',
-        status: 'OPEN'
-      },
-      {
-        id: 'job-3',
-        title: 'Master Bedroom Geyser Heating Element Inspection',
-        category: 'Electrical & Wiring',
-        society: 'Gokuldham CHS',
-        flat: 'B-402',
-        wing: 'Wing B',
-        urgency: 'Routine (Next 24h)',
-        payout: '₹650',
-        postedAgo: '2h 10m ago',
-        hoursLeft: 'Pending Auto-Match Trigger',
-        status: 'UNCLAIMED'
+    async function fetchMerchantJobs() {
+      try {
+        const res = await fetch('/api/merchant/jobs');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.jobs) && data.jobs.length > 0) {
+          availableJobs = data.jobs.map(j => ({
+            id: `job-${j.id}`,
+            numericId: j.id,
+            title: j.title,
+            category: j.category,
+            society: 'Gokuldham CHS',
+            flat: `${j.wing || ''}, Flat ${j.flat_number || 'B-402'}`,
+            urgency: j.urgency || 'Routine (Next 24h)',
+            payout: '₹450',
+            postedAgo: 'Live in Queue',
+            hoursLeft: j.status === 'ASSIGNED' ? '⚡ Assigned by System SLA' : '01h 15m until auto-dispatch',
+            status: j.status,
+            work_items: j.work_items || []
+          }));
+          renderMerchantJobsFeed();
+        }
+      } catch (e) {
+        console.warn('Fallback merchant jobs:', e);
       }
-    ];
+    }
 
     function renderMerchantJobsFeed() {
       const container = document.getElementById('merchantJobsFeed');
@@ -2394,16 +3036,26 @@
       if (badge) badge.textContent = `${availableJobs.length} Jobs Listed`;
 
       container.innerHTML = availableJobs.map(job => `
-        <div class="p-5 rounded-2xl border ${job.status === 'AUTO-ASSIGNED' ? 'border-amber-500 bg-amber-50/40 ring-1 ring-amber-500' : 'border-slate-200 bg-white'} shadow-xs flex flex-col justify-between space-y-4">
+        <div class="p-5 rounded-2xl border ${job.status === 'ASSIGNED' || job.status === 'AUTO-ASSIGNED' ? 'border-amber-500 bg-amber-50/40 ring-1 ring-amber-500' : 'border-slate-200 bg-white'} shadow-xs flex flex-col justify-between space-y-4">
           <div class="space-y-2">
             <div class="flex justify-between items-center">
               <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold text-[10px] uppercase">${job.category}</span>
-              <span class="px-2 py-0.5 rounded-md ${job.status === 'AUTO-ASSIGNED' ? 'bg-amber-100 text-amber-900 font-extrabold' : 'bg-emerald-100 text-emerald-800 font-bold'} text-[10px]">
+              <span class="px-2 py-0.5 rounded-md ${job.status === 'ASSIGNED' || job.status === 'AUTO-ASSIGNED' ? 'bg-amber-100 text-amber-900 font-extrabold' : 'bg-emerald-100 text-emerald-800 font-bold'} text-[10px]">
                 ${job.status}
               </span>
             </div>
             <h4 class="font-bold text-slate-900 text-base leading-tight">${job.title}</h4>
             <p class="text-xs text-slate-500">${job.society} • ${job.flat}</p>
+            
+            ${job.work_items && job.work_items.length > 0 ? `
+              <div class="p-2.5 rounded-xl bg-white border border-slate-200 text-xs space-y-0.5">
+                <span class="font-bold text-slate-700 block text-[10px] uppercase">Job Components:</span>
+                <ul class="list-disc list-inside text-slate-600 text-[11px]">
+                  ${job.work_items.map(it => `<li>${it.item_name} (${it.quantity} ${it.unit || ''})</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+
             <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center text-xs">
               <span class="text-slate-500 font-medium">Payout Rate:</span>
               <span class="text-brand-800 font-black text-sm">${job.payout}</span>
@@ -2414,34 +3066,62 @@
             </div>
           </div>
 
-          <button onclick="claimMerchantJob('${job.id}')" class="w-full py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${job.status === 'AUTO-ASSIGNED' ? 'bg-amber-600 hover:bg-amber-700 text-white' : 'bg-brand-700 hover:bg-brand-800 text-white shadow-xs'}">
-            <span class="material-symbols-outlined text-[16px]">check_circle</span>
-            <span>${job.status === 'AUTO-ASSIGNED' ? 'Confirm Auto-Assigned Job' : 'Claim & Accept Work Order'}</span>
-          </button>
+          <div class="space-y-2">
+            ${job.status === 'CLAIMED' || job.status === 'ASSIGNED' || job.status === 'AUTO-ASSIGNED' ? `
+              <button onclick="openChatForJob(${job.numericId || 1})" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
+                <span class="material-symbols-outlined text-[16px]">chat</span>
+                <span>Chat with Resident</span>
+              </button>
+            ` : `
+              <button onclick="claimMerchantJob(${job.numericId || 1})" class="w-full py-2.5 rounded-xl font-bold text-xs bg-brand-700 hover:bg-brand-800 text-white shadow-xs transition-all flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                <span>Claim &amp; Accept Work Order</span>
+              </button>
+            `}
+          </div>
         </div>
       `).join('');
     }
 
-    function claimMerchantJob(jobId) {
-      const job = availableJobs.find(j => j.id === jobId);
-      if (!job) return;
-      job.status = 'CLAIMED';
-      showAppToast(`Job "${job.title}" accepted! Scheduled in your worker queue.`, 'task_alt');
-      renderMerchantJobsFeed();
+    async function claimMerchantJob(jobId) {
+      try {
+        const res = await fetch('/api/merchant/claim-job', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ request_id: jobId, worker_id: 1 })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAppToast(`Work Order #${jobId} accepted! Residence Chat channel provisioned.`, 'task_alt');
+          await fetchMerchantJobs();
+          await fetchResidentFlatRequests();
+          await loadChatConversations();
+          return;
+        } else {
+          showAppToast(data.message || 'Job is already claimed.', 'info');
+        }
+      } catch (e) {
+        showAppToast(`Job accepted! Scheduled in your queue.`, 'task_alt');
+      }
     }
 
-    // 2-3 HOUR AUTO-ASSIGNMENT SIMULATOR
-    function simulateTwoHourAutoAssign() {
-      // Find an unclaimed or open job
-      const unclaimed = availableJobs.find(j => j.status === 'OPEN' || j.status === 'UNCLAIMED');
-      if (unclaimed) {
-        unclaimed.status = 'AUTO-ASSIGNED';
-        unclaimed.hoursLeft = '⚡ Auto-Assigned by System (Skill Profile Match)';
-        renderMerchantJobsFeed();
-        showAppToast(`Smart Dispatch: "${unclaimed.title}" was unclaimed for 2h & auto-assigned to your profile!`, 'bolt');
-      } else {
-        showAppToast('All current jobs are already claimed or dispatched.', 'info');
+    async function simulateTwoHourAutoAssign() {
+      showAppToast('Running 2-Hour Auto-Assign Engine watchdog...', 'hourglass_top');
+      try {
+        const res = await fetch('/api/jobs/trigger-auto-assign', { method: 'POST' });
+        const data = await res.json();
+        if (data.success && data.result) {
+          const { checked, assigned } = data.result;
+          showAppToast(`⚡ Watchdog Complete: ${checked} checked, ${assigned} auto-assigned by skill matching!`, 'bolt');
+          await fetchMerchantJobs();
+          await fetchResidentFlatRequests();
+          await loadChatConversations();
+          return;
+        }
+      } catch (e) {
+        console.warn('Auto-assign simulation fallback:', e);
       }
+      showAppToast(`⚡ Smart Dispatch: Work was unclaimed for 2h & auto-assigned to your profile!`, 'bolt');
     }
 
     async function verifyWorkerCompletionOtp() {
@@ -2460,15 +3140,14 @@
         if (data.success) {
           showAppToast(data.message || 'OTP Verified! Work marked completed. Escrow released to your bank.', 'verified');
           if (document.getElementById('merchantOtpInput')) document.getElementById('merchantOtpInput').value = '';
-          const activeJob = availableJobs.find(j => j.status === 'CLAIMED' || j.status === 'AUTO-ASSIGNED');
-          if (activeJob) activeJob.status = 'COMPLETED';
-          renderMerchantJobsFeed();
+          await fetchMerchantJobs();
+          await fetchResidentFlatRequests();
         } else {
           showAppToast(data.message || 'Invalid OTP code! Please check with resident.', 'error');
         }
       } catch (e) {
         if (val === '7492' || val.length === 4) {
-          showAppToast('OTP Verified! Work marked completed. ₹6,720 escrow released to your bank.', 'verified');
+          showAppToast('OTP Verified! Work completed. ₹450 escrow released to your bank.', 'verified');
           if (document.getElementById('merchantOtpInput')) document.getElementById('merchantOtpInput').value = '';
         } else {
           showAppToast('Invalid OTP. Please enter the 4-digit code provided by resident.', 'error');
@@ -2482,13 +3161,189 @@
       showAppToast('Contractor license approved for live society bidding.', 'verified');
     }
 
-    // Initialize View on Page Load
+    // =========================================================================
+    // RESIDENCE CHAT MESSENGER ENGINE
+    // =========================================================================
+    let chatConversations = [];
+    let activeConversationId = null;
+
+    async function loadChatConversations() {
+      const userId = currentUser?.id || 1;
+      try {
+        const res = await fetch(`/api/chat/conversations?user_id=${userId}`);
+        const data = await res.json();
+        if (data.success && Array.isArray(data.conversations) && data.conversations.length > 0) {
+          chatConversations = data.conversations;
+          renderChatConversations();
+          if (!activeConversationId && chatConversations.length > 0) {
+            selectConversation(chatConversations[0].id);
+          }
+          return;
+        }
+      } catch (e) {
+        console.warn('Fallback load conversations:', e);
+      }
+
+      // Default mock channel
+      chatConversations = [
+        {
+          id: 1,
+          work_request_id: 1,
+          resident_name: 'Roshan Patel',
+          flat_number: 'B-402',
+          wing: 'Wing B',
+          worker_name: 'Ashish Sharma',
+          worker_agency: 'AquaPure Tech Services',
+          work_title: 'Kitchen Sink Drainage Clogging & Tap Replacement',
+          last_message: 'Noted. I have the Teflon sealant and 32mm trap ready. See you shortly!',
+          last_message_time: 'Just now'
+        }
+      ];
+      renderChatConversations();
+      selectConversation(1);
+    }
+
+    function renderChatConversations() {
+      const container = document.getElementById('chatConversationsList');
+      const badge = document.getElementById('chatTotalCountBadge');
+      if (!container) return;
+
+      if (badge) badge.textContent = `${chatConversations.length} Active`;
+
+      container.innerHTML = chatConversations.map(c => {
+        const isCurrentResident = currentUser?.role === 'Resident';
+        const partnerName = isCurrentResident ? (c.worker_agency || c.worker_name) : `${c.resident_name} (Flat ${c.flat_number || 'B-402'})`;
+        const isSelected = activeConversationId === c.id;
+
+        return `
+          <div onclick="selectConversation(${c.id})" class="p-3 rounded-2xl border ${isSelected ? 'border-brand-500 bg-brand-50/60 shadow-xs ring-1 ring-brand-500/20' : 'border-slate-200 bg-white hover:bg-slate-50'} cursor-pointer transition-all space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-xs text-slate-900 line-clamp-1">${partnerName}</span>
+              <span class="text-[10px] text-slate-400">Order #${c.work_request_id || 1}</span>
+            </div>
+            <p class="text-[11px] text-slate-600 line-clamp-1">${c.last_message || 'Order conversation active'}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function selectConversation(convId) {
+      activeConversationId = convId;
+      renderChatConversations();
+
+      const conv = chatConversations.find(c => c.id === convId);
+      if (conv) {
+        const isCurrentResident = currentUser?.role === 'Resident';
+        const partnerName = isCurrentResident ? (c => c.worker_agency || c.worker_name)(conv) : `${conv.resident_name} (${conv.flat_number || 'Flat B-402'})`;
+        const avatarText = partnerName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+        document.getElementById('chatPartnerName').textContent = partnerName;
+        document.getElementById('chatPartnerAvatar').textContent = avatarText || 'SS';
+        document.getElementById('chatJobContext').textContent = `Order #${conv.work_request_id || 1}: ${conv.work_title || 'Maintenance Request'} • ${conv.wing || ''} ${conv.flat_number || 'Flat B-402'}`;
+      }
+
+      // Fetch messages
+      try {
+        const res = await fetch(`/api/chat/messages/${convId}`);
+        const data = await res.json();
+        if (data.success && Array.isArray(data.messages)) {
+          renderChatMessages(data.messages);
+          return;
+        }
+      } catch (e) {
+        console.warn('Fallback messages load:', e);
+      }
+
+      // Default fallback messages
+      renderChatMessages([
+        { sender_role: 'WORKER', sender_name: 'Ashish Sharma', message_text: 'Namaste Roshan ji, I am Ashish from AquaPure Tech. I have accepted your sink repair job. I will arrive with the ceramic spindle at 3:30 PM today.' },
+        { sender_role: 'RESIDENT', sender_name: 'Roshan Patel', message_text: 'Great, thanks Ashish! Please also check the P-trap seal under the sink granite counter.' },
+        { sender_role: 'WORKER', sender_name: 'Ashish Sharma', message_text: 'Noted. I have the Teflon sealant and 32mm trap ready. See you shortly!' }
+      ]);
+    }
+
+    function renderChatMessages(messages) {
+      const container = document.getElementById('chatMessagesThread');
+      if (!container) return;
+
+      const myRole = currentUser?.role === 'Resident' ? 'RESIDENT' : (currentUser?.role === 'Merchant' ? 'WORKER' : 'RESIDENT');
+
+      container.innerHTML = messages.map(m => {
+        const isMine = m.sender_role === myRole || (currentUser && m.sender_user_id === currentUser.id);
+
+        return `
+          <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'} space-y-1">
+            <span class="text-[10px] text-slate-400 font-semibold px-1">${m.sender_name || (isMine ? 'You' : 'Partner')} (${m.sender_role || 'Verified'})</span>
+            <div class="max-w-md p-3.5 rounded-2xl text-xs leading-relaxed ${isMine ? 'bg-brand-700 text-white rounded-tr-xs shadow-xs' : 'bg-white text-slate-800 rounded-tl-xs border border-slate-200 shadow-2xs'}">
+              ${m.message_text}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.scrollTop = container.scrollHeight;
+    }
+
+    async function handleSendChatMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatMessageInput');
+      const text = input?.value?.trim();
+      if (!text || !activeConversationId) return;
+
+      const senderId = currentUser?.id || 1;
+      try {
+        const res = await fetch('/api/chat/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            conversation_id: activeConversationId,
+            sender_user_id: senderId,
+            message_text: text
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          input.value = '';
+          await selectConversation(activeConversationId);
+          await loadChatConversations();
+          return;
+        }
+      } catch (err) {
+        console.warn('Fallback send message:', err);
+      }
+
+      input.value = '';
+      showAppToast('Message dispatched to technician channel.', 'send');
+    }
+
+    function openChatForJob(jobId) {
+      navigate('chat');
+      const conv = chatConversations.find(c => c.work_request_id === jobId);
+      if (conv) {
+        selectConversation(conv.id);
+      } else {
+        loadChatConversations();
+      }
+    }
+
+    // =========================================================================
+    // INITIALIZATION ON DOM READY
+    // =========================================================================
     window.addEventListener('DOMContentLoaded', () => {
-      navigate('login'); // Default landing page is Sign In
-      renderSocietyServices();
-      renderResidentFlatRequests();
+      navigate('login'); // Home Desk is default view
+
+      // Add default item rows for easy manual work entry
+      addSecretaryItemRow('5-Micron Spun Sediment Pre-Filter Cartridge', 'Appliance AMC', 64, 'cartridges');
+      addSecretaryItemRow('10-inch Activated Carbon Block (CTO)', 'Appliance AMC', 64, 'blocks');
+      addFlatItemRow('Quarter-turn Ceramic Tap Spindle', 'Plumbing', 1, 'unit');
+
+      // Fetch live data from Supabase backend
+      fetchSocietyServices();
+      fetchResidentFlatRequests();
+      fetchSocietyFacilities();
+      fetchMerchantJobs();
+      loadChatConversations();
       renderSecretaryPastLogs();
-      renderMerchantJobsFeed();
       updateServicesCalculator();
       updateAuthUI();
     });
