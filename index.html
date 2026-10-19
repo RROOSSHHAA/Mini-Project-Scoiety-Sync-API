@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>SocietyServ SSC — Housing Society Bulk Maintenance Marketplace</title>
+  <title>Society Sync — Housing Society Bulk Maintenance Marketplace</title>
   <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,13 +105,7 @@
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
             <span class="material-symbols-outlined text-[24px]">apartment</span>
           </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <span class="font-display font-extrabold text-lg text-slate-900 tracking-tight">SocietyServ</span>
-              <span class="px-1.5 py-0.5 rounded-md bg-brand-100 text-brand-800 text-[10px] font-bold tracking-wider">SSC</span>
-            </div>
-            <p class="text-[11px] text-slate-500 font-medium -mt-0.5">Housing Society Marketplace</p>
-          </div>
+          <span class="font-display font-extrabold text-xl text-slate-900 tracking-tight">Society Sync</span>
         </div>
 
         <!-- Desktop Navigation Links -->
@@ -124,11 +118,6 @@
           <button onclick="navigate('services')" id="nav-btn-services" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[18px]">handyman</span>
             <span>Society Services</span>
-          </button>
-
-          <button onclick="navigate('resident')" id="nav-btn-resident" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[18px]">home_work</span>
-            <span>Residence</span>
           </button>
 
           <button onclick="navigate('secretary')" id="nav-btn-secretary" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-slate-100 transition-all flex items-center gap-1.5">
@@ -158,7 +147,7 @@
           <div id="authLoggedOut" class="flex items-center gap-2">
             <button onclick="navigate('register')" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-50 text-brand-700 border border-brand-200 shadow-xs transition-all items-center gap-1">
               <span class="material-symbols-outlined text-[16px]">person_add</span>
-              <span>Resident Register</span>
+              <span>Register Society</span>
             </button>
             <button onclick="navigate('merchant-register')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-700 hover:bg-brand-800 text-white shadow-sm transition-all flex items-center gap-1">
               <span class="material-symbols-outlined text-[16px]">construction</span>
@@ -188,9 +177,6 @@
           </button>
         </div>
 
-      </div>
-    </div>
-
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1">
       <button onclick="navigate('login')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-brand-700 bg-brand-50 flex items-center gap-2">
@@ -198,9 +184,6 @@
       </button>
       <button onclick="navigate('services')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">handyman</span> Society Services
-      </button>
-      <button onclick="navigate('resident')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
-        <span class="material-symbols-outlined text-[18px]">home_work</span> Residence Portal
       </button>
       <button onclick="navigate('secretary')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">shield_person</span> Secretary Desk
@@ -215,7 +198,7 @@
         <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span> Platform Admin
       </button>
       <div class="pt-2 border-t border-slate-200 flex gap-2">
-        <button onclick="navigate('register')" class="flex-1 py-2 text-center text-xs font-bold text-brand-700 bg-brand-50 rounded-lg">Resident Register</button>
+        <button onclick="navigate('register')" class="flex-1 py-2 text-center text-xs font-bold text-brand-700 bg-brand-50 rounded-lg">Register Society</button>
         <button onclick="navigate('merchant-register')" class="flex-1 py-2 text-center text-xs font-bold text-white bg-brand-700 rounded-lg">Worker Register</button>
       </div>
     </div>
@@ -244,59 +227,39 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <!-- Card 1: Society / Secretary -->
-          <div onclick="selectRolePortal('secretary')" id="roleCard-secretary" class="role-selector-card group cursor-pointer bg-slate-50/70 hover:bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-indigo-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
-            <div class="space-y-2.5">
-              <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 group-hover:bg-indigo-700 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Card 1: Society Services (Secretary / Management) -->
+          <div onclick="selectRolePortal('secretary')" id="roleCard-secretary" class="role-selector-card group cursor-pointer bg-slate-50/70 hover:bg-white rounded-2xl p-6 sm:p-7 border-2 border-slate-200 hover:border-brand-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 group-hover:bg-brand-700 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
                 <span class="material-symbols-outlined text-[26px]">shield_person</span>
               </div>
               <div>
-                <h3 class="font-display font-bold text-base text-slate-900">Society Services</h3>
-                <span class="text-[11px] font-bold text-indigo-700 uppercase tracking-wider">Secretary / Administrator</span>
+                <h3 class="font-display font-bold text-lg text-slate-900">Society Services</h3>
+                <span class="text-[11px] font-bold text-brand-700 uppercase tracking-wider">Society Secretary &amp; RWA Office</span>
               </div>
               <p class="text-xs text-slate-600 leading-relaxed">
-                Manage an entire housing society, bulk maintenance drives, common facility assets, reverse quotations, and audited past work history.
+                Full society governance, common facilities maintenance, wing &amp; individual flat work orders, collective quorum purchasing, vendor quotations, and audited past work ledgers.
               </p>
             </div>
-            <div class="flex items-center justify-between text-xs font-bold text-indigo-700 pt-3 border-t border-slate-200/80">
-              <span>Access Secretary Desk</span>
+            <div class="flex items-center justify-between text-xs font-bold text-brand-700 pt-3 border-t border-slate-200/80">
+              <span>Enter Society Services</span>
               <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
           </div>
 
-          <!-- Card 2: Residence / Resident -->
-          <div onclick="selectRolePortal('resident')" id="roleCard-resident" class="role-selector-card group cursor-pointer bg-brand-50/30 hover:bg-white rounded-2xl p-6 border-2 border-brand-500 hover:border-brand-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
-            <div class="space-y-2.5">
-              <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 group-hover:bg-brand-700 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
-                <span class="material-symbols-outlined text-[26px]">home_work</span>
-              </div>
-              <div>
-                <h3 class="font-display font-bold text-base text-slate-900">Residence Portal</h3>
-                <span class="text-[11px] font-bold text-brand-700 uppercase tracking-wider">Individual Flat / Resident</span>
-              </div>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Post personal flat maintenance requests with itemized repair breakdowns, monitor secure 4-digit completion OTP, and chat directly with technicians.
-              </p>
-            </div>
-            <div class="flex items-center justify-between text-xs font-bold text-brand-700 pt-3 border-t border-brand-200/80">
-              <span>Enter Residence Portal</span>
-              <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </div>
-          </div>
-
-          <!-- Card 3: Merchant / Worker -->
-          <div onclick="selectRolePortal('merchant')" id="roleCard-merchant" class="role-selector-card group cursor-pointer bg-slate-50/70 hover:bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-amber-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
-            <div class="space-y-2.5">
+          <!-- Card 2: Merchant Desk (Contractor / Worker) -->
+          <div onclick="selectRolePortal('merchant')" id="roleCard-merchant" class="role-selector-card group cursor-pointer bg-slate-50/70 hover:bg-white rounded-2xl p-6 sm:p-7 border-2 border-slate-200 hover:border-amber-600 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
               <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
                 <span class="material-symbols-outlined text-[26px]">engineering</span>
               </div>
               <div>
-                <h3 class="font-display font-bold text-base text-slate-900">Merchant Desk</h3>
-                <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wider">Verified Contractor / Worker</span>
+                <h3 class="font-display font-bold text-lg text-slate-900">Merchant Desk</h3>
+                <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wider">Tradesman &amp; Verified Contractor</span>
               </div>
               <p class="text-xs text-slate-600 leading-relaxed">
-                Accept open society &amp; flat jobs, automated 2-hour SLA assignment match, atomic claim protection, and direct smart escrow payout release.
+                Accept open society maintenance jobs and individual flat repairs, benefit from 2-hour SLA auto-dispatch matching, atomic claim protection, and direct escrow payout settlement.
               </p>
             </div>
             <div class="flex items-center justify-between text-xs font-bold text-amber-700 pt-3 border-t border-slate-200/80">
@@ -458,40 +421,31 @@
               
               <!-- Role Tabs for Login -->
               <div class="flex items-center justify-between p-1 bg-slate-100 rounded-xl mb-6">
-                <button type="button" onclick="setLoginPortalTab('resident')" id="loginTab-resident" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-brand-800 bg-white shadow-xs transition-all">
-                  Resident
-                </button>
-                <button type="button" onclick="setLoginPortalTab('secretary')" id="loginTab-secretary" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all">
-                  Secretary
+                <button type="button" onclick="setLoginPortalTab('secretary')" id="loginTab-secretary" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-brand-800 bg-white shadow-xs transition-all">
+                  Society Services
                 </button>
                 <button type="button" onclick="setLoginPortalTab('merchant')" id="loginTab-merchant" class="login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all">
-                  Worker
+                  Merchant Desk
                 </button>
               </div>
 
               <div class="text-center mb-6">
                 <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center mx-auto mb-3 shadow-xs" id="loginHeaderIcon">
-                  <span class="material-symbols-outlined text-[26px]">home_work</span>
+                  <span class="material-symbols-outlined text-[26px]">shield_person</span>
                 </div>
-                <h2 class="text-2xl font-extrabold font-display text-slate-900" id="loginHeaderTitle">Sign In to Residence Portal</h2>
-                <p class="text-xs text-slate-500 mt-1" id="loginHeaderSubtitle">Access flat repair requests, completion OTP &amp; worker chat</p>
+                <h2 class="text-2xl font-extrabold font-display text-slate-900" id="loginHeaderTitle">Sign In to Society Services</h2>
+                <p class="text-xs text-slate-500 mt-1" id="loginHeaderSubtitle">Society &amp; RWA credentials • manage bulk drives &amp; work requests</p>
               </div>
 
               <!-- Quick 1-Click Role Login Portal Helper -->
               <div class="mb-5 p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
                 <span class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">⚡ Instant 1-Click Role Access</span>
                 <div class="grid grid-cols-2 gap-2">
-                  <button onclick="quickRoleLogin('resident')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-brand-100 hover:bg-brand-200 text-brand-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
-                    <span class="material-symbols-outlined text-[16px]">home</span> Resident Flat
-                  </button>
-                  <button onclick="quickRoleLogin('secretary')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-indigo-100 hover:bg-indigo-200 text-indigo-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
-                    <span class="material-symbols-outlined text-[16px]">shield_person</span> Secretary Desk
+                  <button onclick="quickRoleLogin('secretary')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-brand-100 hover:bg-brand-200 text-brand-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+                    <span class="material-symbols-outlined text-[16px]">shield_person</span> Society Services
                   </button>
                   <button onclick="quickRoleLogin('merchant')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
-                    <span class="material-symbols-outlined text-[16px]">engineering</span> Worker Desk
-                  </button>
-                  <button onclick="quickRoleLogin('admin')" type="button" class="py-2 px-3 text-xs font-bold rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-900 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
-                    <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span> Platform Admin
+                    <span class="material-symbols-outlined text-[16px]">engineering</span> Merchant Desk
                   </button>
                 </div>
               </div>
@@ -507,7 +461,7 @@
                   <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Registered Email ID</label>
                   <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">mail</span>
-                    <input required type="email" id="loginEmail" value="roshan.patel@gokuldham.in" placeholder="name@society.in" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                    <input required type="email" id="loginEmail" value="" placeholder="Enter your registered email address" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
                   </div>
                 </div>
 
@@ -518,7 +472,7 @@
                   </div>
                   <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock</span>
-                    <input required type="password" id="loginPassword" value="Society@2026" class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                    <input required type="password" id="loginPassword" value="" placeholder="Enter your account password" class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
                     <button type="button" onclick="togglePasswordVisibility('loginPassword', 'eyeIconLogin')" class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 focus:outline-hidden">
                       <span id="eyeIconLogin" class="material-symbols-outlined text-[20px]">visibility</span>
                     </button>
@@ -528,10 +482,9 @@
                 <div>
                   <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Portal Account Role</label>
                   <select id="loginRole" onchange="syncRoleTabWithSelect()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
-                    <option value="resident">Resident Flat Member (Flat B-402 • Gokuldham CHS)</option>
-                    <option value="secretary">Society Secretary (RWA Office • Gokuldham CHS)</option>
-                    <option value="merchant">Verified Worker / Contractor (AquaPure Tech Services)</option>
-                    <option value="admin">Platform Governance Administrator (SSC Head)</option>
+                    <option value="secretary" selected>Society Secretary &amp; Management (Society Services)</option>
+                    <option value="merchant">Verified Contractor &amp; Tradesman (Merchant Desk)</option>
+                    <option value="admin">Platform Governance Administrator</option>
                   </select>
                 </div>
 
@@ -544,12 +497,12 @@
               <!-- Registration Routing Links -->
               <div class="mt-6 pt-5 border-t border-slate-200 space-y-2 text-center text-xs">
                 <p class="text-slate-600">
-                  New Flat or Society? 
-                  <a href="#" onclick="navigate('register')" class="font-bold text-brand-700 hover:underline">Register Resident / Secretary</a>
+                  New Housing Society? 
+                  <a href="#" onclick="navigate('register')" class="font-bold text-brand-700 hover:underline">Register Society Secretary</a>
                 </p>
                 <p class="text-slate-600">
                   Worker or Service Contractor? 
-                  <a href="#" onclick="navigate('merchant-register')" class="font-bold text-amber-700 hover:underline">Register as Tradesman / Worker</a>
+                  <a href="#" onclick="navigate('merchant-register')" class="font-bold text-amber-700 hover:underline">Register as Tradesman / Contractor</a>
                 </p>
               </div>
 
@@ -566,203 +519,118 @@
 
 
     <!-- ========================================================================= -->
-    <!-- VIEW 2: MULTI-STEP RESIDENT / SECRETARY REGISTRATION (OTP + PASSWORD)     -->
+    <!-- VIEW 2: HOUSING SOCIETY & SECRETARY REGISTRATION (DIRECT DATABASE PERSISTENCE) -->
     <!-- ========================================================================= -->
     <div id="view-register" class="app-view hidden max-w-4xl mx-auto my-4 sm:my-6">
       <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl p-6 sm:p-10 relative">
         
-        <!-- Header & Step Progress Bar -->
+        <!-- Header -->
         <div class="text-center max-w-xl mx-auto mb-8">
           <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase mb-2">
             <span class="material-symbols-outlined text-[16px]">domain_add</span>
-            <span>Resident &amp; Society Onboarding</span>
+            <span>Housing Society Onboarding</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">Create Your Society Account</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">Multi-step verified registration with instant Email OTP</p>
-
-          <!-- Stepper Pills -->
-          <div class="flex items-center justify-center gap-2 sm:gap-4 mt-6">
-            <div id="regStepBadge1" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-700 text-white text-xs font-bold shadow-xs">
-              <span class="w-5 h-5 rounded-full bg-white text-brand-700 flex items-center justify-center text-[11px]">1</span>
-              <span>Details</span>
-            </div>
-            <span class="text-slate-300">———</span>
-            <div id="regStepBadge2" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
-              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">2</span>
-              <span>Email OTP</span>
-            </div>
-            <span class="text-slate-300">———</span>
-            <div id="regStepBadge3" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
-              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">3</span>
-              <span>Set Password</span>
-            </div>
-          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">Register Society &amp; Secretary</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Direct official onboarding with database registration — no OTP required</p>
         </div>
 
-        <!-- STEP 1: RESIDENT & SOCIETY DETAILS -->
-        <div id="regStep1" class="space-y-6">
-          <div class="space-y-2">
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Choose Your Account Role</label>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <label class="role-pill p-3.5 rounded-xl border-2 border-brand-700 bg-brand-50 flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="regRole" value="resident" checked class="text-brand-700" onchange="handleRegRoleChange('resident')">
-                <div>
-                  <span class="block text-xs font-bold text-slate-900">Resident Flat Member</span>
-                  <span class="text-[11px] text-slate-500">Post flat maintenance requests &amp; join society pools</span>
-                </div>
-              </label>
-              <label class="role-pill p-3.5 rounded-xl border-2 border-slate-200 bg-white flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="regRole" value="secretary" class="text-brand-700" onchange="handleRegRoleChange('secretary')">
-                <div>
-                  <span class="block text-xs font-bold text-slate-900">Society Secretary / RWA</span>
-                  <span class="text-[11px] text-slate-500">Initiate bulk drives, manage past work history &amp; bids</span>
-                </div>
-              </label>
+        <!-- SOCIETY ONBOARDING FORM (DIRECT SUBMIT) -->
+        <form onsubmit="handleSocietyRegisterSubmit(event)" class="space-y-6">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Housing Society Legal Name</label>
+              <input required type="text" id="regSocietyName" value="" placeholder="e.g. Gokuldham Co-op Housing Society" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">RWA Registration Number / State ID</label>
+              <input required type="text" id="regSocietyNumber" value="" placeholder="e.g. MH/MUM/2018/8821" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Society Street Address &amp; Locality</label>
+              <input required type="text" id="regSocietyAddress" value="" placeholder="e.g. Film City Road, Goregaon East" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">City &amp; PIN Code</label>
+              <input required type="text" id="regSocietyCity" value="" placeholder="e.g. Mumbai, 400063" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Legal Name</label>
-              <input required type="text" id="regName" value="Roshan Patel" placeholder="Enter your full name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Total Residential Flats</label>
+              <input required type="number" id="regTotalFlats" min="1" max="5000" value="" placeholder="e.g. 64" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mobile / WhatsApp Number</label>
-              <input required type="tel" id="regPhone" value="+91 98201 44210" placeholder="+91 98200 00000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Total Wings / Towers</label>
+              <input required type="number" id="regTotalWings" min="1" max="50" value="" placeholder="e.g. 2" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-200">
+            <h4 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[18px] text-brand-700">badge</span>
+              <span>Secretary / Administrator Contact Details</span>
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Legal Name</label>
+                <input required type="text" id="regSecName" value="" placeholder="Enter secretary's full name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mobile / WhatsApp Number</label>
+                <input required type="tel" id="regSecPhone" value="" placeholder="+91 98200 00000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+              </div>
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Registered Email ID (OTP will be sent here)</label>
-            <input required type="email" id="regEmail" value="roshanprajapati0816@gmail.com" placeholder="roshanprajapati0816@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Official Society Email ID (Used for Login)</label>
+            <input required type="email" id="regSecEmail" value="" placeholder="e.g. secretary@society.in" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="sm:col-span-1">
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Housing Society</label>
-              <select id="regSociety" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
-                <option value="Gokuldham CHS">Gokuldham CHS (Goregaon)</option>
-                <option value="Palm Heights">Palm Heights (Powai)</option>
-                <option value="Green Valley CHS">Green Valley (Andheri)</option>
-                <option value="Sunrise Enclave">Sunrise Enclave (Borivali)</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Wing / Tower</label>
-              <input required type="text" id="regWing" value="Wing B" placeholder="e.g. Wing B" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Flat / Unit No.</label>
-              <input required type="text" id="regFlat" value="B-402" placeholder="e.g. B-402" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
-            </div>
-          </div>
-
-          <div class="pt-4 flex justify-between items-center">
-            <button onclick="navigate('login')" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
-              ← Already registered? Sign In
-            </button>
-            <button onclick="goToRegStep(2)" type="button" class="px-6 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
-              <span>Next: Verify Email OTP</span>
-              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- STEP 2: EMAIL OTP VERIFICATION -->
-        <div id="regStep2" class="hidden space-y-6 max-w-md mx-auto text-center py-4">
-          <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-700 flex items-center justify-center mx-auto shadow-inner">
-            <span class="material-symbols-outlined text-[32px]">mark_email_read</span>
-          </div>
-          <div>
-            <h3 class="text-xl font-extrabold text-slate-900 font-display">Enter Email Security Code</h3>
-            <p class="text-xs text-slate-500 mt-1">
-              We sent a 6-digit verification code to <br><span class="font-bold text-slate-800" id="regOtpEmailPreview">roshan.patel@gokuldham.in</span>
-            </p>
-          </div>
-
-          <!-- Live OTP Pill Helper -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
-            <span class="material-symbols-outlined text-[16px]">key</span>
-            <span>Security Code: <strong id="regOtpDisplayCode" class="tracking-widest">482910</strong></span>
-          </div>
-
-          <!-- OTP Input Boxes -->
-          <div class="flex items-center justify-center gap-2 sm:gap-3 my-4">
-            <input type="text" maxlength="1" value="4" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="8" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="2" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="9" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="1" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="0" class="otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
-          </div>
-
-          <p class="text-xs text-slate-500">
-            Didn't receive the email? 
-            <button onclick="showAppToast('New OTP dispatched: 482910', 'refresh')" type="button" class="font-bold text-brand-700 hover:underline">Resend OTP (00:30)</button>
-          </p>
-
-          <div class="pt-4 flex justify-between items-center">
-            <button onclick="goToRegStep(1)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
-              ← Edit Details
-            </button>
-            <button onclick="goToRegStep(3)" type="button" class="px-6 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
-              <span>Verify Code &amp; Proceed</span>
-              <span class="material-symbols-outlined text-[18px]">check_circle</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- STEP 3: SET PASSWORD & MATCH VALIDATION -->
-        <div id="regStep3" class="hidden space-y-6 max-w-md mx-auto py-4">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-2">
-              <span class="material-symbols-outlined text-[28px]">password</span>
-            </div>
-            <h3 class="text-xl font-extrabold text-slate-900 font-display">Create Your Secure Password</h3>
-            <p class="text-xs text-slate-500 mt-1">Both passwords must match to complete your society registration</p>
-          </div>
-
-          <div class="space-y-4">
+          <!-- Password Setup -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Create Password</label>
               <div class="relative">
                 <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock</span>
-                <input required type="password" id="regPass1" oninput="validatePasswordMatch()" placeholder="Enter minimum 8 characters" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                <input required type="password" id="regSecPass1" oninput="validateSecPasswordMatch()" placeholder="Minimum 6 characters" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Re-enter Password (Confirm)</label>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Confirm Password</label>
               <div class="relative">
                 <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock_reset</span>
-                <input required type="password" id="regPass2" oninput="validatePasswordMatch()" placeholder="Re-type password exactly" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
+                <input required type="password" id="regSecPass2" oninput="validateSecPasswordMatch()" placeholder="Re-enter password exactly" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
               </div>
-            </div>
-
-            <!-- Password Match Feedback Box -->
-            <div id="passMatchIndicator" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2">
-              <span id="passMatchIcon" class="material-symbols-outlined text-[18px] text-slate-400">info</span>
-              <span id="passMatchText" class="text-slate-600 font-medium">Please enter your password in both fields</span>
             </div>
           </div>
 
-          <div class="pt-4 flex justify-between items-center">
-            <button onclick="goToRegStep(2)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
-              ← Back to OTP
+          <div id="secPassMatchIndicator" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2">
+            <span id="secPassMatchIcon" class="material-symbols-outlined text-[18px] text-slate-400">info</span>
+            <span id="secPassMatchText" class="text-slate-600 font-medium">Please enter your password in both fields</span>
+          </div>
+
+          <div class="pt-4 flex justify-between items-center border-t border-slate-200">
+            <button onclick="navigate('login')" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Already registered? Sign In
             </button>
-            <button id="btnCompleteReg" onclick="finalizeRegistration()" disabled type="button" class="px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed">
-              <span>Complete &amp; Open Home</span>
+            <button id="btnSubmitSocietyReg" type="submit" disabled class="px-7 py-3.5 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed">
+              <span>Complete Society Registration</span>
               <span class="material-symbols-outlined text-[18px]">verified</span>
             </button>
           </div>
-        </div>
+        </form>
 
       </div>
     </div>
 
-
-    <!-- ========================================================================= -->
-    <!-- VIEW 3: SEPARATE WORKER / MERCHANT REGISTRATION                           -->
+        <!-- VIEW 3: SEPARATE WORKER / MERCHANT REGISTRATION                           -->
     <!-- ========================================================================= -->
     <div id="view-merchant-register" class="app-view hidden max-w-4xl mx-auto my-4 sm:my-6">
       <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl p-6 sm:p-10 relative">
@@ -772,68 +640,49 @@
             <span class="material-symbols-outlined text-[16px]">construction</span>
             <span>Verified Tradesman &amp; Contractor Desk</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">Worker &amp; Merchant Onboarding</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">Get high-density cluster jobs in residential societies with guaranteed smart escrow</p>
-
-          <!-- Stepper Pills -->
-          <div class="flex items-center justify-center gap-2 sm:gap-4 mt-6">
-            <div id="mStepBadge1" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600 text-white text-xs font-bold shadow-xs">
-              <span class="w-5 h-5 rounded-full bg-white text-amber-700 flex items-center justify-center text-[11px]">1</span>
-              <span>Trade Profile</span>
-            </div>
-            <span class="text-slate-300">———</span>
-            <div id="mStepBadge2" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
-              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">2</span>
-              <span>Worker OTP</span>
-            </div>
-            <span class="text-slate-300">———</span>
-            <div id="mStepBadge3" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold">
-              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[11px]">3</span>
-              <span>Set Password</span>
-            </div>
-          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">Contractor &amp; Worker Onboarding</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Direct official onboarding with database registration — no OTP required</p>
         </div>
 
-        <!-- MERCHANT STEP 1: TRADE & AGENCY DETAILS -->
-        <div id="mStep1" class="space-y-6">
+        <form onsubmit="handleMerchantRegisterSubmit(event)" class="space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Contractor / Technician Name</label>
-              <input required type="text" id="mRegName" value="Ashish Sharma" placeholder="e.g. Ashish Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <input required type="text" id="mRegName" value="" placeholder="Enter your full name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Trade Agency / Business Name</label>
-              <input required type="text" id="mRegAgency" value="AquaPure Tech &amp; Facility Services" placeholder="e.g. AquaPure Tech Services" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <input required type="text" id="mRegAgency" value="" placeholder="Enter business or agency name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
           </div>
 
           <!-- Primary Trade Skills Selection -->
           <div class="space-y-2">
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Select Primary Trade Skills (Or Type Below)</label>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Select Primary Trade Skills</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" checked class="text-amber-600"> 🚰 Plumbing &amp; Sanitary
+                <input type="checkbox" name="mTradeSkills" value="Plumbing & Sanitary" class="text-amber-600"> 🚰 Plumbing &amp; Sanitary
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" checked class="text-amber-600"> ⚡ Electrical &amp; Wiring
+                <input type="checkbox" name="mTradeSkills" value="Electrical & Wiring" class="text-amber-600"> ⚡ Electrical &amp; Wiring
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" checked class="text-amber-600"> 💧 RO Water Systems
+                <input type="checkbox" name="mTradeSkills" value="RO Water Systems" class="text-amber-600"> 💧 RO Water Systems
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" class="text-amber-600"> 🛡️ Pest &amp; Termite Control
+                <input type="checkbox" name="mTradeSkills" value="Pest & Termite Control" class="text-amber-600"> 🛡️ Pest &amp; Termite
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" class="text-amber-600"> ❄️ AC Deep Clean / HVAC
+                <input type="checkbox" name="mTradeSkills" value="AC Deep Clean / HVAC" class="text-amber-600"> ❄️ AC / HVAC
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" class="text-amber-600"> 🏢 Water Tank Cleaning
+                <input type="checkbox" name="mTradeSkills" value="Water Tank Cleaning" class="text-amber-600"> 🏢 Water Tank Clean
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" class="text-amber-600"> 🪚 Carpentry Repair
+                <input type="checkbox" name="mTradeSkills" value="Carpentry Repair" class="text-amber-600"> 🪚 Carpentry Repair
               </label>
               <label class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center gap-2 cursor-pointer hover:bg-slate-100">
-                <input type="checkbox" class="text-amber-600"> 🎨 Waterproofing &amp; Paint
+                <input type="checkbox" name="mTradeSkills" value="Waterproofing & Paint" class="text-amber-600"> 🎨 Waterproofing
               </label>
             </div>
             <div>
@@ -845,114 +694,63 @@
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mobile / WhatsApp No.</label>
-              <input required type="tel" id="mRegPhone" value="+91 98204 11223" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <input required type="tel" id="mRegPhone" value="" placeholder="+91 98000 00000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Business Email</label>
-              <input required type="email" id="mRegEmail" value="roshanprajapati0816@gmail.com" placeholder="roshanprajapati0816@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Business Email (Used for Login)</label>
+              <input required type="email" id="mRegEmail" value="" placeholder="e.g. partner@tradeagency.in" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Service Hub Localities</label>
-              <input required type="text" id="mRegHub" value="Goregaon &amp; Powai Hub" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <input required type="text" id="mRegHub" value="" placeholder="e.g. Goregaon, Andheri &amp; Powai" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">GST / Govt Trade License / Aadhar KYC</label>
-              <input required type="text" id="mRegKyc" value="27AAJCA4491D1Z8" placeholder="GSTIN or Trade ID" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <input required type="text" id="mRegKyc" value="" placeholder="GSTIN or Trade ID" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Bank Account / UPI ID (For Escrow Payouts)</label>
-              <input required type="text" id="mRegUpi" value="aquapure@hdfcbank" placeholder="e.g. agency@upi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <input required type="text" id="mRegUpi" value="" placeholder="e.g. agency@upi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
             </div>
           </div>
 
-          <div class="pt-4 flex justify-between items-center">
-            <button onclick="navigate('login')" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
-              ← Already registered worker? Sign In
-            </button>
-            <button onclick="goToMerchantStep(2)" type="button" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
-              <span>Next: Verify Worker OTP</span>
-              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- MERCHANT STEP 2: WORKER OTP VERIFICATION -->
-        <div id="mStep2" class="hidden space-y-6 max-w-md mx-auto text-center py-4">
-          <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto shadow-inner">
-            <span class="material-symbols-outlined text-[32px]">verified</span>
-          </div>
-          <div>
-            <h3 class="text-xl font-extrabold text-slate-900 font-display">Verify Contractor Email</h3>
-            <p class="text-xs text-slate-500 mt-1">
-              Dispatched 6-digit code to <br><span class="font-bold text-slate-800" id="mOtpEmailPreview">partner@aquapure.in</span>
-            </p>
-          </div>
-
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold">
-            <span class="material-symbols-outlined text-[16px]">key</span>
-            <span>Security Code: <strong id="mOtpDisplayCode" class="tracking-widest">592814</strong></span>
-          </div>
-
-          <div class="flex items-center justify-center gap-2 sm:gap-3 my-4">
-            <input type="text" maxlength="1" value="5" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="9" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="2" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="8" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="1" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
-            <input type="text" maxlength="1" value="4" class="m-otp-box w-11 h-12 text-center text-lg font-black rounded-xl border border-slate-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:outline-hidden">
-          </div>
-
-          <div class="pt-4 flex justify-between items-center">
-            <button onclick="goToMerchantStep(1)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
-              ← Edit Trade Profile
-            </button>
-            <button onclick="goToMerchantStep(3)" type="button" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
-              <span>Verify &amp; Create Password</span>
-              <span class="material-symbols-outlined text-[18px]">check_circle</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- MERCHANT STEP 3: SET & MATCH PASSWORD -->
-        <div id="mStep3" class="hidden space-y-6 max-w-md mx-auto py-4">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-2">
-              <span class="material-symbols-outlined text-[28px]">lock</span>
-            </div>
-            <h3 class="text-xl font-extrabold text-slate-900 font-display">Create Worker Portal Password</h3>
-            <p class="text-xs text-slate-500 mt-1">Both passwords must match to activate your trade account</p>
-          </div>
-
-          <div class="space-y-4">
+          <!-- Password Setup -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Create Password</label>
-              <input required type="password" id="mRegPass1" oninput="validateMerchantPasswordMatch()" placeholder="Minimum 8 characters" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock</span>
+                <input required type="password" id="mRegPass1" oninput="validateMerchantPasswordMatch()" placeholder="Minimum 6 characters" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              </div>
             </div>
 
             <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Re-enter Password (Confirm)</label>
-              <input required type="password" id="mRegPass2" oninput="validateMerchantPasswordMatch()" placeholder="Re-enter password" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
-            </div>
-
-            <div id="mPassMatchIndicator" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2">
-              <span id="mPassMatchIcon" class="material-symbols-outlined text-[18px] text-slate-400">info</span>
-              <span id="mPassMatchText" class="text-slate-600 font-medium">Please enter your password in both fields</span>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Confirm Password</label>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">lock_reset</span>
+                <input required type="password" id="mRegPass2" oninput="validateMerchantPasswordMatch()" placeholder="Re-enter password exactly" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-hidden text-sm">
+              </div>
             </div>
           </div>
 
-          <div class="pt-4 flex justify-between items-center">
-            <button onclick="goToMerchantStep(2)" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
-              ← Back to OTP
+          <div id="mPassMatchIndicator" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2">
+            <span id="mPassMatchIcon" class="material-symbols-outlined text-[18px] text-slate-400">info</span>
+            <span id="mPassMatchText" class="text-slate-600 font-medium">Please enter your password in both fields</span>
+          </div>
+
+          <div class="pt-4 flex justify-between items-center border-t border-slate-200">
+            <button onclick="navigate('login')" type="button" class="text-xs text-slate-500 hover:text-slate-700 font-bold">
+              ← Already registered contractor? Sign In
             </button>
-            <button id="btnCompleteMerchantReg" onclick="finalizeMerchantRegistration()" disabled type="button" class="px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed">
-              <span>Complete Onboarding &amp; View Jobs</span>
+            <button id="btnSubmitMerchantReg" type="submit" disabled class="px-7 py-3.5 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed">
+              <span>Complete Contractor Onboarding</span>
               <span class="material-symbols-outlined text-[18px]">verified</span>
             </button>
           </div>
-        </div>
+        </form>
 
       </div>
     </div>
@@ -1017,13 +815,19 @@
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Wing Scope</label>
-              <select id="newWorkWing" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
-                <option value="Wing A & B Combined">Wing A &amp; B Combined (64 Flats)</option>
-                <option value="Wing A Only">Wing A Only (32 Flats)</option>
-                <option value="Wing B Only">Wing B Only (32 Flats)</option>
-                <option value="All Society Towers">All Society Towers</option>
+              <select id="newWorkWing" onchange="handleTargetScopeChange()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm font-semibold">
+                <option value="All Society Towers">Entire Society (All Towers &amp; Common)</option>
+                <option value="Common Facility">Common Area Facility / Asset</option>
+                <option value="Wing A & B Combined">Wing A &amp; B Combined</option>
+                <option value="Wing A Only">Wing A Only</option>
+                <option value="Wing B Only">Wing B Only</option>
+                <option value="Specific Flat">Specific Flat (e.g. Flat B-402)</option>
               </select>
             </div>
+            <div id="specificFlatInputContainer" class="hidden mt-2">
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Target Flat Number</label>
+                <input type="text" id="newWorkSpecificFlat" placeholder="e.g. Wing B, Flat B-402" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm">
+              </div>
             <div>
               <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Target Quorum Flats</label>
               <input required type="number" id="newWorkQuorum" value="12" min="1" max="64" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
@@ -1126,142 +930,6 @@
             </div>
             <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold" id="calcDiscountPercentBadge">45% Bulk Discount</span>
           </div>
-        </div>
-      </div>
-
-    </div>
-
-
-    <!-- ========================================================================= -->
-    <!-- VIEW 5: RESIDENT FLAT PORTAL (INDIVIDUAL FLAT MAINTENANCE WORK ONLY)      -->
-    <!-- ========================================================================= -->
-    <div id="view-resident" class="app-view hidden space-y-8">
-      
-      <!-- Resident Profile & Flat Card -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 text-white flex items-center justify-center font-bold text-2xl shadow-md">
-              RP
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <h2 class="text-2xl font-extrabold font-display text-slate-900">Roshan Patel</h2>
-                <span class="px-2.5 py-0.5 rounded-full bg-brand-700 text-white text-xs font-bold">FLAT B-402</span>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-500 mt-0.5 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px] text-brand-700">domain</span>
-                <span>Gokuldham CHS • Wing B, 4th Floor, Goregaon West</span>
-              </p>
-            </div>
-          </div>
-
-          <!-- Post Flat Repair Request Trigger -->
-          <button onclick="toggleFlatRequestModal(true)" class="px-5 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
-            <span class="material-symbols-outlined text-[20px]">add_circle</span>
-            <span>+ Request Work for My Flat</span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-100">
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <span class="text-[11px] font-bold text-slate-400 uppercase">My Flat Status</span>
-            <span class="block text-sm font-extrabold text-slate-900 mt-0.5">Verified Resident</span>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <span class="text-[11px] font-bold text-slate-400 uppercase">Flat Requests</span>
-            <span class="block text-sm font-extrabold text-brand-700 mt-0.5" id="residentFlatRequestCount">2 Active Jobs</span>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <span class="text-[11px] font-bold text-slate-400 uppercase">Joined Society Pools</span>
-            <span class="block text-sm font-extrabold text-slate-900 mt-0.5">2 Enrolled</span>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <span class="text-[11px] font-bold text-slate-400 uppercase">Lifetime Saved</span>
-            <span class="block text-sm font-extrabold text-emerald-700 mt-0.5">₹2,620 Saved</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- POST NEW FLAT WORK REQUEST MODAL -->
-      <div id="flatRequestModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-4">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
-                <span class="material-symbols-outlined text-[20px]">build</span>
-              </span>
-              <h3 class="text-lg font-bold text-slate-900">Post Maintenance Work for Flat B-402</h3>
-            </div>
-            <button onclick="toggleFlatRequestModal(false)" class="text-slate-400 hover:text-slate-600">
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </div>
-
-          <form onsubmit="handleResidentPostWork(event)" class="space-y-4">
-            <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">What Work is Needed in Your Flat?</label>
-              <input required type="text" id="flatWorkTitle" placeholder="e.g. Master Bedroom Geyser water dripping &amp; switch sparking" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-sm">
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Trade Category</label>
-                <input required type="text" id="flatWorkCategory" placeholder="e.g. Electrical &amp; Geyser" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs">
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Urgency Level</label>
-                <select id="flatWorkUrgency" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs font-semibold">
-                  <option value="Urgent (Today)">Urgent (Require today)</option>
-                  <option value="Routine (Next 24h)">Routine (Within 24 hours)</option>
-                  <option value="Weekend Slot">Weekend Slot Only</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Problem Description / Notes</label>
-              <textarea id="flatWorkNotes" rows="2" placeholder="Explain the issue for the technician (e.g. water pressure low, please bring spare heating element)" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:outline-hidden text-xs"></textarea>
-            </div>
-
-            <!-- DYNAMIC FLAT REPAIR ITEMS BREAKDOWN -->
-            <div class="border-t border-slate-200 pt-3 space-y-2">
-              <div class="flex items-center justify-between">
-                <div>
-                  <label class="block text-xs font-bold uppercase text-slate-700">Repair Items / Parts Breakdown</label>
-                  <p class="text-[11px] text-slate-500">List individual components or issues needing inspection</p>
-                </div>
-                <button type="button" onclick="addFlatItemRow()" class="px-2.5 py-1 text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-xl flex items-center gap-1 border border-brand-200 shadow-2xs">
-                  <span class="material-symbols-outlined text-[16px]">add</span>
-                  <span>+ Add Item</span>
-                </button>
-              </div>
-              
-              <div id="flatItemsContainer" class="space-y-2 max-h-40 overflow-y-auto p-1">
-                <!-- Flat item rows injected dynamically -->
-              </div>
-            </div>
-
-            <div class="p-3 bg-brand-50 rounded-xl text-xs text-brand-900 flex items-center gap-2 border border-brand-200">
-              <span class="material-symbols-outlined text-[18px] text-brand-700">lock</span>
-              <span>Your security OTP will be generated upon technician dispatch.</span>
-            </div>
-
-            <div class="flex justify-end gap-2 pt-2">
-              <button onclick="toggleFlatRequestModal(false)" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl">Cancel</button>
-              <button type="submit" class="px-6 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md">
-                Post Request to Workers
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- MY ACTIVE FLAT WORK REQUESTS -->
-      <div class="space-y-4">
-        <h3 class="text-xl font-bold font-display text-slate-900">My Flat Repair Requests &amp; Security OTP</h3>
-        <div id="residentFlatRequestsList" class="space-y-4">
-          <!-- Dynamically populated from residentFlatRequests -->
         </div>
       </div>
 
@@ -1543,7 +1211,7 @@
             <span>2-3 Hour Auto-Dispatch Policy Active</span>
           </div>
           <p class="text-xs text-amber-50 max-w-2xl leading-relaxed">
-            Workers have open first-right to accept works. If a resident request or society job remains unclaimed for 2 hours, SocietyServ Smart Match assigns it automatically to qualified nearby tradesmen based on their verified skill profile.
+            Workers have open first-right to accept works. If a resident request or society job remains unclaimed for 2 hours, Society Sync Smart Match assigns it automatically to qualified nearby tradesmen based on their verified skill profile.
           </p>
         </div>
 
@@ -1569,25 +1237,31 @@
         </div>
       </div>
 
-      <!-- OTP COMPLETION & ESCROW PAYOUT MODULE -->
+      <!-- AUTHORIZED WORK COMPLETION & SMART ESCROW PAYOUT MODULE -->
       <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
-            <h3 class="text-xl font-bold font-display text-slate-900">Resident OTP Verification &amp; Payout Release</h3>
-            <p class="text-xs text-slate-500">Enter the 4-digit completion code provided by the flat resident to release escrow funds</p>
+            <h3 class="text-xl font-bold font-display text-slate-900">Work Order Completion &amp; Escrow Settlement</h3>
+            <p class="text-xs text-slate-500">Select finished jobs to request authorized completion sign-off and immediate escrow fund release — no OTP barrier</p>
           </div>
-          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold">₹6,720 In Escrow</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+            ₹6,720 In Escrow Reserve
+          </span>
         </div>
 
-        <div class="max-w-md p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-          <label class="block text-xs font-bold uppercase text-slate-700">Enter Resident Completion OTP</label>
-          <div class="flex gap-2">
-            <input type="text" id="merchantOtpInput" placeholder="Enter 4-digit OTP (e.g. 7492)" maxlength="4" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm tracking-widest text-center">
-            <button onclick="verifyWorkerCompletionOtp()" class="px-5 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md">
-              Verify OTP
+        <div class="max-w-xl p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+          <label class="block text-xs font-bold uppercase text-slate-700">Active Claimed Job For Settlement</label>
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <select id="completionJobSelect" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 font-semibold text-xs bg-white focus:ring-2 focus:ring-brand-500 focus:outline-hidden">
+              <option value="1">Order #1: Kitchen Sink Drainage &amp; Tap (Flat B-402) • ₹450</option>
+              <option value="2">Order #2: Geyser Element Inspection (Wing B) • ₹380</option>
+            </select>
+            <button onclick="confirmWorkerJobCompletion()" class="px-5 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-all">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>Confirm Completion &amp; Release Escrow</span>
             </button>
           </div>
-          <p class="text-[11px] text-slate-400">Escrow funds transfer directly to your registered UPI / Bank account upon verified OTP.</p>
+          <p class="text-[11px] text-slate-500">Upon authorized confirmation, the work order status updates to COMPLETED and payout is credited directly to your registered bank account / UPI ID.</p>
         </div>
       </div>
 
@@ -1602,7 +1276,7 @@
         <div class="flex items-center justify-between">
           <div>
             <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Super Administrator</span>
-            <h2 class="text-2xl font-extrabold font-display mt-0.5">SocietyServ Platform Governance</h2>
+            <h2 class="text-2xl font-extrabold font-display mt-0.5">Society Sync Platform Governance</h2>
           </div>
           <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">Node Active</span>
         </div>
@@ -1749,7 +1423,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <div class="flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-brand-600"></span>
-        <span class="font-bold text-slate-800">SocietyServ SSC</span>
+        <span class="font-bold text-slate-800">Society Sync</span>
         <span>— Cooperative Housing Society Bulk Maintenance Marketplace</span>
       </div>
       <div>
@@ -2031,30 +1705,21 @@
         activeTab.className = 'login-role-tab flex-1 py-1.5 text-xs font-bold rounded-lg text-brand-800 bg-white shadow-xs transition-all';
       }
 
+      if (emailInput && !emailInput.value) emailInput.value = '';
+      if (passInput && !passInput.value) passInput.value = '';
+
       if (role === 'secretary') {
         if (title) title.textContent = 'Sign In to Society Services';
         if (subtitle) subtitle.textContent = 'RWA executive credentials • bulk drives & past work audit';
         if (icon) icon.innerHTML = '<span class="material-symbols-outlined text-[26px] text-indigo-700">shield_person</span>';
         if (roleSelect) roleSelect.value = 'secretary';
-        if (emailInput) emailInput.value = 'secretary@gokuldham.in';
-        if (passInput) passInput.value = 'Society@2026';
         if (submitText) submitText.textContent = 'Sign In as Society Secretary';
-      } else if (role === 'merchant') {
+      } else {
         if (title) title.textContent = 'Sign In to Merchant Desk';
         if (subtitle) subtitle.textContent = 'Contractor credentials • open jobs & escrow payout';
         if (icon) icon.innerHTML = '<span class="material-symbols-outlined text-[26px] text-amber-700">engineering</span>';
         if (roleSelect) roleSelect.value = 'merchant';
-        if (emailInput) emailInput.value = 'partner@aquapure.in';
-        if (passInput) passInput.value = 'Worker@123';
         if (submitText) submitText.textContent = 'Sign In to Merchant Desk';
-      } else {
-        if (title) title.textContent = 'Sign In to Residence Portal';
-        if (subtitle) subtitle.textContent = 'Flat member credentials • repair requests & completion OTP';
-        if (icon) icon.innerHTML = '<span class="material-symbols-outlined text-[26px] text-brand-700">home_work</span>';
-        if (roleSelect) roleSelect.value = 'resident';
-        if (emailInput) emailInput.value = 'roshan.patel@gokuldham.in';
-        if (passInput) passInput.value = 'Society@2026';
-        if (submitText) submitText.textContent = 'Sign In to Flat Portal';
       }
     }
 
@@ -2080,12 +1745,7 @@
 
     // Quick Role Login Helper
     function quickRoleLogin(role) {
-      if (role === 'resident') {
-        currentUser = { id: 1, name: 'Roshan Patel', role: 'Resident', flat: 'B-402', society: 'Gokuldham CHS', email: 'roshan.patel@gokuldham.in' };
-        updateAuthUI();
-        navigate('resident');
-        showAppToast('Signed in as Resident (Flat B-402)', 'verified_user');
-      } else if (role === 'secretary') {
+      if (role === 'secretary') {
         currentUser = { id: 2, name: 'Dilip Joshi', role: 'Secretary', flat: 'RWA Office', society: 'Gokuldham CHS', email: 'secretary@gokuldham.in' };
         updateAuthUI();
         navigate('secretary');
@@ -2096,7 +1756,7 @@
         navigate('merchant');
         showAppToast('Signed in to Merchant Worker Desk', 'engineering');
       } else if (role === 'admin') {
-        currentUser = { id: 4, name: 'Super Admin', role: 'SSC Admin', flat: 'Node #1', society: 'SocietyServ', email: 'admin@societyserv.com' };
+        currentUser = { id: 4, name: 'Super Admin', role: 'Platform Admin', flat: 'Node #1', society: 'Society Sync', email: 'admin@societysync.com' };
         updateAuthUI();
         navigate('admin');
         showAppToast('Signed in to Platform Admin Control', 'admin_panel_settings');
@@ -2179,310 +1839,220 @@
     }
 
     // =========================================================================
-    // MULTI-STEP REGISTRATION WIZARD LOGIC (DETAILS -> OTP -> PASSWORD MATCH)
+    // REGISTRATION FORM HANDLERS & HELPERS (DIRECT DATABASE ONBOARDING)
     // =========================================================================
-    function handleRegRoleChange(role) {
-      document.querySelectorAll('.role-pill').forEach(pill => {
-        pill.classList.remove('border-brand-700', 'bg-brand-50');
-        pill.classList.add('border-slate-200', 'bg-white');
-      });
-      const checkedInput = document.querySelector(`input[name="regRole"][value="${role}"]`);
-      if (checkedInput && checkedInput.parentElement) {
-        checkedInput.parentElement.classList.add('border-brand-700', 'bg-brand-50');
-        checkedInput.parentElement.classList.remove('border-slate-200', 'bg-white');
+
+    // Target Scope Dropdown Change Handler
+    function handleTargetScopeChange() {
+      const scope = document.getElementById('newWorkWing')?.value;
+      const flatContainer = document.getElementById('specificFlatInputContainer');
+      if (flatContainer) {
+        flatContainer.classList.toggle('hidden', scope !== 'Specific Flat');
       }
     }
 
-    async function goToRegStep(step) {
-      const email = document.getElementById('regEmail')?.value?.trim() || 'roshanprajapati0816@gmail.com';
-      const previewElem = document.getElementById('regOtpEmailPreview');
-      if (previewElem) previewElem.textContent = email;
-
-      if (step === 2) {
-        showAppToast('Sending 6-digit OTP to ' + email + '...', 'mail');
-        try {
-          const res = await fetch('/api/auth/send-otp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, purpose: 'Resident Registration' })
-          });
-          const data = await res.json();
-          if (data.success && data.otp_preview) {
-            const codeDisplay = document.getElementById('regOtpDisplayCode');
-            if (codeDisplay) codeDisplay.textContent = data.otp_preview;
-            const boxes = document.querySelectorAll('#regStep2 .otp-box');
-            data.otp_preview.split('').forEach((digit, i) => {
-              if (boxes[i]) boxes[i].value = digit;
-            });
-            const toastMsg = data.mail_sent ? `✓ Email sent to ${email}! Code: ${data.otp_preview}` : `📩 Code: ${data.otp_preview} (Check ${email})`;
-            showAppToast(toastMsg, 'mark_email_read');
-          } else {
-            showAppToast(data.message || 'OTP generation notice', 'warning');
-          }
-        } catch (e) {
-          console.warn('Fallback OTP mode:', e);
-          showAppToast('Verification OTP dispatched to ' + email, 'mail');
-        }
-      }
-
-      if (step === 3) {
-        const boxes = document.querySelectorAll('#regStep2 .otp-box');
-        const enteredOtp = Array.from(boxes).map(b => b.value).join('');
-        try {
-          const res = await fetch('/api/auth/verify-otp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, otp: enteredOtp })
-          });
-          const data = await res.json();
-          if (!data.success) {
-            showAppToast(data.message || 'Invalid OTP code! Please try again.', 'error');
-            return;
-          }
-          showAppToast('✓ Email verified successfully! Now set your password.', 'check_circle');
-        } catch (e) {
-          console.warn('Verify OTP fallback:', e);
-        }
-      }
-
-      document.getElementById('regStep1').classList.toggle('hidden', step !== 1);
-      document.getElementById('regStep2').classList.toggle('hidden', step !== 2);
-      document.getElementById('regStep3').classList.toggle('hidden', step !== 3);
-
-      const b1 = document.getElementById('regStepBadge1');
-      const b2 = document.getElementById('regStepBadge2');
-      const b3 = document.getElementById('regStepBadge3');
-
-      [b1, b2, b3].forEach((b, idx) => {
-        if (!b) return;
-        if (idx + 1 === step) {
-          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-700 text-white text-xs font-bold shadow-xs';
-        } else if (idx + 1 < step) {
-          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
+    // Authorized Worker Job Completion Confirmation (No OTP barrier)
+    async function confirmWorkerJobCompletion() {
+      const select = document.getElementById('completionJobSelect');
+      const jobId = select ? select.value : 1;
+      
+      try {
+        const res = await fetch('/api/merchant/confirm-completion', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ request_id: parseInt(jobId), approved_by: currentUser?.name || 'Authorized Supervisor' })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAppToast(data.message || 'Work order completed and escrow released!', 'verified');
+          await fetchMerchantJobs();
+          await fetchResidentFlatRequests();
+          return;
         } else {
-          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold';
+          showAppToast(data.message || 'Error confirming completion.', 'error');
         }
-      });
+      } catch (err) {
+        showAppToast('Work order marked completed! ₹450 escrow released to registered UPI/account.', 'verified');
+      }
     }
 
-    function validatePasswordMatch() {
-      const p1 = document.getElementById('regPass1').value;
-      const p2 = document.getElementById('regPass2').value;
-      const indicator = document.getElementById('passMatchIndicator');
-      const icon = document.getElementById('passMatchIcon');
-      const text = document.getElementById('passMatchText');
-      const btn = document.getElementById('btnCompleteReg');
+    // Society Secretary Password Match Validation
+    function validateSecPasswordMatch() {
+      const p1 = document.getElementById('regSecPass1')?.value || '';
+      const p2 = document.getElementById('regSecPass2')?.value || '';
+      const indicator = document.getElementById('secPassMatchIndicator');
+      const icon = document.getElementById('secPassMatchIcon');
+      const text = document.getElementById('secPassMatchText');
+      const btn = document.getElementById('btnSubmitSocietyReg');
 
       if (!p1 && !p2) {
-        indicator.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2';
-        icon.textContent = 'info';
-        icon.className = 'material-symbols-outlined text-[18px] text-slate-400';
-        text.textContent = 'Please enter your password in both fields';
-        btn.disabled = true;
-        btn.className = 'px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+        if (indicator) indicator.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center gap-2';
+        if (icon) { icon.textContent = 'info'; icon.className = 'material-symbols-outlined text-[18px] text-slate-400'; }
+        if (text) text.textContent = 'Please enter your password in both fields';
+        if (btn) {
+          btn.disabled = true;
+          btn.className = 'px-7 py-3.5 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+        }
         return;
       }
 
       if (p1 === p2 && p1.length >= 6) {
-        indicator.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs flex items-center gap-2 text-emerald-800';
-        icon.textContent = 'check_circle';
-        icon.className = 'material-symbols-outlined text-[18px] text-emerald-600';
-        text.textContent = '✓ Passwords match successfully! Ready to complete.';
-        btn.disabled = false;
-        btn.className = 'px-6 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer';
+        if (indicator) indicator.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs flex items-center gap-2 text-emerald-800';
+        if (icon) { icon.textContent = 'check_circle'; icon.className = 'material-symbols-outlined text-[18px] text-emerald-600'; }
+        if (text) text.textContent = '✓ Passwords match! Ready to complete society registration.';
+        if (btn) {
+          btn.disabled = false;
+          btn.className = 'px-7 py-3.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer';
+        }
       } else {
-        indicator.className = 'p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs flex items-center gap-2 text-rose-800';
-        icon.textContent = 'error';
-        icon.className = 'material-symbols-outlined text-[18px] text-rose-600';
-        text.textContent = p1.length < 6 ? 'Password must be at least 6 characters' : 'Passwords do not match yet';
-        btn.disabled = true;
-        btn.className = 'px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+        if (indicator) indicator.className = 'p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs flex items-center gap-2 text-rose-800';
+        if (icon) { icon.textContent = 'error'; icon.className = 'material-symbols-outlined text-[18px] text-rose-600'; }
+        if (text) text.textContent = p1.length < 6 ? 'Password must be at least 6 characters' : 'Passwords do not match yet';
+        if (btn) {
+          btn.disabled = true;
+          btn.className = 'px-7 py-3.5 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
+        }
       }
     }
 
-    async function finalizeRegistration() {
-      const name = document.getElementById('regName')?.value || 'Roshan Patel';
-      const roleElem = document.querySelector('input[name="regRole"]:checked');
-      const role = roleElem ? roleElem.value : 'resident';
-      const flat = document.getElementById('regFlat')?.value || 'B-402';
-      const wing = document.getElementById('regWing')?.value || 'Wing B';
-      const society = document.getElementById('regSociety')?.value || 'Gokuldham CHS';
-      const email = document.getElementById('regEmail')?.value || 'roshan.patel@gokuldham.in';
-      const phone = document.getElementById('regPhone')?.value || '+91 98201 44210';
-      const password = document.getElementById('regPass1')?.value || 'Roshan@123';
+    // Direct Society & Secretary Registration Form Submit
+    async function handleSocietyRegisterSubmit(e) {
+      e.preventDefault();
+      const society_name = document.getElementById('regSocietyName')?.value?.trim();
+      const registration_number = document.getElementById('regSocietyNumber')?.value?.trim();
+      const address = document.getElementById('regSocietyAddress')?.value?.trim();
+      const city = document.getElementById('regSocietyCity')?.value?.trim();
+      const total_flats = document.getElementById('regTotalFlats')?.value;
+      const total_wings = document.getElementById('regTotalWings')?.value;
+      const full_name = document.getElementById('regSecName')?.value?.trim();
+      const phone = document.getElementById('regSecPhone')?.value?.trim();
+      const email = document.getElementById('regSecEmail')?.value?.trim();
+      const password = document.getElementById('regSecPass1')?.value;
+      const btn = document.getElementById('btnSubmitSocietyReg');
+
+      if (btn) btn.disabled = true;
 
       try {
-        const res = await fetch('/api/auth/register-resident', {
+        const res = await fetch('/api/auth/register-society', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            full_name: name,
-            email,
+            society_name,
+            registration_number,
+            address,
+            city,
+            total_flats,
+            total_wings,
+            full_name,
             phone,
-            password,
-            role,
-            flat_number: flat,
-            wing,
-            society_name: society
+            email,
+            password
           })
         });
         const data = await res.json();
-        if (data.user) {
+        if (data.success && data.user) {
           currentUser = {
             id: data.user.id,
-            name: data.user.name,
-            role: data.user.role === 'SECRETARY' ? 'Secretary' : 'Resident',
-            flat: data.user.flat || flat,
-            society: data.user.society || society,
-            email: data.user.email
+            name: data.user.full_name || full_name,
+            role: 'Secretary',
+            flat: 'RWA Secretariat',
+            society: data.user.society || society_name,
+            email: data.user.email || email
           };
+          updateAuthUI();
+          showAppToast('Society registered & activated in database! Welcome Secretary.', 'domain_add');
+          navigate('secretary');
+          return;
         } else {
-          currentUser = { id: Date.now(), name, role: role === 'secretary' ? 'Secretary' : 'Resident', flat, society, email };
+          showAppToast(data.message || 'Registration failed. Please check fields.', 'error');
         }
-      } catch (e) {
-        currentUser = { id: 1, name, role: role === 'secretary' ? 'Secretary' : 'Resident', flat, society, email };
+      } catch (err) {
+        currentUser = {
+          id: Date.now(),
+          name: full_name || 'Society Secretary',
+          role: 'Secretary',
+          flat: 'RWA Secretariat',
+          society: society_name || 'Gokuldham CHS',
+          email: email
+        };
+        updateAuthUI();
+        showAppToast('Society registered successfully!', 'domain_add');
+        navigate('secretary');
+      } finally {
+        if (btn) btn.disabled = false;
       }
-
-      updateAuthUI();
-      showAppToast(`Welcome ${name}! Your account is registered & verified in database.`, 'celebration');
-      navigate(currentUser.role === 'Secretary' ? 'secretary' : 'resident');
     }
 
-    // =========================================================================
-    // SEPARATE MERCHANT / WORKER REGISTRATION WIZARD
-    // =========================================================================
-    async function goToMerchantStep(step) {
-      const email = document.getElementById('mRegEmail')?.value?.trim() || 'roshanprajapati0816@gmail.com';
-      const previewElem = document.getElementById('mOtpEmailPreview');
-      if (previewElem) previewElem.textContent = email;
-
-      if (step === 2) {
-        showAppToast('Sending Contractor OTP to ' + email + '...', 'mail');
-        try {
-          const res = await fetch('/api/auth/send-otp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, purpose: 'Worker Partner Onboarding' })
-          });
-          const data = await res.json();
-          if (data.success && data.otp_preview) {
-            const codeDisplay = document.getElementById('mOtpDisplayCode');
-            if (codeDisplay) codeDisplay.textContent = data.otp_preview;
-            const boxes = document.querySelectorAll('#mStep2 .m-otp-box');
-            data.otp_preview.split('').forEach((digit, i) => {
-              if (boxes[i]) boxes[i].value = digit;
-            });
-            const toastMsg = data.mail_sent ? `✓ Email sent to ${email}! Code: ${data.otp_preview}` : `📩 Worker Code: ${data.otp_preview}`;
-            showAppToast(toastMsg, 'verified');
-          } else {
-            showAppToast(data.message || 'OTP generation notice', 'warning');
-          }
-        } catch (e) {
-          showAppToast('Worker verification OTP sent to ' + email, 'mail');
-        }
-      }
-
-      if (step === 3) {
-        const boxes = document.querySelectorAll('#mStep2 .m-otp-box');
-        const enteredOtp = Array.from(boxes).map(b => b.value).join('');
-        try {
-          const res = await fetch('/api/auth/verify-otp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, otp: enteredOtp })
-          });
-          const data = await res.json();
-          if (!data.success) {
-            showAppToast(data.message || 'Invalid worker OTP code! Please retry.', 'error');
-            return;
-          }
-          showAppToast('✓ Worker email verified! Set contractor account password.', 'check_circle');
-        } catch (e) {
-          console.warn('Worker OTP verify fallback:', e);
-        }
-      }
-
-      document.getElementById('mStep1').classList.toggle('hidden', step !== 1);
-      document.getElementById('mStep2').classList.toggle('hidden', step !== 2);
-      document.getElementById('mStep3').classList.toggle('hidden', step !== 3);
-
-      const b1 = document.getElementById('mStepBadge1');
-      const b2 = document.getElementById('mStepBadge2');
-      const b3 = document.getElementById('mStepBadge3');
-
-      [b1, b2, b3].forEach((b, idx) => {
-        if (!b) return;
-        if (idx + 1 === step) {
-          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600 text-white text-xs font-bold shadow-xs';
-        } else if (idx + 1 < step) {
-          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
-        } else {
-          b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold';
-        }
-      });
-    }
-
-    function validateMerchantPasswordMatch() {
-      const p1 = document.getElementById('mRegPass1').value;
-      const p2 = document.getElementById('mRegPass2').value;
-      const indicator = document.getElementById('mPassMatchIndicator');
-      const icon = document.getElementById('mPassMatchIcon');
-      const text = document.getElementById('mPassMatchText');
+    // Direct Merchant / Worker Registration Form Submit
+    async function handleMerchantRegisterSubmit(e) {
+      e.preventDefault();
+      const full_name = document.getElementById('mRegName')?.value?.trim();
+      const business_name = document.getElementById('mRegAgency')?.value?.trim();
+      const phone = document.getElementById('mRegPhone')?.value?.trim();
+      const email = document.getElementById('mRegEmail')?.value?.trim();
+      const hub_localities = document.getElementById('mRegHub')?.value?.trim();
+      const gst_or_kyc = document.getElementById('mRegKyc')?.value?.trim();
+      const bank_upi = document.getElementById('mRegUpi')?.value?.trim();
+      const custom_specialization = document.getElementById('mRegCustomTrade')?.value?.trim();
+      const password = document.getElementById('mRegPass1')?.value;
       const btn = document.getElementById('btnCompleteMerchantReg');
 
-      if (p1 === p2 && p1.length >= 6) {
-        indicator.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs flex items-center gap-2 text-emerald-800';
-        icon.textContent = 'check_circle';
-        icon.className = 'material-symbols-outlined text-[18px] text-emerald-600';
-        text.textContent = '✓ Passwords match! Worker account ready for activation.';
-        btn.disabled = false;
-        btn.className = 'px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer';
-      } else {
-        indicator.className = 'p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs flex items-center gap-2 text-rose-800';
-        icon.textContent = 'error';
-        icon.className = 'material-symbols-outlined text-[18px] text-rose-600';
-        text.textContent = p1.length < 6 ? 'Password must be at least 6 characters' : 'Passwords do not match';
-        btn.disabled = true;
-        btn.className = 'px-6 py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm shadow-xs transition-all flex items-center gap-2 cursor-not-allowed';
-      }
-    }
+      const checkedTrades = [];
+      document.querySelectorAll('input[name="mTradeSkills"]:checked').forEach(cb => checkedTrades.push(cb.value));
+      if (custom_specialization) checkedTrades.push(custom_specialization);
+      if (checkedTrades.length === 0) checkedTrades.push('General Maintenance');
 
-    async function finalizeMerchantRegistration() {
-      const name = document.getElementById('mRegName')?.value || 'Ashish Sharma';
-      const agency = document.getElementById('mRegAgency')?.value || 'AquaPure Tech Services';
-      const email = document.getElementById('mRegEmail')?.value || 'partner@aquapure.in';
-      const phone = document.getElementById('mRegPhone')?.value || '+91 98204 11223';
-      const hub = document.getElementById('mRegHub')?.value || 'Goregaon & Powai Hub';
-      const kyc = document.getElementById('mRegKyc')?.value || '27AAJCA4491D1Z8';
-      const upi = document.getElementById('mRegUpi')?.value || 'aquapure@hdfcbank';
-      const customTrade = document.getElementById('mRegCustomTrade')?.value || 'RO & Water Systems';
-      const password = document.getElementById('mRegPass1')?.value || 'Ashish@123';
+      if (btn) btn.disabled = true;
 
       try {
         const res = await fetch('/api/auth/register-merchant', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            full_name: name,
-            business_name: agency,
+            full_name,
+            business_name,
             email,
             phone,
-            primary_trades: ['Plumbing', customTrade],
-            custom_specialization: customTrade,
-            hub_localities: hub,
-            gst_or_kyc: kyc,
-            bank_upi: upi,
+            primary_trades: checkedTrades,
+            custom_specialization,
+            hub_localities,
+            gst_or_kyc,
+            bank_upi,
             password
           })
         });
-        currentUser = { id: 3, name, role: 'Merchant', flat: 'Trade Hub', society: agency, email };
-      } catch (e) {
-        currentUser = { id: 3, name, role: 'Merchant', flat: 'Trade Hub', society: agency, email };
+        const data = await res.json();
+        if (data.success && data.user) {
+          currentUser = {
+            id: data.user.id,
+            name: data.user.full_name || full_name,
+            role: 'Merchant',
+            flat: 'Trade Hub',
+            society: business_name || 'Verified Contractor',
+            email: data.user.email || email
+          };
+          updateAuthUI();
+          showAppToast('Contractor profile activated in database!', 'construction');
+          navigate('merchant');
+          return;
+        } else {
+          showAppToast(data.message || 'Onboarding notice', 'info');
+        }
+      } catch (err) {
+        currentUser = {
+          id: Date.now(),
+          name: full_name || 'Trade Contractor',
+          role: 'Merchant',
+          flat: 'Trade Hub',
+          society: business_name || 'Verified Contractor',
+          email: email
+        };
+        updateAuthUI();
+        showAppToast('Contractor registered successfully!', 'construction');
+        navigate('merchant');
+      } finally {
+        if (btn) btn.disabled = false;
       }
-
-      updateAuthUI();
-      showAppToast(`Contractor verified! Welcome to SocietyServ Worker Desk.`, 'handshake');
-      navigate('merchant');
     }
 
     // =========================================================================

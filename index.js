@@ -861,6 +861,33 @@ app.post('/api/merchant/verify-otp', async (req, res) => {
   }
 });
 
+// Authorized Worker / Requester Job Completion Confirmation (No OTP barrier)
+app.post('/api/merchant/confirm-completion', async (req, res) => {
+  const { request_id, approved_by } = req.body;
+  try {
+    const check = await pool.query('SELECT status, flat_id FROM flat_maintenance_requests WHERE id = $1', [request_id]);
+    if (check.rows.length === 0) return res.status(404).json({ success: false, message: 'Work request not found.' });
+
+    const updated = await pool.query("UPDATE flat_maintenance_requests SET status = 'COMPLETED', completed_at = NOW() WHERE id = $1 RETURNING *;", [request_id]);
+    
+    // Record escrow transaction
+    await pool.query(`
+      INSERT INTO escrow_transactions 
+      (society_id, transaction_type, amount, fee_deducted, status, reference_type, reference_id)
+      VALUES (1, 'PAYOUT_TO_VENDOR', 450.00, 22.50, 'RELEASED', 'FLAT_REQUEST', $1)
+      ON CONFLICT DO NOTHING;
+    `, [request_id]);
+
+    res.json({ 
+      success: true, 
+      message: 'Work order completion confirmed! ₹450 escrow payout released to contractor account.', 
+      request: updated.rows[0] 
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // --- 5.7 TRIGGER AUTOMATIC 2-HOUR ASSIGNMENT CHECK ---
 app.post('/api/jobs/trigger-auto-assign', async (req, res) => {
   const result = await runAutoAssignmentEngine();
