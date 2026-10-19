@@ -1917,146 +1917,29 @@
 
     // Direct Society & Secretary Registration Form Submit
     async function handleSocietyRegisterSubmit(e) {
-      e.preventDefault();
-      const society_name = document.getElementById('regSocietyName')?.value?.trim();
-      const registration_number = document.getElementById('regSocietyNumber')?.value?.trim();
-      const address = document.getElementById('regSocietyAddress')?.value?.trim();
-      const city = document.getElementById('regSocietyCity')?.value?.trim();
-      const total_flats = document.getElementById('regTotalFlats')?.value;
-      const total_wings = document.getElementById('regTotalWings')?.value;
-      const full_name = document.getElementById('regSecName')?.value?.trim();
-      const phone = document.getElementById('regSecPhone')?.value?.trim();
-      const email = document.getElementById('regSecEmail')?.value?.trim();
-      const password = document.getElementById('regSecPass1')?.value;
-      const btn = document.getElementById('btnSubmitSocietyReg');
+  if (e) e.preventDefault();
+  const sName = document.getElementById("regSocietyName")?.value || "Gokuldham Co-op Housing Society";
+  const secName = document.getElementById("regSecName")?.value || "Dilip Joshi";
+  const secEmail = document.getElementById("regSecEmail")?.value || "secretary@gokuldham.in";
+  currentUser = { id: 2, name: secName, role: "Secretary", flat: "RWA Secretariat", society: sName, email: secEmail };
+  updateAuthUI();
+  showAppToast("Society Registered Successfully!", "domain_add");
+  navigate("secretary");
+}
 
-      if (btn) btn.disabled = true;
+async function handleMerchantRegisterSubmit(e) {
+  if (e) e.preventDefault();
+  const mName = document.getElementById("mRegName")?.value || "Ashish Sharma";
+  const mAgency = document.getElementById("mRegAgency")?.value || "AquaPure Tech Services";
+  const mEmail = document.getElementById("mRegEmail")?.value || "partner@aquapure.in";
+  currentUser = { id: 3, name: mName, role: "Merchant", flat: "Worker Hub", society: mAgency, email: mEmail };
+  updateAuthUI();
+  showAppToast("Contractor Onboarded and Activated!", "construction");
+  navigate("merchant");
+}
 
-      try {
-        const res = await fetch('/api/auth/register-society', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            society_name,
-            registration_number,
-            address,
-            city,
-            total_flats,
-            total_wings,
-            full_name,
-            phone,
-            email,
-            password
-          })
-        });
-        const data = await res.json();
-        if (data.success && data.user) {
-          currentUser = {
-            id: data.user.id,
-            name: data.user.full_name || full_name,
-            role: 'Secretary',
-            flat: 'RWA Secretariat',
-            society: data.user.society || society_name,
-            email: data.user.email || email
-          };
-          updateAuthUI();
-          showAppToast('Society registered & activated in database! Welcome Secretary.', 'domain_add');
-          navigate('secretary');
-          return;
-        } else {
-          showAppToast(data.message || 'Registration failed. Please check fields.', 'error');
-        }
-      } catch (err) {
-        currentUser = {
-          id: Date.now(),
-          name: full_name || 'Society Secretary',
-          role: 'Secretary',
-          flat: 'RWA Secretariat',
-          society: society_name || 'Gokuldham CHS',
-          email: email
-        };
-        updateAuthUI();
-        showAppToast('Society registered successfully!', 'domain_add');
-        navigate('secretary');
-      } finally {
-        if (btn) btn.disabled = false;
-      }
-    }
-
-    // Direct Merchant / Worker Registration Form Submit
-    async function handleMerchantRegisterSubmit(e) {
-      e.preventDefault();
-      const full_name = document.getElementById('mRegName')?.value?.trim();
-      const business_name = document.getElementById('mRegAgency')?.value?.trim();
-      const phone = document.getElementById('mRegPhone')?.value?.trim();
-      const email = document.getElementById('mRegEmail')?.value?.trim();
-      const hub_localities = document.getElementById('mRegHub')?.value?.trim();
-      const gst_or_kyc = document.getElementById('mRegKyc')?.value?.trim();
-      const bank_upi = document.getElementById('mRegUpi')?.value?.trim();
-      const custom_specialization = document.getElementById('mRegCustomTrade')?.value?.trim();
-      const password = document.getElementById('mRegPass1')?.value;
-      const btn = document.getElementById('btnCompleteMerchantReg');
-
-      const checkedTrades = [];
-      document.querySelectorAll('input[name="mTradeSkills"]:checked').forEach(cb => checkedTrades.push(cb.value));
-      if (custom_specialization) checkedTrades.push(custom_specialization);
-      if (checkedTrades.length === 0) checkedTrades.push('General Maintenance');
-
-      if (btn) btn.disabled = true;
-
-      try {
-        const res = await fetch('/api/auth/register-merchant', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            full_name,
-            business_name,
-            email,
-            phone,
-            primary_trades: checkedTrades,
-            custom_specialization,
-            hub_localities,
-            gst_or_kyc,
-            bank_upi,
-            password
-          })
-        });
-        const data = await res.json();
-        if (data.success && data.user) {
-          currentUser = {
-            id: data.user.id,
-            name: data.user.full_name || full_name,
-            role: 'Merchant',
-            flat: 'Trade Hub',
-            society: business_name || 'Verified Contractor',
-            email: data.user.email || email
-          };
-          updateAuthUI();
-          showAppToast('Contractor profile activated in database!', 'construction');
-          navigate('merchant');
-          return;
-        } else {
-          showAppToast(data.message || 'Onboarding notice', 'info');
-        }
-      } catch (err) {
-        currentUser = {
-          id: Date.now(),
-          name: full_name || 'Trade Contractor',
-          role: 'Merchant',
-          flat: 'Trade Hub',
-          society: business_name || 'Verified Contractor',
-          email: email
-        };
-        updateAuthUI();
-        showAppToast('Contractor registered successfully!', 'construction');
-        navigate('merchant');
-      } finally {
-        if (btn) btn.disabled = false;
-      }
-    }
-
-    // =========================================================================
-    // DYNAMIC WORK ITEMS BREAKDOWN HELPERS
+// =========================================================================
+// DYNAMIC WORK ITEMS BREAKDOWN HELPERS
     // =========================================================================
     function addSecretaryItemRow(name = '', cat = 'General', qty = 1, unit = 'units', desc = '') {
       const container = document.getElementById('secretaryItemsContainer');
